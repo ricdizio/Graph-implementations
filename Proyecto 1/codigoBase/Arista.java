@@ -22,5 +22,6 @@ public class Arista extends Lado
   }
 
   public String toString() {
+    return "La arista tiene como vertice:  " + this.u + " y " + this.v;
   }
 }
