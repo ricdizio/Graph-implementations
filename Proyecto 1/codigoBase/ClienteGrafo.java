@@ -9,6 +9,7 @@ public class ClienteGrafo {
 
   	Vertice x = new Vertice("1",2);	
   	String id = x.getId();
-  	System.out.println(id);
+    Double peso = x.getPeso();
+  	System.out.println("el id es "+id +"\n"+"el peso es "+ peso);
   }
 }
