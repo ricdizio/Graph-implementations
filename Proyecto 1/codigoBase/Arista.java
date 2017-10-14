@@ -8,7 +8,7 @@ public class Arista extends Lado
   private Vertice v;
   
   public Arista(String id, double peso, Vertice u, Vertice v) {
-    super(id,peso)
+    super(id,peso);
     this.u = u;
     this.v = v;
   }
@@ -22,6 +22,7 @@ public class Arista extends Lado
   }
 
   public String toString() {
-    return "La arista tiene como vertice:  " + this.u + " y " + this.v;
+    return this.u + "<----->"+ this.v+" peso "+"\n Peso de la Arista "+ this.getPeso()
+    +" id de la Arista "+this.getId();
   }
 }

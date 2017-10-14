@@ -14,14 +14,15 @@ public class Arco extends Lado
   }
 
   public Vertice getExtremoInicial() {
-    return this.u;
+    return this.extremoInicial;
   }
 
   public Vertice getExtremoFinall() {
-    return this.v;
+    return this.extremoFinal;
   }
-  // Hola Mundo
+
   public String toString() {
-    return "El arco tiene como extremo incial: " + this.extremoInicial + " y extremoFinal: " + this.extremoFinal; 
+    return this.extremoInicial + " --------> " + this.extremoFinal+"\n"+" Peso del arco "+ this.getPeso()
+    +" id del arco "+this.getId(); 
   }
 }
