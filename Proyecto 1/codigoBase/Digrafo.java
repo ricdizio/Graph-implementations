@@ -136,7 +136,7 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
  
-    public List<Lado> incidentes(String id) {
+    public List<Lado> incidentes(String id) 
     {
     	if(MapaDeVertices.get(id)!= null)
     	{
@@ -144,7 +144,6 @@ public class Digrafo implements Grafo
         }    
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
-    }
     }
 
     public Object clone() {
