@@ -14,7 +14,6 @@ public class Digrafo implements Grafo
     public Digrafo() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
-        lista_de_vertices = new LinkedList<Vertice>();
         Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
         lista_de_arcos = new LinkedList<Arco>();
         
@@ -43,9 +42,11 @@ public class Digrafo implements Grafo
     }
     
     public int numeroDeVertices() {
+    	return numeroDeVertices;
     }
 
     public int numeroDeLados() {
+    	return numeroDeLados;
     }
    
     public boolean agregarVertice(Vertice v) 
@@ -64,8 +65,6 @@ public class Digrafo implements Grafo
 
     public boolean agregarVertice(String id, double peso) {
     }
-
-
     
     public Vertice obtenerVertice(String id) {
     }
@@ -86,6 +85,11 @@ public class Digrafo implements Grafo
     }
 
     public int grado(String id) {
+    	if(MapaDeVertices.get(id)!= null){
+            return MapaDeVertices.get(id).getListaDeAdyacencias().size(); 
+        }    
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
     }
 
     public List<Vertice> adyacentes(String id) {
