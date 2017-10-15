@@ -10,13 +10,13 @@ public class Digrafo implements Grafo
     private int numeroDeLados;
     private List<Vertice> lista_de_vertices;
     private List<Arco> lista_de_arcos;
+    Map<String, Vertice> MapaDeArcos = New HashMap<String, Arco>();
     Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
 
     public Digrafo() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
-        lista_de_arcos = new LinkedList<Arco>();
-        
+      
     }
 
     public boolean cargarGrafo(String dirArchivo) {
