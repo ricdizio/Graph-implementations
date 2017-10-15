@@ -104,6 +104,14 @@ public class Digrafo implements Grafo
     }
 
     public List<Vertice> vertices() {
+        List<Vertices> return_list_vertices = new LinkedList<Vertice>;
+
+        for (Vertice v : MapaDeVertices.values()) {
+            return_list_vertices.add(v);
+        }
+
+        return return_list_vertices;
+    
     }
 
     public List<Lado> lados() {
