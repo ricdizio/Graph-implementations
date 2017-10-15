@@ -92,6 +92,24 @@ public class Digrafo implements Grafo
     }
 
     public boolean estaLado(String u, String v){
+
+        if (estaVertice(u) == true && estaVertice(v) == true ) {
+
+            Vertice Vertice1 = new Vertice();
+            Vertice1 = MapaDeVertices.get(id); 
+
+            for(Vertice vertice: Vertice1.getListaDeAdyacencias()){
+                if(Vertice1.getId().equals(u)  && vertice.getId().equals(v)){
+                    return true;
+                }
+            
+            }
+        }
+
+        else{
+            return false;
+        } 
+              
     }
 
     public boolean eliminarVertice(String id) {

@@ -8,16 +8,18 @@ public class GrafoNoDirigido implements Grafo
 {
     private int numeroDeVertices;
     private int numeroDeLados;
-    private List<Vertice> lista_de_vertices;
-    private List<Arista> lista_de_aristas;
-    private Map<String, Arista> MapaDeAristas = New HashMap<String, Arista>();
-    private Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
+    //private List<Vertice> lista_de_vertices;
+    //private List<Arista> lista_de_aristas;
+    private Map<String, Arista> MapaDeAristas;
+    private Map<String, Vertice> MapaDeVertices;
 
     public GrafoNoDirigido() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
-        lista_de_vertices = new LinkedList<Vertice>();
-        lista_de_aristas = new LinkedList<Arista>();
+        MapaDeAristas = New HashMap<String, Arista>();
+        MapaDeVertices = New HashMap<String, Vertice>();
+        //lista_de_vertices = new LinkedList<Vertice>();
+        //lista_de_aristas = new LinkedList<Arista>();
         
     }
 
@@ -98,17 +100,38 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean estaLado(String u, String v){        
         //revisar
-        /* 
-            for(Vertice v: MapaDeVertices){
-                for(Vertice ver: v.get(id).getListaDeAdyacencias()){
-                    if(vertice1.getId().equals(u)  && vertice2.getId().equals(v)){
-                    return true;
-                    }
-                }    
-            }
+          // Mas rapida porque aprovecha los ids de los vertices para buscarlos con el HashMap dentro de la lista de vertices y luego en la lista de adyacentes busca el otro id
+        // ESTA RELACION DEBERIA SER PARA AMBOS LADOS por ser GND,verificar            
+        if (estaVertice(u) == true && estaVertice(v) == true ) {
 
-        */
-        // 2da MEJOR MANERA IMPLEMENTADA
+            Vertice Vertice1 = new Vertice();
+            Vertice1 = MapaDeVertices.get(id); 
+
+            Vertice Vertice2 = new Vertice();
+            Vertice2 = MapaDeVertices.get(id);
+
+            for(Vertice vertice: Vertice1.getListaDeAdyacencias()){
+                if(Vertice1.getId().equals(u)  && vertice.getId().equals(v)){
+                    return true;
+                }
+            
+            }
+            for(Vertice vertice: Vertice1.getListaDeAdyacencias()){
+                if(Vertice2.getId().equals(v)  && vertice.getId().equals(u)){
+                    return true;
+                }
+            
+            }
+        }
+
+        else{
+            return false;
+        } 
+                
+    
+
+        
+        // 2da MEJOR MANERA IMPLEMENTADA Si tuviesemos el id del lado fuese la mejor opcion
         /* for (Arista l: MapaDeAristas.values()) {
             if ((l.getEstremo1() == u && l.getExtremo2() == v) || (l.getEstremo1() == v && l.getExtremo2() == u)) {
                 return true;
@@ -116,8 +139,8 @@ public class GrafoNoDirigido implements Grafo
         }
         return false;
         */
-        Arista arista = new Arista(u,v);
-        containsValue()
+        //Arista arista = new Arista(u,v);
+        //containsValue()
     }
 
     public boolean eliminarVertice(String id) {
@@ -153,6 +176,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public List<Vertice> adyacentes(String id) {
+        
         if(MapaDeVertices.get(id)!= null)
         {
             return MapaDeVertices.get(id).getListaDeAdyacencias(); 
@@ -171,8 +195,10 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(Arista a) {
+        
         int temp = numeroDeLados;
-        for(Arista arista : MapaDeAristas.values())
+
+        /*for(Arista arista : MapaDeAristas.values())
         {
             if(arista.getId().equals(a.getId()))
             {
@@ -180,15 +206,29 @@ public class GrafoNoDirigido implements Grafo
                     +arista.getId()+"' ya se encuentra en el grafo.");
                 return false;
             }
+        }*/
+        if ((MapaDeAristas.containsKey(a.getId()) {
+            
+            System.out.println("El arista con el identificador '"+arista.getId()+"' ya se encuentra en el grafo.");
+            return false;
+            
         }
-        // Revisaaaar
-        for(Vertice vertice1 : MapaVertices.values())
-        {
+
+        /*for(Vertice vertice1 : MapaVertices.values()) {
+            
             if(vertice1.getId().equals(a.getExtremoInicial().getId())){
+                
                 vertice1.getListaDeAdyacencias().add(a.getExtremoFinal()); 
                 numeroDeLados++;
-                lista_de_arcos.add(a);                
+                lista_de_aristas.add(a);                
             }
+        }*/ 
+        // modificar reutilizando funciones del proyecto
+        if ((estaVertice(a.getExtremo1().getId())) && ( estaVertice(a.getExtremo2().getId())) {
+
+            obtenerVertice(a.getExtremo1().getId()).getListaDeAdyacencias().add(a.getExtremo2());
+            numeroDeLados++;
+            MapaDeAristas.put(a.getId(), a);
         }
 
         if(temp < numeroDeLados)
@@ -199,10 +239,12 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(String id, double peso, String u, String v) {
+        
         Arista arista = new Arista(id,peso,u,v);
         return agregarArista(arista);
     }
-
+    
+    //MODIFICAR
     public boolean eliminarArista(String id) {
         return true
     }
