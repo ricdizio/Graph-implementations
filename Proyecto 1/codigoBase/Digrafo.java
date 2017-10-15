@@ -15,6 +15,7 @@ public class Digrafo implements Grafo
         numeroDeVertices = 0;
         numeroDeLados = 0;
         lista_de_vertices = new LinkedList<Vertice>();
+        Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
         lista_de_arcos = new LinkedList<Arco>();
         
     }
@@ -47,11 +48,24 @@ public class Digrafo implements Grafo
     public int numeroDeLados() {
     }
    
-    public boolean agregarVertice(Vertice v) {
+    public boolean agregarVertice(Vertice v) 
+	{ 
+        if(MapaVertices.get(v.getId()) != null)
+        {
+        	System.out.println("El vertice con identificador "+v.getId()+
+                    " ya se encuentra en el grafo.");
+        	return false;
+        }
+
+        MapaVertices.put(v.getId,v);
+        numeroDeVertices++;
+        return true;
     }
 
     public boolean agregarVertice(String id, double peso) {
     }
+
+
     
     public Vertice obtenerVertice(String id) {
     }
