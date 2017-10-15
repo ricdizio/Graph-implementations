@@ -114,7 +114,7 @@ public class Digrafo implements Grafo
     public int grado(String id) {
     	if(MapaDeVertices.get(id)!= null)
     	{
-            return MapaDeVertices.get(id).getListaDeSucesores().size() + MapaDeVertices.get(id).getListaDePrede().size(); 
+            return MapaDeVertices.get(id).getListaDeSucesores().size(); 
         }    
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
@@ -132,12 +132,12 @@ public class Digrafo implements Grafo
  
     public List<Lado> incidentes(String id) 
     {
-/*      if(MapaDeVertices.get(id)!= null)
+    	if(MapaDeVertices.get(id)!= null)
     	{
-            return MapaDeVertices.get(id).getListaDeIncidencias(); --------> no existe getlista de incidencias revisar
+            return MapaDeVertices.get(id).getListaDeIncidencias(); 
         }    
         throw new NoSuchElementException("El vertice con el idenficador: " 
-            +id+ " no se encuentra en el Grafo"); */
+            +id+ " no se encuentra en el Grafo");
     }
 
     public Object clone() {
@@ -168,7 +168,7 @@ public class Digrafo implements Grafo
                 lista_de_arcos.add(a);                
             }
         }
-        // Este if parece estar de mas
+
         if(temp < numeroDeLados)
         {
             return true;
@@ -184,39 +184,15 @@ public class Digrafo implements Grafo
     }
 
     public int gradoInterior(String id) {
-        if(MapaDeVertices.get(id)!= null)
-        {
-            return MapaDeVertices.get(id).getListaDePredecesores().size(); 
-        }    
-        throw new NoSuchElementException("El vertice con el idenficador: " 
-            +id+ " no se encuentra en el Grafo");
     }
 
     public int gradoExterior(String id) {
-        if(MapaDeVertices.get(id)!= null)
-        {
-            return MapaDeVertices.get(id).getListaDeSucesores().size(); 
-        }    
-        throw new NoSuchElementException("El vertice con el idenficador: " 
-            +id+ " no se encuentra en el Grafo");
     }
 
     public List<Vertice> sucesores(String id) {
-        if(MapaDeVertices.get(id)!= null)
-        {
-            return MapaDeVertices.get(id).getListaDeSucesores(); 
-        }    
-        throw new NoSuchElementException("El vertice con el idenficador: " 
-            +id+ " no se encuentra en el Grafo");
     }
 
     public List<Vertice> predecesores(String id) {
-        if(MapaDeVertices.get(id)!= null)
-        {
-            return MapaDeVertices.get(id).getListaDePredecesores(); 
-        }    
-        throw new NoSuchElementException("El vertice con el idenficador: " 
-            +id+ " no se encuentra en el Grafo");
     }
 
     public boolean eliminarArco(String id) {
