@@ -10,6 +10,8 @@ public class GrafoNoDirigido implements Grafo
     private int numeroDeLados;
     private List<Vertice> lista_de_vertices;
     private List<Arista> lista_de_aristas;
+    Map<String, Vertice> MapaDeAristas = New HashMap<String, Arco>();
+    Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
 
     public GrafoNoDirigido() {
         numeroDeVertices = 0;
