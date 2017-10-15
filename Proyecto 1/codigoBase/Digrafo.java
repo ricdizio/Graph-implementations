@@ -146,10 +146,41 @@ public class Digrafo implements Grafo
     public String toString() {
     }
 
-    public boolean agregarArco(Arco a) {
+    public boolean agregarArco(Arco a) 
+    {
+        int temp = numeroDeLados;
+        for(Arco arco : MapaDeArcos.values())
+        {
+            if(arco.getId().equals(a.getId()))
+            {
+                System.out.println("El arco con el identificador '"
+                    +arco.getId()+"' ya se encuentra en el grafo.");
+                return false;
+            }
+        }
+
+        for(Vertice vertice1 : MapaVertices.values())
+        {
+            if(vertice1.getId().equals(a.getExtremoInicial(a).getId())){
+                vertice1.getListaDeAdyacencias().add(a.getExtremoFinal(a)); 
+                vertice1.getListaDeSucesores().add(a.getExtremoFinal(a));
+                numeroDeLados++;
+                lista_de_arcos.add(a);                
+            }
+        }
+
+        if(temp < numeroDeLados)
+        {
+            return true;
+        }
+        return false;
     } 
 
-    public boolean agregarArco(String id, double peso, 
+    public boolean agregarArco(String id, double peso)
+    {
+        Arco a = new Arco(id,peso);
+        boolean x = agregarArco(a);
+        return x;
     }
 
     public int gradoInterior(String id) {
