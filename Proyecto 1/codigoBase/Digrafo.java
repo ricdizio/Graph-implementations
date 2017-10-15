@@ -85,17 +85,33 @@ public class Digrafo implements Grafo
     }
 
     public int grado(String id) {
-    	if(MapaDeVertices.get(id)!= null){
+    	if(MapaDeVertices.get(id)!= null)
+    	{
             return MapaDeVertices.get(id).getListaDeAdyacencias().size(); 
         }    
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
     }
 
-    public List<Vertice> adyacentes(String id) {
+    public List<Vertice> adyacentes(String id) 
+    {
+    	if(MapaDeVertices.get(id)!= null)
+    	{
+            return MapaDeVertices.get(id).getListaDeAdyacencias(); 
+        }    
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
     }
  
     public List<Lado> incidentes(String id) {
+    {
+    	if(MapaDeVertices.get(id)!= null)
+    	{
+            return MapaDeVertices.get(id).getListaDeIncidencias(); 
+        }    
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
+    }
     }
 
     public Object clone() {
