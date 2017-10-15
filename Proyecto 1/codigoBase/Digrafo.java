@@ -32,7 +32,7 @@ public class Digrafo implements Grafo
             // se proceden a crear y verificar si ya fueron agregados los vertices
         }
 
-        for (int i=0;i<cantidad_de_aristas;i++) {
+        for (int i=0;i<cantidad_de_arcos;i++) {
             String id_de_arco = in.readString();
             String id_vertice_de_Salida = in.readString();
             String id_vertice_de_Llegada = in.readString();
