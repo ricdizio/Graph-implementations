@@ -49,49 +49,47 @@ public class GrafoNoDirigido implements Grafo
         return numeroDeLados;
     }
    
-    public boolean agregarVertice(Vertice v) {
-        boolean boolean_agregarVertice;
-        boolean_agregarVertice = true;    
+    public boolean agregarVertice(Vertice v) {  
         // Si el id del vertice ya se encuentra en la lista devuelve un falso, por lo tanto no procede a agregarlo  
-        for (Vertice vertice : lista_de_vertices) {
-            if (vertice.getId().equals(v.getId())) {
-                StdOut.print(" El id "+ v.getId()+" ya se encuentra agregado");
-                boolean_agregarVertice = false;               
-            }
-        }
-        if (boolean_agregarVertice == true) {
-            lista_de_vertices.add(v);
-            numeroDeVertices++;         
+        if(MapaVertices.get(v.getId()) != null)
+        {
+            System.out.println("El vertice con identificador "+v.getId()+
+                    " ya se encuentra en el grafo.");
+            return false;
         }
 
-        return boolean_agregarVertice; 
+        MapaVertices.put(v.getId,v);
+        numeroDeVertices++;
+        return true;
         
     }
 
     public boolean agregarVertice(String id, double peso) {
-        Vertice vertice = new Vertice(id, peso);
-        return agregarVertice(vertice);
+        boolean booleano;
+        Vertice v = new Vertice(id,peso);
+        booleano = agregarVertice(v);
+        
+        return booleano;
     }
     
     public Vertice obtenerVertice(String id) throws NoSuchElementException {
-        for (Vertice vertice: lista_de_vertices) {
-            if(vertice.getId().equals(id)) {
-                return vertice;
-            }
-            
-        }
-        throw new NoSuchElementException(" El vertice con id "+ id + " no se encuentra en el grafo");
+        
+        if(MapaDeVertices.get(id)!= null)
+        {
+            return MapaDeVertices.get(id); 
+        }    
+        
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
     }
 
     public boolean estaVertice(String id) {
-        boolean estaVertice = false;
-        for (Vertice vertice: lista_de_vertices) {
-            if (vertice.getId().equals(id)) {
-                estaVertice = true;                            
-                        }            
-        }
-
-        return estaVertice;
+        
+        if(MapaDeVertices.get(id)!= null)
+        {
+            return true; 
+        }  
+        return false;
     }
 
     public boolean estaLado(String u, String v){        
@@ -101,12 +99,26 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public List<Vertice> vertices() {
+        List<Vertices> return_list_vertices = new LinkedList<Vertice>;
+
+        for (Vertice v : MapaDeVertices.values()) {
+            return_list_vertices.add(v);
+        }
+
+        return return_list_vertices;
     }
 
     public List<Lado> lados() {
     }
 
     public int grado(String id) {
+        
+        if(MapaDeVertices.get(id)!= null)
+        {
+            return MapaDeVertices.get(id).getListaDeAdyacencias().size(); 
+        }    
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
     }
 
     public List<Vertice> adyacentes(String id) {
