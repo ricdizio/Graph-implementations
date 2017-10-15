@@ -296,7 +296,68 @@ public class GrafoNoDirigido implements Grafo
 
     //MODIFICAR
     public boolean eliminarArista(String id) {
-        return true
+        
+        if (MapaDeAristas.containsKey(id)) {
+            
+            Arista aristaTemp = MapaDeAristas.get(id);
+            //Borramos de la lista de aristas
+            MapaDeAristas.remove(id);
+
+            // procedemos a borrar el lado de la lista de incidencia de ambos nodos
+
+            //MapaDeVertices.get(aristaTemp.getExtremo1().getId).getListaDeIncidencias;
+
+            for (Arista arista: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeIncidencias()) {
+
+                if (arista.getId().equals(id)) {
+
+                    arista.remove(id);
+                    
+                }
+                
+            }
+
+            for (Arista arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
+
+                if (arista.getId().equals(id)) {
+
+                    arista.remove(id);
+                    
+                }
+                
+            }
+
+            // procedemos a borrar los nodos en la lista de adyacencias de cada nodo
+
+            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias()) {
+
+                if (vertice.getId().equals(aristaTemp.getExtremo2().getId())) {
+
+                    vertice.remove(vertice.getId());
+                    
+                }
+                
+            }
+
+            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeAdyacencias()) {
+
+                if (vertice.getId().equals(aristaTemp.getExtremo1().getId())) {
+
+                    vertice.remove(vertice.getId());
+                    
+                }
+                
+            }
+
+
+
+
+
+        }
+
+        else{
+            return false;
+        }
     }
 
     public Arista obtenerArista(String id) {
