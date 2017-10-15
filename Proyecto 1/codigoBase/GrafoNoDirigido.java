@@ -13,6 +13,7 @@ public class GrafoNoDirigido implements Grafo
     private Map<String, Arista> MapaDeAristas;
     private Map<String, Vertice> MapaDeVertices;
 
+
     public GrafoNoDirigido() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
@@ -25,6 +26,7 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean cargarGrafo(String dirArchivo) {
         // Continuar despues de implementar las funciones del grafo ya que son necesarias para terminar de cargar el grafo
+
         In in = new In(dirArchivo);
         int cantidad_de_nodos = in.readInt();
         int cantidad_de_aristas = in.readInt();
@@ -32,15 +34,19 @@ public class GrafoNoDirigido implements Grafo
         for (int i=0;i<cantidad_de_nodos;i++) {
             String id_del_vertice = in.readString();
             double peso_del_vertice = in.readDouble();
-            // se proceden a crear y verificar si ya fueron agregados los vertices
+            
+            agregarVertice(id_del_vertice, peso_del_vertice);
         }
 
         for (int i=0;i<cantidad_de_aristas;i++) {
             String id_de_arista = in.readString();
             String id_vertice_de_Salida = in.readString();
             String id_vertice_de_Llegada = in.readString();
-            double peso_del_vertice = in.readDouble();
-            // se proceden a crear y verificar si ya fueron agregados las aristas
+            double peso_de_arista = in.readDouble();
+            
+            agregarArista(id_de_arista, id_vertice_de_Salida, id_vertice_de_Llegada, peso_de_arista);
+
+            
         }
     }
     
@@ -144,9 +150,12 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean eliminarVertice(String id) {
+
+        return true
     }
 
     public List<Vertice> vertices() {
+
         List<Vertices> return_list_vertices = new LinkedList<Vertice>;
 
         for (Vertice v : MapaDeVertices.values()) {
@@ -157,6 +166,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public List<Lado> lados() {
+
         List<Lados> return_list_lados = new LinkedList<Lados>;
         for (Arista l : MapaDeAristas.values()) {
             return_list_lados.add(l);
@@ -186,6 +196,17 @@ public class GrafoNoDirigido implements Grafo
     }
  
     public List<Lado> incidentes(String id) {
+
+        /*List<Arista> lista_de_incidentes = new LinkedList();
+
+        for (Arista arista: MapaDeAristas.values()) {
+            if (arista.getExtremo1().getId() == id || arista.getExtremo2().getId() == id ) {
+                
+            }
+            
+        }*/
+        MapaDeVertices.get(id).getListaDeIncidencias();
+
     }
 
     public Object clone() {
@@ -223,16 +244,20 @@ public class GrafoNoDirigido implements Grafo
                 lista_de_aristas.add(a);                
             }
         }*/ 
-        // modificar reutilizando funciones del proyecto
         if ((estaVertice(a.getExtremo1().getId())) && ( estaVertice(a.getExtremo2().getId())) {
-
+            // En GD debe agregar a un vertice en los sucesores y en el otro en los predecesores
             obtenerVertice(a.getExtremo1().getId()).getListaDeAdyacencias().add(a.getExtremo2());
+            obtenerVertice(a.getExtremo2().getId()).getListaDeAdyacencias().add(a.getExtremo1());
+            //agregar incidencias
+            obtenerVertice(a.getExtremo1().getId()).getListaDeIncidencias().add(a);
+            obtenerVertice(a.getExtremo2().getId()).getListaDeIncidencias().add(a);
+
             numeroDeLados++;
             MapaDeAristas.put(a.getId(), a);
+
         }
 
-        if(temp < numeroDeLados)
-        {
+        if(temp < numeroDeLados) {
             return true;
         }
         return false;
@@ -243,7 +268,7 @@ public class GrafoNoDirigido implements Grafo
         Arista arista = new Arista(id,peso,u,v);
         return agregarArista(arista);
     }
-    
+
     //MODIFICAR
     public boolean eliminarArista(String id) {
         return true
