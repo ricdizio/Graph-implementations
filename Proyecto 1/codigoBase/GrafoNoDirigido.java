@@ -21,7 +21,6 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean cargarGrafo(String dirArchivo) {
         // Continuar despues de implementar las funciones del grafo ya que son necesarias para terminar de cargar el grafo
-        //In in = new In(args[0]);
         In in = new In(dirArchivo);
         int cantidad_de_nodos = in.readInt();
         int cantidad_de_aristas = in.readInt();
@@ -112,7 +111,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public int grado(String id) {
-        
+
         if(MapaDeVertices.get(id)!= null)
         {
             return MapaDeVertices.get(id).getListaDeAdyacencias().size(); 
