@@ -63,10 +63,29 @@ public class Digrafo implements Grafo
         return true;
     }
 
-    public boolean agregarVertice(String id, double peso) {
+    public boolean agregarVertice(String id, double peso) 
+	{ 
+		Vertice v = new Vertice(id,peso);
+        if(MapaVertices.get(v.getId()) != null)
+        {
+        	System.out.println("El vertice con identificador "+v.getId()+
+                    " ya se encuentra en el grafo.");
+        	return false;
+        }
+
+        MapaVertices.put(v.getId,v);
+        numeroDeVertices++;
+        return true;
     }
     
-    public Vertice obtenerVertice(String id) {
+    public Vertice obtenerVertice(String id) 
+    {
+    	if(MapaDeVertices.get(id)!= null)
+    	{
+            return MapaDeVertices.get(id); 
+        }    
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
     }
 
     public boolean estaVertice(String id) {
