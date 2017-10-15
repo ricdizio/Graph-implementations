@@ -121,6 +121,12 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public List<Vertice> adyacentes(String id) {
+        if(MapaDeVertices.get(id)!= null)
+        {
+            return MapaDeVertices.get(id).getListaDeAdyacencias(); 
+        }    
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +id+ " no se encuentra en el Grafo");
     }
  
     public List<Lado> incidentes(String id) {
