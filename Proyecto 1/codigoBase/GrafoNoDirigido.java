@@ -94,7 +94,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean estaLado(String u, String v){        
-        for (Lados l: MapaDeAristas.values()) {
+        for (Arista l : MapaDeAristas.values()) {
             if (l.getEstremo1() == u && l.getExtremo2 == v) {
                 return true;
             }
@@ -118,8 +118,8 @@ public class GrafoNoDirigido implements Grafo
     public List<Lado> lados() {
         List<Lados> return_list_lados = new LinkedList<Lados>;
 
-        for (Lados l : MapaDeVertices.values()) {
-            return_list_lados.add(v);
+        for (Lados l : MapaDeAristas.values()) {
+            return_list_lados.add(l);
         }
 
         return return_list_lados;
