@@ -10,7 +10,7 @@ public class GrafoNoDirigido implements Grafo
     private int numeroDeLados;
     private List<Vertice> lista_de_vertices;
     private List<Arista> lista_de_aristas;
-    private Map<String, Vertice> MapaDeAristas = New HashMap<String, Arista>();
+    private Map<String, Arista> MapaDeAristas = New HashMap<String, Arista>();
     private Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
 
     public GrafoNoDirigido() {
@@ -75,10 +75,11 @@ public class GrafoNoDirigido implements Grafo
     
     public Vertice obtenerVertice(String id) throws NoSuchElementException {
         
-        if(MapaDeVertices.get(id)!= null)
+        /* if(MapaDeVertices.get(id)!= null)
         {
             return MapaDeVertices.get(id); 
-        }    
+        }  */
+        return MapaDeVertices.get(id);  
         
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
@@ -86,11 +87,13 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean estaVertice(String id) {
         
-        if(MapaDeVertices.get(id)!= null)
+        /*if(MapaDeVertices.get(id)!= null)
         {
             return true; 
         }  
-        return false;
+        return false;*/
+        //Returns true if this map maps one or more keys to the specified value.
+        return MapaDeVertices.containsKey(id);
     }
 
     public boolean estaLado(String u, String v){        
@@ -105,13 +108,16 @@ public class GrafoNoDirigido implements Grafo
             }
 
         */
-
-        for (Arista l: MapaDeAristas.values()) {
+        // 2da MEJOR MANERA IMPLEMENTADA
+        /* for (Arista l: MapaDeAristas.values()) {
             if ((l.getEstremo1() == u && l.getExtremo2() == v) || (l.getEstremo1() == v && l.getExtremo2() == u)) {
                 return true;
             }
         }
         return false;
+        */
+        Arista arista = new Arista(u,v);
+        containsValue()
     }
 
     public boolean eliminarVertice(String id) {
@@ -166,12 +172,12 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean agregarArista(Arista a) {
         int temp = numeroDeLados;
-        for(Arco arco : MapaDeAristas.values())
+        for(Arista arista : MapaDeAristas.values())
         {
-            if(arco.getId().equals(a.getId()))
+            if(arista.getId().equals(a.getId()))
             {
-                System.out.println("El arco con el identificador '"
-                    +arco.getId()+"' ya se encuentra en el grafo.");
+                System.out.println("El arista con el identificador '"
+                    +arista.getId()+"' ya se encuentra en el grafo.");
                 return false;
             }
         }
@@ -193,11 +199,27 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(String id, double peso, String u, String v) {
+        Arista arista = new Arista(id,peso,u,v);
+        return agregarArista(arista);
     }
 
     public boolean eliminarArista(String id) {
+        return true
     }
 
     public Arista obtenerArista(String id) {
+
+         /* for(Arista arista : MapaDeAristas.key())
+        {
+            if(arista.equals(id);
+            {
+                System.out.println("La Arista con el identificador '"
+                    +arista.getId()+"' ya se encuentra en el grafo.");
+                return false;
+            }
+        }
+        */
+
+        return MapaDeAristas.get(id);
     }
 }
