@@ -10,8 +10,8 @@ public class GrafoNoDirigido implements Grafo
     private int numeroDeLados;
     private List<Vertice> lista_de_vertices;
     private List<Arista> lista_de_aristas;
-    Map<String, Vertice> MapaDeAristas = New HashMap<String, Arco>();
-    Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
+    private Map<String, Vertice> MapaDeAristas = New HashMap<String, Arista>();
+    private Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
 
     public GrafoNoDirigido() {
         numeroDeVertices = 0;
@@ -94,8 +94,20 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean estaLado(String u, String v){        
-        for (Arista l : MapaDeAristas.values()) {
-            if (l.getEstremo1() == u && l.getExtremo2 == v) {
+        //revisar
+        /* 
+            for(Vertice v: MapaDeVertices){
+                for(Vertice ver: v.get(id).getListaDeAdyacencias()){
+                    if(vertice1.getId().equals(u)  && vertice2.getId().equals(v)){
+                    return true;
+                    }
+                }    
+            }
+
+        */
+
+        for (Arista l: MapaDeAristas.values()) {
+            if ((l.getEstremo1() == u && l.getExtremo2() == v) || (l.getEstremo1() == v && l.getExtremo2() == u)) {
                 return true;
             }
         }
@@ -117,8 +129,7 @@ public class GrafoNoDirigido implements Grafo
 
     public List<Lado> lados() {
         List<Lados> return_list_lados = new LinkedList<Lados>;
-
-        for (Lados l : MapaDeAristas.values()) {
+        for (Arista l : MapaDeAristas.values()) {
             return_list_lados.add(l);
         }
 
@@ -154,6 +165,31 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(Arista a) {
+        int temp = numeroDeLados;
+        for(Arco arco : MapaDeAristas.values())
+        {
+            if(arco.getId().equals(a.getId()))
+            {
+                System.out.println("El arco con el identificador '"
+                    +arco.getId()+"' ya se encuentra en el grafo.");
+                return false;
+            }
+        }
+        // Revisaaaar
+        for(Vertice vertice1 : MapaVertices.values())
+        {
+            if(vertice1.getId().equals(a.getExtremoInicial().getId())){
+                vertice1.getListaDeAdyacencias().add(a.getExtremoFinal()); 
+                numeroDeLados++;
+                lista_de_arcos.add(a);                
+            }
+        }
+
+        if(temp < numeroDeLados)
+        {
+            return true;
+        }
+        return false;
     }
 
     public boolean agregarArista(String id, double peso, String u, String v) {
