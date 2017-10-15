@@ -213,6 +213,30 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Vertice vertice: MapaDeVertices.values()) {
+            sb.append("\n");
+            sb.append(vertice.getId() + " - " + vertice.getPeso()+ " ADYACENCIAS --------------> ");
+            if(vertice.getListaDeAdyacencias().size() >= 1){
+                for(Vertice vertice1: vertice.getListaDeAdyacencias()){
+                    sb.append(vertice1.getId()+ ", ");
+                }
+            }
+            
+            sb.append("\n");
+            sb.append( vertice.getId() + "Incidencias --------->");
+            
+            if(vertice.getListaDeIncidencias().size() >= 1){
+                for(Vertice vertice1: vertice.getListaDeIncidencias()){
+                    sb.append(vertice1.getId()+ ", ");
+                }
+            }
+        }
+
+        return sb.toString();
+
     }
 
     public boolean agregarArista(Arista a) {
@@ -246,6 +270,7 @@ public class GrafoNoDirigido implements Grafo
         }*/ 
         if ((estaVertice(a.getExtremo1().getId())) && ( estaVertice(a.getExtremo2().getId())) {
             // En GD debe agregar a un vertice en los sucesores y en el otro en los predecesores
+            // para este caso agrega en los adyacentes
             obtenerVertice(a.getExtremo1().getId()).getListaDeAdyacencias().add(a.getExtremo2());
             obtenerVertice(a.getExtremo2().getId()).getListaDeAdyacencias().add(a.getExtremo1());
             //agregar incidencias

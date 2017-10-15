@@ -9,7 +9,7 @@ public class Vertice
   private List<Vertice> getListaDeAdyacencias;
   private List<Vertice> getListaDeSucesores;
   private List<Vertice> getListaDeAdyacenciasPredecesores;
-  private List<Vertice> getListaDeIncidencias;
+  private List<Lado> getListaDeIncidencias;
   
   public Vertice(String id, double peso) {
     this.id = id;
