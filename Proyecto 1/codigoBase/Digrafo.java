@@ -88,7 +88,13 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
-    public boolean estaVertice(String id) {
+    public boolean estaVertice(String id) 
+    {
+    	if(MapaDeVertices.get(id)!= null)
+    	{
+            return true; 
+        }  
+        return false;
     }
 
     public boolean estaLado(String u, String v){
