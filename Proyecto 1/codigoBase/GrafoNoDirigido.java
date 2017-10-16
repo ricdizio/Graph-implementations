@@ -154,7 +154,7 @@ public class GrafoNoDirigido implements Grafo
 
             // MapaDeVertices.get(id).getListaDeIncidencias()
 
-            for (Arista arista: verticeTemp.getListaDeIncidencias()) {
+            for (Lado arista: verticeTemp.getListaDeIncidencias()) {
 
                 eliminarArista(arista.getId());
                 
@@ -185,7 +185,7 @@ public class GrafoNoDirigido implements Grafo
 
     public List<Lado> lados() {
 
-        List return_list_lados = new LinkedList<Lados>();
+        List return_list_lados = new LinkedList<Lado>();
         for (Arista l : MapaDeAristas.values()) {
             return_list_lados.add(l);
         }
@@ -248,8 +248,8 @@ public class GrafoNoDirigido implements Grafo
             sb.append( vertice.getId() + "Incidencias --------->");
             
             if(vertice.getListaDeIncidencias().size() >= 1){
-                for(Vertice vertice1: vertice.getListaDeIncidencias()){
-                    sb.append(vertice1.getId()+ ", ");
+                for(Lado l: vertice.getListaDeIncidencias()){
+                    sb.append(l.getId()+ ", ");
                 }
             }
         }
@@ -334,7 +334,7 @@ public class GrafoNoDirigido implements Grafo
 
                 if (vertice.getId().equals(aristaTemp.getExtremo2().getId())) {
 
-                    vertice.remove(vertice.getId());
+                    MapaDeVertices.remove(vertice.getId());
                     
                 }
                 
@@ -344,7 +344,7 @@ public class GrafoNoDirigido implements Grafo
 
                 if (vertice.getId().equals(aristaTemp.getExtremo1().getId())) {
 
-                    vertice.remove(vertice.getId());
+                    MapaDeVertices.remove(vertice.getId());
                     
                 }
                 
@@ -354,21 +354,21 @@ public class GrafoNoDirigido implements Grafo
 
             //MapaDeVertices.get(aristaTemp.getExtremo1().getId).getListaDeIncidencias;
 
-            for (Arista arista: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeIncidencias()) {
+            for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeIncidencias()) {
 
                 if (arista.getId().equals(id)) {
 
-                    arista.remove(id);
+                    MapaDeAristas.remove(id);
                     
                 }
                 
             }
 
-            for (Arista arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
+            for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
 
                 if (arista.getId().equals(id)) {
 
-                    arista.remove(id);
+                    MapaDeAristas.remove(id);
                     
                 }
                 
