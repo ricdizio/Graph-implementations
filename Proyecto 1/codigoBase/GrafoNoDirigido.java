@@ -47,6 +47,8 @@ public class GrafoNoDirigido implements Grafo
             agregarArista(id_de_arista, peso_de_arista,id_vertice_de_Salida, id_vertice_de_Llegada);
             
         }
+        return true;
+
     }
     
     public int numeroDeVertices() {
@@ -82,11 +84,10 @@ public class GrafoNoDirigido implements Grafo
     
     public Vertice obtenerVertice(String id) throws NoSuchElementException {
         
-        /* if(MapaDeVertices.get(id)!= null)
+        if(MapaDeVertices.get(id)!= null)
         {
             return MapaDeVertices.get(id); 
-        }  */
-        return MapaDeVertices.get(id);  
+        }  
         
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
@@ -127,9 +128,7 @@ public class GrafoNoDirigido implements Grafo
             }
         }
 
-        else{
-            return false;
-        } 
+        return false;
                 
     
 
@@ -174,7 +173,7 @@ public class GrafoNoDirigido implements Grafo
 
     public List<Vertice> vertices() {
 
-        List return_list_vertices = new LinkedList<Vertice>();
+        List<Vertice> return_list_vertices = new LinkedList<Vertice>();
 
         for (Vertice v : MapaDeVertices.values()) {
             return_list_vertices.add(v);
@@ -185,7 +184,7 @@ public class GrafoNoDirigido implements Grafo
 
     public List<Lado> lados() {
 
-        List return_list_lados = new LinkedList<Lado>();
+        List<Lado> return_list_lados = new LinkedList<Lado>();
         for (Arista l : MapaDeAristas.values()) {
             return_list_lados.add(l);
         }
@@ -223,14 +222,15 @@ public class GrafoNoDirigido implements Grafo
             }
             
         }*/
-        MapaDeVertices.get(id).getListaDeIncidencias();
+        return MapaDeVertices.get(id).getListaDeIncidencias();
 
     }
-    /*
+    
     public Object clone() {
-
+        GrafoNoDirigido x = new GrafoNoDirigido();
+        return x;
     }
-    */
+    
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
