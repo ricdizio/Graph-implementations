@@ -151,7 +151,26 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean eliminarVertice(String id) {
 
-        return true
+        if (estaVertice(id)) {
+
+            Vertice verticeTemp = MapaDeVertices.get(id);
+
+            for (Arista arista: MapaDeVertices.get(id).getListaDeIncidencias()) {
+
+                eliminarArista(arista.getId());
+                
+            }
+
+            MapaDeVertices.remove(id);
+
+            return true;
+        }
+
+        else {
+
+            return false;
+        }
+
     }
 
     public List<Vertice> vertices() {
@@ -210,6 +229,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public Object clone() {
+
     }
 
     public String toString() {
@@ -294,14 +314,36 @@ public class GrafoNoDirigido implements Grafo
         return agregarArista(arista);
     }
 
-    //MODIFICAR
     public boolean eliminarArista(String id) {
         
         if (MapaDeAristas.containsKey(id)) {
             
             Arista aristaTemp = MapaDeAristas.get(id);
-            //Borramos de la lista de aristas
+            
+            //Borramos del HashMap de aristas
             MapaDeAristas.remove(id);
+
+            // procedemos a borrar los nodos en la lista de adyacencias de cada nodo
+
+            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias()) {
+
+                if (vertice.getId().equals(aristaTemp.getExtremo2().getId())) {
+
+                    vertice.remove(vertice.getId());
+                    
+                }
+                
+            }
+
+            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeAdyacencias()) {
+
+                if (vertice.getId().equals(aristaTemp.getExtremo1().getId())) {
+
+                    vertice.remove(vertice.getId());
+                    
+                }
+                
+            }
 
             // procedemos a borrar el lado de la lista de incidencia de ambos nodos
 
@@ -327,33 +369,11 @@ public class GrafoNoDirigido implements Grafo
                 
             }
 
-            // procedemos a borrar los nodos en la lista de adyacencias de cada nodo
-
-            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias()) {
-
-                if (vertice.getId().equals(aristaTemp.getExtremo2().getId())) {
-
-                    vertice.remove(vertice.getId());
-                    
-                }
-                
-            }
-
-            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeAdyacencias()) {
-
-                if (vertice.getId().equals(aristaTemp.getExtremo1().getId())) {
-
-                    vertice.remove(vertice.getId());
-                    
-                }
-                
-            }
-
             return true;
         }
 
         else{
-            
+
             return false;
         }
     }
