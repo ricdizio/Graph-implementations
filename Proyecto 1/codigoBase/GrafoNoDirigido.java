@@ -14,14 +14,14 @@ public class GrafoNoDirigido implements Grafo
     private HashMap<String, Vertice> MapaDeVertices;
 
 
-    public GrafoNoDirigido() {
+    public GrafoNoDirigido() 
+    {
         numeroDeVertices = 0;
         numeroDeLados = 0;
         MapaDeAristas = New HashMap <String,Arista>();
         MapaDeVertices = New HashMap <String, Vertice>();
         //lista_de_vertices = new LinkedList<Vertice>();
-        //lista_de_aristas = new LinkedList<Arista>();
-        
+        //lista_de_aristas = new LinkedList<Arista>();  
     }
 
     public boolean cargarGrafo(String dirArchivo) {
