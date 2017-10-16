@@ -308,10 +308,15 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(String id, double peso, String u, String v) {
-        Vertice v1 = MapaDeVertices.get(u);
-        Vertice v2 = MapaDeVertices.get(v);
-        Arista arista = new Arista(id,peso,v1,v2);
-        return agregarArista(arista);
+        
+        if(estaVertice(u) && estaVertice(v))
+        {
+            Vertice v1 = MapaDeVertices.get(u);
+            Vertice v2 = MapaDeVertices.get(v);
+            Arista arista = new Arista(id,peso,v1,v2);
+            return agregarArista(arista);
+        }
+        return false;
     }
 
     public boolean eliminarArista(String id) {
