@@ -34,19 +34,19 @@ public class Vertice
     return "El Vertice tiene el id: " + this.id + " y peso: " + this.peso; 
   }
 
-  public List getListaDeAdyacencias(){
+  public List<Vertice> getListaDeAdyacencias(){
     return this.adyacencias;
   }
 
-  public List getListaDeIncidencias(){
+  public List<Lado> getListaDeIncidencias(){
     return this.incidencias;
   }
 
-  public List getListaDePredecesores(){
+  public List<Vertice> getListaDePredecesores(){
     return this.predecesores;
   }
 
-  public List getListaDeSucesores(){
+  public List<Vertice> getListaDeSucesores(){
     return this.sucesores;
   }
 }
