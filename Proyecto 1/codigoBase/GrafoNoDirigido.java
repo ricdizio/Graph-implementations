@@ -349,14 +349,7 @@ public class GrafoNoDirigido implements Grafo
                 
             }
 
-<<<<<<< HEAD
-
-
-
-
-=======
             return true;
->>>>>>> 284d5ab18f350f7e46f5b3c933c67100374abe05
         }
 
         else{
