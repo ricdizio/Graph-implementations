@@ -8,10 +8,10 @@ public class Vertice
 {
   private String id;
   private double peso;
-  private List<Vertice> getListaDeAdyacencias;
-  private List<Vertice> getListaDeSucesores;
-  private List<Vertice> getListaDeAdyacenciasPredecesores;
-  private List<Lado> getListaDeIncidencias;
+  public List<Vertice> adyacencias;
+  public List<Vertice> sucesores;
+  public List<Vertice> predecesores;
+  public List<Lado> incidencias;
   
   public Vertice(String id, double peso) {
     this.id = id;
@@ -28,5 +28,21 @@ public class Vertice
 
   public String toString() { 
     return "El Vertice tiene el id: " + this.id + " y peso: " + this.peso; 
+  }
+
+  public List getListaDeAdyacencias(){
+    return adyacencias;
+  }
+
+  public List getListaDeIncidencias(){
+    return incidencias;
+  }
+
+  public List getListaDePredecesores(){
+    return predecesores;
+  }
+
+  public List getListaDeSucesores(){
+    return sucesores;
   }
 }
