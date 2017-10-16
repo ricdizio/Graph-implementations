@@ -155,7 +155,9 @@ public class GrafoNoDirigido implements Grafo
 
             Vertice verticeTemp = MapaDeVertices.get(id);
 
-            for (Arista arista: MapaDeVertices.get(id).getListaDeIncidencias()) {
+            // MapaDeVertices.get(id).getListaDeIncidencias()
+
+            for (Arista arista: verticeTemp.getListaDeIncidencias()) {
 
                 eliminarArista(arista.getId());
                 
