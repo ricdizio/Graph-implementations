@@ -174,7 +174,7 @@ public class GrafoNoDirigido implements Grafo
 
     public List<Vertice> vertices() {
 
-        List<Vertices> return_list_vertices = new LinkedList<Vertice>();
+        List return_list_vertices = new LinkedList<Vertice>();
 
         for (Vertice v : MapaDeVertices.values()) {
             return_list_vertices.add(v);
@@ -185,7 +185,7 @@ public class GrafoNoDirigido implements Grafo
 
     public List<Lado> lados() {
 
-        List<Lados> return_list_lados = new LinkedList<Lados>();
+        List return_list_lados = new LinkedList<Lados>();
         for (Arista l : MapaDeAristas.values()) {
             return_list_lados.add(l);
         }
@@ -273,7 +273,7 @@ public class GrafoNoDirigido implements Grafo
         }*/
         if ((MapaDeAristas.containsKey(a.getId()))) {
             
-            System.out.println("El arista con el identificador '"+arista.getId()+"' ya se encuentra en el grafo.");
+            System.out.println("El arista con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
             return false;
             
         }
@@ -308,8 +308,9 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(String id, double peso, String u, String v) {
-        
-        Arista arista = new Arista(id,peso,u,v);
+        Vertice v1 = MapaDeVertices.get(u);
+        Vertice v2 = MapaDeVertices.get(v);
+        Arista arista = new Arista(id,peso,v1,v2);
         return agregarArista(arista);
     }
 
