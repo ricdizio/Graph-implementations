@@ -10,7 +10,6 @@ public class ClienteGrafo {
 
     GrafoNoDirigido g = new GrafoNoDirigido();
     g.cargarGrafo(args[0]);
-    g.
 
 
 /*

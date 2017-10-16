@@ -10,15 +10,15 @@ public class GrafoNoDirigido implements Grafo
     private int numeroDeLados;
     //private List<Vertice> lista_de_vertices;
     //private List<Arista> lista_de_aristas;
-    private Map<String, Arista> MapaDeAristas;
-    private Map<String, Vertice> MapaDeVertices;
+    private HashMap<String, Arista> MapaDeAristas;
+    private HashMap<String, Vertice> MapaDeVertices;
 
 
     public GrafoNoDirigido() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
-        MapaDeAristas = New HashMap<String, Arista>();
-        MapaDeVertices = New HashMap<String, Vertice>();
+        MapaDeAristas = New HashMap <String,Arista>();
+        MapaDeVertices = New HashMap <String, Vertice>();
         //lista_de_vertices = new LinkedList<Vertice>();
         //lista_de_aristas = new LinkedList<Arista>();
         
@@ -227,11 +227,11 @@ public class GrafoNoDirigido implements Grafo
         MapaDeVertices.get(id).getListaDeIncidencias();
 
     }
-
+    /*
     public Object clone() {
 
     }
-
+    */
     public String toString() {
 
         StringBuilder sb = new StringBuilder();

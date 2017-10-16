@@ -2,6 +2,8 @@
  * 
  */
 
+import java.util.*;
+
 public class Vertice
 {
   private String id;
