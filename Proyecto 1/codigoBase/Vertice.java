@@ -16,6 +16,10 @@ public class Vertice
   public Vertice(String id, double peso) {
     this.id = id;
     this.peso = peso;
+    this.adyacencias = new LinkedList<Vertice>();
+    this.sucesores = new LinkedList<Vertice>();
+    this.predecesores = new LinkedList<Vertice>();
+    this.incidencias = new LinkedList<Lado>();
   }
 
   public double getPeso() {
@@ -31,18 +35,18 @@ public class Vertice
   }
 
   public List getListaDeAdyacencias(){
-    return adyacencias;
+    return this.adyacencias;
   }
 
   public List getListaDeIncidencias(){
-    return incidencias;
+    return this.incidencias;
   }
 
   public List getListaDePredecesores(){
-    return predecesores;
+    return this.predecesores;
   }
 
   public List getListaDeSucesores(){
-    return sucesores;
+    return this.sucesores;
   }
 }

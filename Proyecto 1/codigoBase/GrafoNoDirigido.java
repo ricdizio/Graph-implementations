@@ -109,7 +109,7 @@ public class GrafoNoDirigido implements Grafo
         // ESTA RELACION DEBERIA SER PARA AMBOS LADOS por ser GND,verificar            
         if (estaVertice(u) == true && estaVertice(v) == true ) {
 
-            Vertice v1 = MapaDeVertices.get(u); 
+            Vertice v1 = MapaDeVertices.get(u);
 
             Vertice v2 = MapaDeVertices.get(v);
 
@@ -308,7 +308,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean agregarArista(String id, double peso, String u, String v) {
-        
+
         if(estaVertice(u) && estaVertice(v))
         {
             Vertice v1 = MapaDeVertices.get(u);
