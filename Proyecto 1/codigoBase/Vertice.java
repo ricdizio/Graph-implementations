@@ -12,6 +12,12 @@ public class Vertice
   public List<Vertice> sucesores;
   public List<Vertice> predecesores;
   public List<Lado> incidencias;
+
+  //private List<Vertice> getListaDeAdyacencias;
+  //private List<Vertice> getListaDeSucesores;
+  //private List<Vertice> getListaDePredecesores;
+  //private List<Lado> getListaDeIncidencias;
+
   
   public Vertice(String id, double peso) {
     this.id = id;
@@ -20,6 +26,11 @@ public class Vertice
     this.sucesores = new LinkedList<Vertice>();
     this.predecesores = new LinkedList<Vertice>();
     this.incidencias = new LinkedList<Lado>();
+
+    List<Vertice> adyacencias = new LinkedList<Vertice>();
+    List<Vertice> sucesores = new LinkedList<Vertice>();
+    List<Vertice> predecesores = new LinkedList<Vertice>();
+    List<Lado> incidencias = new LinkedList<Lado>();
   }
 
   public double getPeso() {

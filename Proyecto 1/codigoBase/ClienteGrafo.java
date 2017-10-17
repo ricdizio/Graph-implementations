@@ -10,6 +10,10 @@ public class ClienteGrafo {
 
     GrafoNoDirigido g = new GrafoNoDirigido();
     g.cargarGrafo(args[0]);
+    //g.eliminarArista("arista1");
+    //g.eliminarArista("arista2");
+    //g.eliminarVertice("v1");
+    System.out.println(g.toString());
 
 
 /*

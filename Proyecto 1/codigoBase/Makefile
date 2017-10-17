@@ -43,8 +43,8 @@ CLASSES = \
 	Lado.java \
 	Arco.java \
 	Arista.java \
-	//Grafo.java \
-	//GrafoNoDirigido.java \
+	Grafo.java \
+	GrafoNoDirigido.java \
 	//Digrafo.java\
     ClienteGrafo.java
 

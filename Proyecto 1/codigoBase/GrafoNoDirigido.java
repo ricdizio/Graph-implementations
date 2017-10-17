@@ -52,6 +52,7 @@ public class GrafoNoDirigido implements Grafo
     }
     
     public int numeroDeVertices() {
+        //Verificar si mantienen numero de vertices la misma cantidad de elementos que size 
         return numeroDeVertices;
     }
 
@@ -160,6 +161,7 @@ public class GrafoNoDirigido implements Grafo
             }
 
             MapaDeVertices.remove(id);
+            numeroDeVertices--;
 
             return true;
         }
@@ -215,7 +217,6 @@ public class GrafoNoDirigido implements Grafo
     public List<Lado> incidentes(String id) {
 
         /*List<Arista> lista_de_incidentes = new LinkedList();
-
         for (Arista arista: MapaDeAristas.values()) {
             if (arista.getExtremo1().getId() == id || arista.getExtremo2().getId() == id ) {
                 
@@ -245,12 +246,15 @@ public class GrafoNoDirigido implements Grafo
             }
             
             sb.append("\n");
-            sb.append( vertice.getId() + "Incidencias --------->");
+            sb.append( vertice.getId() + "  INCIDENCIAS --------->");
+            sb.append("  [ ");
             
             if(vertice.getListaDeIncidencias().size() >= 1){
                 for(Lado l: vertice.getListaDeIncidencias()){
                     sb.append(l.getId()+ ", ");
                 }
+
+                sb.append("  ] ");
             }
         }
 
@@ -320,60 +324,97 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public boolean eliminarArista(String id) {
-        
+        // Capaz tambien hay que verificar si estan ambo nodos de la arista dentro del grafo
         if (MapaDeAristas.containsKey(id)) {
             
             Arista aristaTemp = MapaDeAristas.get(id);
             
-            //Borramos del HashMap de aristas
-            MapaDeAristas.remove(id);
-
             // procedemos a borrar los nodos en la lista de adyacencias de cada nodo
+            
+            
+            /*for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias()) {
 
-            for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias()) {
-
+                //if (vertice.getId().equals(aristaTemp.getExtremo2().getId())) {
                 if (vertice.getId().equals(aristaTemp.getExtremo2().getId())) {
 
-                    MapaDeVertices.remove(vertice.getId());
+                    vertice.getListaDeAdyacencias().remove(aristaTemp.getExtremo2());
+                    //MapaDeVertices.remove(vertice.getId());
                     
                 }
                 
             }
 
+            
             for (Vertice vertice: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeAdyacencias()) {
 
                 if (vertice.getId().equals(aristaTemp.getExtremo1().getId())) {
 
-                    MapaDeVertices.remove(vertice.getId());
+                    //MapaDeVertices.remove(vertice.getId());
+
+                    vertice.getListaDeAdyacencias().remove(vertice.getId());
                     
                 }
                 
+            } */ 
+
+            if (MapaDeVertices.containsKey(aristaTemp.getExtremo1().getId()) && MapaDeVertices.containsKey(aristaTemp.getExtremo2().getId())) {
+
+                // Procedemos a borrar los nodos en la lista de adyacencias de cada nodo , devolver excepcion
+                MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias().remove(aristaTemp.getExtremo2());
+                MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeAdyacencias().remove(aristaTemp.getExtremo1());
+                
+                // Procedemos a borrar el lado de la lista de incidencia de ambos nodos
+                aristaTemp.getExtremo1().getListaDeIncidencias().remove(aristaTemp);
+                aristaTemp.getExtremo2().getListaDeIncidencias().remove(aristaTemp);
+            
+                //Borramos del HashMap de aristas
+
+                MapaDeAristas.remove(aristaTemp);
+                numeroDeLados--;
+
+                return true;
             }
 
+            
             // procedemos a borrar el lado de la lista de incidencia de ambos nodos
 
             //MapaDeVertices.get(aristaTemp.getExtremo1().getId).getListaDeIncidencias;
 
-            for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeIncidencias()) {
+            /*for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeIncidencias()) {
 
                 if (arista.getId().equals(id)) {
 
-                    MapaDeAristas.remove(id);
+                    //MapaDeAristas.remove(id);
+                    arista.getExtremo1().getListaDeIncidencias().remove(arista);
                     
                 }
                 
-            }
+            }*/           
 
-            for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
+            /*for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
 
                 if (arista.getId().equals(id)) {
 
-                    MapaDeAristas.remove(id);
+                    //MapaDeAristas.remove(id);
+                    arista.getExtremo2().getListaDeIncidencias().remove(arista);
                     
                 }
                 
-            }
+            } */
 
+            // procedemos a borrar el lado de la lista de incidencia de ambos nodos
+            //Arista aristaTemp = MapaDeAristas.get(id);
+            //if (aristaTemp.getId().equals(id)) {
+            
+
+            //MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeIncidencias().remove(id);
+            //MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias().remove(id);
+            //aristaTemp.getExtremo1().getListaDeIncidencias().remove(id);
+            //aristaTemp.getExtremo2().getListaDeIncidencias().remove(id);
+            
+            //Borramos del HashMap de aristas
+
+            //MapaDeAristas.remove(id);
             return true;
         }
 

@@ -2,6 +2,8 @@
  *
  */
 
+import java.util.*;
+
 public class Arco extends Lado
 {
   private Vertice extremoInicial;
