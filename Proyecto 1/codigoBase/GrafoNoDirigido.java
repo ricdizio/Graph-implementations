@@ -151,6 +151,7 @@ public class GrafoNoDirigido implements Grafo
         if (estaVertice(id)) {
 
             Vertice verticeTemp = MapaDeVertices.get(id);
+            //Arista arista = MapaDeAristas.
 
             // MapaDeVertices.get(id).getListaDeIncidencias()
 
@@ -160,7 +161,24 @@ public class GrafoNoDirigido implements Grafo
                 
             }
 
-            MapaDeVertices.remove(id);
+            for (Vertice v: verticeTemp.getListaDeAdyacencias()) {
+
+                MapaDeVertices.get(v.getId()).getListaDeAdyacencias().remove(verticeTemp);
+                //.remove(verticeTemp);
+            }
+
+            /*for (Lado l: verticeTemp.getListaDeIncidencias()) {
+
+                Arista a = (Arista)l;
+                Arista aristaTemp = MapaDeAristas.get(a.getId());
+                
+                MapaDeVertices.get(a.getExtremo1().getId()).getListaDeIncidencias().remove(aristaTemp);
+                MapaDeVertices.get(a.getExtremo2().getId()).getListaDeIncidencias().remove(aristaTemp);
+
+                MapaDeAristas.remove(a);
+                numeroDeLados--;
+            }*/
+
             numeroDeVertices--;
 
             return true;
@@ -198,7 +216,7 @@ public class GrafoNoDirigido implements Grafo
 
         if(MapaDeVertices.get(id)!= null)
         {
-            return MapaDeVertices.get(id).getListaDeAdyacencias().size(); 
+            return MapaDeVertices.get(id).getListaDeIncidencias().size(); 
         }    
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
@@ -235,27 +253,67 @@ public class GrafoNoDirigido implements Grafo
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
+        HashSet setVertice = new HashSet();
+        HashSet setArista = new HashSet();
 
         for (Vertice vertice: MapaDeVertices.values()) {
             sb.append("\n");
+            sb.append("Vertice id ");
             sb.append(vertice.getId() + " - " + vertice.getPeso()+ " ADYACENCIAS --------------> ");
+            sb.append(" [ ");
             if(vertice.getListaDeAdyacencias().size() >= 1){
-                for(Vertice vertice1: vertice.getListaDeAdyacencias()){
-                    sb.append(vertice1.getId()+ ", ");
+
+                for (Vertice v: vertice.getListaDeAdyacencias()) {
+
+                    setVertice.add(v.getId());                  
                 }
+
+                Iterator iterator = setVertice.iterator();
+                while (iterator.hasNext()) {
+                    sb.append(iterator.next() + ", ");
+                }
+
+                sb.append(" ] ");
             }
-            
+
+            else if (vertice.getListaDeAdyacencias().size() == 0) {
+                sb.append(" No hay elementos adyacentes al vertice ");    
+            }
+                       
             sb.append("\n");
-            sb.append( vertice.getId() + "  INCIDENCIAS --------->");
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("Vertice id ");
+            sb.append( vertice.getId() + "       INCIDENCIAS -------------->");
             sb.append("  [ ");
             
             if(vertice.getListaDeIncidencias().size() >= 1){
+
                 for(Lado l: vertice.getListaDeIncidencias()){
-                    sb.append(l.getId()+ ", ");
+                    
+                    setArista.add(l.getId());
+                }
+
+                Iterator iterator = setArista.iterator();
+                while (iterator.hasNext()) {
+                    sb.append(iterator.next() + ", ");
                 }
 
                 sb.append("  ] ");
             }
+
+            else if (vertice.getListaDeIncidencias().size() == 0) {
+                sb.append(" No hay elementos incidentes al vertice ");    
+            }
+
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("\n");
+            
+            // Limpiamos las listas para que no nos afecte en la impresion de las variables temporales
+            setVertice.clear();
+            setArista.clear();
+
         }
 
         return sb.toString();
@@ -356,13 +414,14 @@ public class GrafoNoDirigido implements Grafo
                 }
                 
             } */ 
+            // Y distintos de null?
 
             if (MapaDeVertices.containsKey(aristaTemp.getExtremo1().getId()) && MapaDeVertices.containsKey(aristaTemp.getExtremo2().getId())) {
 
                 // Procedemos a borrar los nodos en la lista de adyacencias de cada nodo , devolver excepcion
                 MapaDeVertices.get(aristaTemp.getExtremo1().getId()).getListaDeAdyacencias().remove(aristaTemp.getExtremo2());
                 MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeAdyacencias().remove(aristaTemp.getExtremo1());
-                
+
                 // Procedemos a borrar el lado de la lista de incidencia de ambos nodos
                 aristaTemp.getExtremo1().getListaDeIncidencias().remove(aristaTemp);
                 aristaTemp.getExtremo2().getListaDeIncidencias().remove(aristaTemp);
@@ -391,7 +450,7 @@ public class GrafoNoDirigido implements Grafo
                 
             }*/           
 
-            /*for (Lado arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
+            /*for (Lado (Arista)arista: MapaDeVertices.get(aristaTemp.getExtremo2().getId()).getListaDeIncidencias()) {
 
                 if (arista.getId().equals(id)) {
 
