@@ -282,10 +282,10 @@ public class Digrafo implements Grafo
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        HashSet setVertice = new HashSet();
-        HashSet setArco = new HashSet();
-        HashSet setSuc = new HashSet();
-        HashSet setPre = new HashSet();
+        HashSet<String> setVertice = new HashSet<String>();
+        HashSet<String> setArco = new HashSet<String>();
+        HashSet<String> setSuc = new HashSet<String>();
+        HashSet<String> setPre = new HashSet<String>();
 
         for (Vertice vertice: MapaDeVertices.values()) {
             sb.append("\n");
@@ -299,7 +299,7 @@ public class Digrafo implements Grafo
                     setVertice.add(v.getId());                  
                 }
 
-                Iterator iterator = setVertice.iterator();
+                Iterator<String> iterator = setVertice.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -325,7 +325,7 @@ public class Digrafo implements Grafo
                     setArco.add(l.getId());
                 }
 
-                Iterator iterator = setArco.iterator();
+                Iterator<String> iterator = setArco.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -350,7 +350,7 @@ public class Digrafo implements Grafo
                     setVertice.add(v.getId());                  
                 }
 
-                Iterator iterator = setVertice.iterator();
+                Iterator<String> iterator = setVertice.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -375,7 +375,7 @@ public class Digrafo implements Grafo
                     setVertice.add(v.getId());                  
                 }
 
-                Iterator iterator = setVertice.iterator();
+                Iterator<String> iterator = setVertice.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
