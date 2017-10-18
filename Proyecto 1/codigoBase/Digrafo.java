@@ -314,7 +314,37 @@ public class Digrafo implements Grafo
     }
 
     public boolean eliminarArco(String id) {
+        // Capaz tambien hay que verificar si estan ambo nodos de la arcos dentro del grafo
+        if (MapaDeArcos.containsKey(id)) {
+            
+            Arco arcoTemp = MapaDeArcos.get(id);
+            // Y distintos de null?
 
+            if (MapaDeVertices.containsKey(arcoTemp.getExtremo1().getId()) && MapaDeVertices.containsKey(arcoTemp.getExtremo2().getId())) {
+
+                // Procedemos a borrar los nodos en la lista de suceros y predecesores de cada nodo , devolver excepcion
+                MapaDeVertices.get(arcoTemp.getExtremo1().getId()).getListaDeSucesores().remove(arcoTemp.getExtremo2());
+                MapaDeVertices.get(arcoTemp.getExtremo2().getId()).getListaDePredecesores().remove(aristaTemp.getExtremo1());
+
+                // Procedemos a borrar el lado de la lista de incidencia de ambos nodos
+                aristaTemp.getExtremo1().getListaDeIncidencias().remove(aristaTemp);
+                aristaTemp.getExtremo2().getListaDeIncidencias().remove(aristaTemp);
+            
+                //Borramos del HashMap de aristas
+
+                MapaDeAristas.remove(aristaTemp);
+                numeroDeLados--;
+
+                return true;
+            }
+
+            return true;
+        }
+
+        else{
+
+            return false;
+        }
     }
 
     public Arco obtenerArco(String id) throws NoSuchElementException {
