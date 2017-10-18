@@ -407,11 +407,16 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public void escribirArchivo(){
-
-        archivo = new FileWrite("GrafoNoDirigido");
-        escritura = new PrintWriter(archivo);
-        escritura.println(NumeroVertices);
-        escritura.println(NumeroDeLados);
+        Out escritura = new Out("GrafoNoDirigido-out.txt");
+        escritura.println(numeroDeVertices);
+        escritura.println(numeroDeLados);
+        for(Vertice i : MapaDeVertices.values())
+        {
+            String a = i.getId();
+            String p = String.valueOf(i.getPeso());
+            escritura.print(a + p);
+            escritura.print("\n");
+        }
     }
 }
 

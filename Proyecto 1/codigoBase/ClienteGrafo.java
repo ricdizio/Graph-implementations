@@ -48,14 +48,13 @@ public class ClienteGrafo {
   	StdOut.print("\n"+arco.toString());
     */
     //----------------------------------------------------------------------- Cliente Digrafos
-    Digrafo dg = new Digrafo();
+    GrafoNoDirigido dg = new GrafoNoDirigido();
     dg.cargarGrafo(args[0]);
+    //dg.escribirArchivo();
     //dg.eliminarArco("arista1");
     //dg.eliminarVertice("v1");
     //System.out.println(dg.toString());
     //g.eliminarArista("arista1");
-    System.out.println(dg.toString());
-    System.out.println("DIGRAFO CLON -----------------------------" + "\n");
-    System.out.println(dg.clone().toString());
+    
   }
 }
