@@ -175,7 +175,9 @@ public class Digrafo implements Grafo
     public String toString() {
         StringBuilder sb = new StringBuilder();
         HashSet setVertice = new HashSet();
-        HashSet setArista = new HashSet();
+        HashSet setArco = new HashSet();
+        HashSet setSuc = new HashSet();
+        HashSet setPre = new HashSet();
 
         for (Vertice vertice: MapaDeVertices.values()) {
             sb.append("\n");
@@ -212,10 +214,10 @@ public class Digrafo implements Grafo
 
                 for(Lado l: vertice.getListaDeIncidencias()){
                     
-                    setArista.add(l.getId());
+                    setArco.add(l.getId());
                 }
 
-                Iterator iterator = setArista.iterator();
+                Iterator iterator = setArco.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -230,10 +232,62 @@ public class Digrafo implements Grafo
             sb.append("\n");
             sb.append("\n");
             sb.append("\n");
+            sb.append("Vertice id ");
+            sb.append(vertice.getId() + " - " +  "  sucesores --------------> ");
+            sb.append(" [ ");
+            if(vertice.getListaDeSucesores().size() >= 1){
+
+                for (Vertice v: vertice.getListaDeSucesores()) {
+
+                    setVertice.add(v.getId());                  
+                }
+
+                Iterator iterator = setVertice.iterator();
+                while (iterator.hasNext()) {
+                    sb.append(iterator.next() + ", ");
+                }
+
+                sb.append(" ] ");
+            }
+
+            else if (vertice.getListaDeAdyacencias().size() == 0) {
+                sb.append(" No hay elementos sucesores al vertice ");    
+            }
+                       
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("Vertice id ");
+            sb.append(vertice.getId() + " - " +  "  predecesores --------------> ");
+            sb.append(" [ ");
+            if(vertice.getListaDePredecesores().size() >= 1){
+
+                for (Vertice v: vertice.getListaDePredecesores()) {
+
+                    setVertice.add(v.getId());                  
+                }
+
+                Iterator iterator = setVertice.iterator();
+                while (iterator.hasNext()) {
+                    sb.append(iterator.next() + ", ");
+                }
+
+                sb.append(" ] ");
+            }
+
+            else if (vertice.getListaDePredecesores().size() == 0) {
+                sb.append(" No hay elementos predecesores al vertice ");    
+            }
+                       
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("\n");
             
             // Limpiamos las listas para que no nos afecte en la impresion de las variables temporales
             setVertice.clear();
-            setArista.clear();
+            setArco.clear();
+            setPre.clear();
+            setSuc.clear();
     }
 
     public boolean agregarArco(Arco a) 
