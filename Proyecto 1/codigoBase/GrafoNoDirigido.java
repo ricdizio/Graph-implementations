@@ -50,8 +50,6 @@ public class GrafoNoDirigido implements Grafo
         }
         return true;
     }
-
-    }
     
     public int numeroDeVertices() {
         //Verificar si mantienen numero de vertices la misma cantidad de elementos que size 
