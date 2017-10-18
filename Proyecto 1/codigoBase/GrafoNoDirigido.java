@@ -404,8 +404,6 @@ public class GrafoNoDirigido implements Grafo
         throw new NoSuchElementException("La arista no se puede obtener debido a que no se encuentra en la lista");
         
     }
-<<<<<<< HEAD
-
     public void escribirArchivo(){
         Out escritura = new Out("GNDout.txt");
         escritura.println(numeroDeVertices);
@@ -418,8 +416,6 @@ public class GrafoNoDirigido implements Grafo
             escritura.print("\n");
         }
     }
-=======
->>>>>>> 06468b5aab6511cfa155ef746454eecd1612dd49
 }
 
     
