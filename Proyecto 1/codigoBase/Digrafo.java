@@ -276,8 +276,23 @@ public class Digrafo implements Grafo
     }
 
     public Object clone() {
-        Digrafo x = new Digrafo();
-        return x;
+        Digrafo cloneGD = new Digrafo();
+        HashMap<String, Vertice> hashMap_vertices_clone = new HashMap<String, Vertice>();
+        HashMap<String, Arco> hashMap_arcos_clone = new HashMap<String, Arco>();
+
+        for(Vertice v : MapaDeVertices.values()){
+            hashMap_vertices_clone.put(v.getId(),v);
+        }
+        for(Arco a : MapaDeArcos.values()){
+            hashMap_arcos_clone.put(a.getId(), a);
+        }
+        for(Vertice v : hashMap_vertices_clone.values()){
+            cloneGD.agregarVertice(v);
+        }
+        for(Arco a : hashMap_arcos_clone.values()){
+            cloneGD.agregarArco(a);
+        }
+        return cloneGD;
     }
 
     public String toString() {
@@ -308,7 +323,7 @@ public class Digrafo implements Grafo
             }
 
             else if (vertice.getListaDeAdyacencias().size() == 0) {
-                sb.append(" No hay elementos adyacentes al vertice ");    
+                sb.append(" No hay elementos adyacentes al vertice ]");    
             }
                        
             sb.append("\n");
