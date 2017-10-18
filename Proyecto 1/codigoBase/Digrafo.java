@@ -30,14 +30,20 @@ public class Digrafo implements Grafo
             String id_del_vertice = in.readString();
             double peso_del_vertice = in.readDouble();
             // se proceden a crear y verificar si ya fueron agregados los vertices
+
+            agregarVertice(id_del_vertice,peso_del_vertice);
+
         }
 
         for (int i=0;i<cantidad_de_arcos;i++) {
             String id_de_arco = in.readString();
             String id_vertice_de_Salida = in.readString();
             String id_vertice_de_Llegada = in.readString();
-            double peso_del_vertice = in.readDouble();
-            // se proceden a crear y verificar si ya fueron agregados los acos
+            double peso_del_arco = in.readDouble();
+            // se proceden a crear y verificar si ya fueron agregados los arcos
+
+            agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
+
         }
     }
     
@@ -51,17 +57,19 @@ public class Digrafo implements Grafo
    
     public boolean agregarVertice(Vertice v) 
 	{ 
-        if(MapaVertices.get(v.getId()) != null)
+        // Si el id del vertice ya se encuentra en la lista devuelve un falso, por lo tanto no procede a agregarlo  
+        if(MapaDeVertices.get(v.getId()) != null)
         {
-        	System.out.println("El vertice con identificador "+v.getId()+
+            System.out.println("El vertice con identificador "+v.getId()+
                     " ya se encuentra en el grafo.");
-        	return false;
+            return false;
         }
 
-        MapaVertices.put(v.getId,v);
+        MapaDeVertices.put(v.getId(),v);
         numeroDeVertices++;
         return true;
     }
+
 
     public boolean agregarVertice(String id, double peso) 
 	{ 
@@ -74,32 +82,32 @@ public class Digrafo implements Grafo
     
     public Vertice obtenerVertice(String id) 
     {
-    	if(MapaDeVertices.get(id)!= null)
-    	{
+        if(MapaDeVertices.get(id)!= null)
+        {
             return MapaDeVertices.get(id); 
-        }    
+        }  
+        
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
     }
 
     public boolean estaVertice(String id) 
     {
-    	if(MapaDeVertices.get(id)!= null)
-    	{
-            return true; 
-        }  
-        return false;
+        return MapaDeVertices.containsKey(id);
     }
 
     public boolean estaLado(String u, String v){
 
         if (estaVertice(u) == true && estaVertice(v) == true ) {
 
-            Vertice Vertice1 = new Vertice();
-            Vertice1 = MapaDeVertices.get(id); 
+            //Partida
+            Vertice v1 = MapaDeVertices.get(u);
+            //llegada
+            Vertice v2 = MapaDeVertices.get(v);
 
-            for(Vertice vertice: Vertice1.getListaDeAdyacencias()){
-                if(Vertice1.getId().equals(u)  && vertice.getId().equals(v)){
+
+            for(Vertice i: v1.getListaDeSucesores()){
+                if(i.getId().equals(v2)){
                     return true;
                 }
             
@@ -116,14 +124,14 @@ public class Digrafo implements Grafo
     }
 
     public List<Vertice> vertices() {
-        List<Vertices> return_list_vertices = new LinkedList<Vertice>;
+
+        List<Vertice> return_list_vertices = new LinkedList<Vertice>();
 
         for (Vertice v : MapaDeVertices.values()) {
             return_list_vertices.add(v);
         }
 
         return return_list_vertices;
-    
     }
 
     public List<Lado> lados() {
@@ -160,9 +168,72 @@ public class Digrafo implements Grafo
     }
 
     public Object clone() {
+        Digrafo x = new Digrafo();
+        return x;
     }
 
     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        HashSet setVertice = new HashSet();
+        HashSet setArista = new HashSet();
+
+        for (Vertice vertice: MapaDeVertices.values()) {
+            sb.append("\n");
+            sb.append("Vertice id ");
+            sb.append(vertice.getId() + " - " + vertice.getPeso()+ " ADYACENCIAS --------------> ");
+            sb.append(" [ ");
+            if(vertice.getListaDeAdyacencias().size() >= 1){
+
+                for (Vertice v: vertice.getListaDeAdyacencias()) {
+
+                    setVertice.add(v.getId());                  
+                }
+
+                Iterator iterator = setVertice.iterator();
+                while (iterator.hasNext()) {
+                    sb.append(iterator.next() + ", ");
+                }
+
+                sb.append(" ] ");
+            }
+
+            else if (vertice.getListaDeAdyacencias().size() == 0) {
+                sb.append(" No hay elementos adyacentes al vertice ");    
+            }
+                       
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("Vertice id ");
+            sb.append( vertice.getId() + "       INCIDENCIAS -------------->");
+            sb.append("  [ ");
+            
+            if(vertice.getListaDeIncidencias().size() >= 1){
+
+                for(Lado l: vertice.getListaDeIncidencias()){
+                    
+                    setArista.add(l.getId());
+                }
+
+                Iterator iterator = setArista.iterator();
+                while (iterator.hasNext()) {
+                    sb.append(iterator.next() + ", ");
+                }
+
+                sb.append("  ] ");
+            }
+
+            else if (vertice.getListaDeIncidencias().size() == 0) {
+                sb.append(" No hay elementos incidentes al vertice ");    
+            }
+
+            sb.append("\n");
+            sb.append("\n");
+            sb.append("\n");
+            
+            // Limpiamos las listas para que no nos afecte en la impresion de las variables temporales
+            setVertice.clear();
+            setArista.clear();
     }
 
     public boolean agregarArco(Arco a) 
@@ -173,7 +244,7 @@ public class Digrafo implements Grafo
             if(arco.getId().equals(a.getId()))
             {
                 System.out.println("El arco con el identificador '"
-                    +arco.getId()+"' ya se encuentra en el grafo.");
+                    +a.getId()+"' ya se encuentra en el grafo.");
                 return false;
             }
         }
@@ -198,9 +269,9 @@ public class Digrafo implements Grafo
         return false;
     } 
 
-    public boolean agregarArco(String id, double peso)
+    public boolean agregarArco(String id, double peso, Vertice v1, Vertice v2)
     {
-        Arco a = new Arco(id,peso);
+        Arco a = new Arco(id,peso,v1,v2);
         boolean x = agregarArco(a);
         return x;
     }
