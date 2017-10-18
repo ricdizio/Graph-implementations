@@ -392,17 +392,14 @@ public class Digrafo implements Grafo
 
     public boolean agregarArco(Arco a) {
         int temp = numeroDeLados;
-        for(Arco arco : MapaDeArcos.values())
-        {
-            if(arco.getId().equals(a.getId()))
-            {
-                System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
-                return false;
-            }
+        if((MapaDeArcos.containsKey(a.getId()))) {
+
+            System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
+            return false;
         }
-        // Revisaaaar
-        for(Vertice vertice1 : MapaDeVertices.values())
-        {
+
+        /*for(Vertice vertice1 : MapaDeVertices.values()) {
+
             if(vertice1.getId().equals(a.getExtremoInicial().getId())){
                 vertice1.getListaDeAdyacencias().add(a.getExtremoFinal()); 
                 vertice1.getListaDeSucesores().add(a.getExtremoFinal());
@@ -412,6 +409,26 @@ public class Digrafo implements Grafo
                 numeroDeLados++;
                 lista_de_arcos.add(a);                
             }
+        }*/
+
+        if ((estaVertice(a.getExtremoInicial().getId())) && ( estaVertice(a.getExtremoFinal().getId()))) {
+            // En GD debe agregar a un vertice en los sucesores y en el otro en los predecesores
+            // para este caso agrega en los adyacentes
+            obtenerVertice(a.getExtremoInicial().getId()).adyacencias.add(a.getExtremoFinal());
+            obtenerVertice(a.getExtremoFinal().getId()).adyacencias.add(a.getExtremoInicial());
+            
+            // En GD debe agregar a un vertice en los sucesores y en el otro en los predecesores
+            // para este caso agrega en los Sucesores y Predecesores
+            obtenerVertice(a.getExtremoInicial().getId()).sucesores.add(a.getExtremoFinal());
+            obtenerVertice(a.getExtremoFinal().getId()).predecesores.add(a.getExtremoInicial());
+
+            //agregar incidencias
+            obtenerVertice(a.getExtremoInicial().getId()).incidencias.add(a);
+            obtenerVertice(a.getExtremoFinal().getId()).incidencias.add(a);
+
+            numeroDeLados++;
+            MapaDeArcos.put(a.getId(), a);
+
         }
 
         if(temp < numeroDeLados)

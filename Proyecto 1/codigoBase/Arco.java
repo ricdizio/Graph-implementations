@@ -19,7 +19,7 @@ public class Arco extends Lado
     return this.extremoInicial;
   }
 
-  public Vertice getExtremoFinall() {
+  public Vertice getExtremoFinal() {
     return this.extremoFinal;
   }
 
