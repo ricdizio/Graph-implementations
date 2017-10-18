@@ -350,7 +350,7 @@ public class Digrafo implements Grafo
                     setSuc.add(v.getId());                  
                 }
 
-                Iterator<String> iterator = setVertice.iterator();
+                Iterator<String> iterator = setSuc.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -375,7 +375,7 @@ public class Digrafo implements Grafo
                     setPre.add(v.getId());                  
                 }
 
-                Iterator<String> iterator = setVertice.iterator();
+                Iterator<String> iterator = setPre.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
