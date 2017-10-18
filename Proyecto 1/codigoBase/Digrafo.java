@@ -44,7 +44,7 @@ public class Digrafo implements Grafo
             double peso_del_arco = in.readDouble();
             // se proceden a crear y verificar si ya fueron agregados los arcos
 
-            agregarArco(id_de_arco,peso_de_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
+            agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
 
         }
     }
@@ -421,8 +421,10 @@ public class Digrafo implements Grafo
         return false;
     } 
 
-    public boolean agregarArco(String id, double peso, Vertice v1, Vertice v2)
-    {
+    public boolean agregarArco(String id, double peso, String u, String v)
+    {   
+        Vertice v1 = MapaDeVertices.get(u);
+        Vertice v2 = MapaDeVertices.get(v);
         Arco a = new Arco(id,peso,v1,v2);
         boolean x = agregarArco(a);
         return x;
