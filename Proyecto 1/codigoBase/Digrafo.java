@@ -10,7 +10,7 @@ public class Digrafo implements Grafo
     private int numeroDeLados;
     //private List<Vertice> lista_de_vertices;
     //private List<Arco> lista_de_arcos;
-    private HashMap<String, Vertice> MapaDeArcos;
+    private HashMap<String, Arco> MapaDeArcos;
     private HashMap<String, Vertice> MapaDeVertices;
 
     public Digrafo() {
@@ -44,7 +44,7 @@ public class Digrafo implements Grafo
             double peso_del_arco = in.readDouble();
             // se proceden a crear y verificar si ya fueron agregados los arcos
 
-            agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
+            agregarArco(id_de_arco,peso_de_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
 
         }
     }
@@ -57,8 +57,7 @@ public class Digrafo implements Grafo
     	return numeroDeLados;
     }
    
-    public boolean agregarVertice(Vertice v) 
-	{ 
+    public boolean agregarVertice(Vertice v) { 
         // Si el id del vertice ya se encuentra en la lista devuelve un falso, por lo tanto no procede a agregarlo  
         if(MapaDeVertices.get(v.getId()) != null)
         {
@@ -73,8 +72,7 @@ public class Digrafo implements Grafo
     }
 
 
-    public boolean agregarVertice(String id, double peso) 
-	{ 
+    public boolean agregarVertice(String id, double peso) { 
         boolean booleano;
         Vertice v = new Vertice(id,peso);
         booleano = agregarVertice(v);
@@ -82,8 +80,7 @@ public class Digrafo implements Grafo
         return booleano;
     }
     
-    public Vertice obtenerVertice(String id) 
-    {
+    public Vertice obtenerVertice(String id) {
         if(MapaDeVertices.get(id)!= null)
         {
             return MapaDeVertices.get(id); 
@@ -93,8 +90,7 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
-    public boolean estaVertice(String id) 
-    {
+    public boolean estaVertice(String id) {
         return MapaDeVertices.containsKey(id);
     }
 
@@ -144,7 +140,7 @@ public class Digrafo implements Grafo
                 int posicion = verticeTemp.getListaDeIncidencias().indexOf(arco);
                 //eliminarArista(arista.getId());
                 if (posicion != -1) {
-                    eliminarArista(verticeTemp.getListaDeIncidencias().get(posicion).getId());                     
+                    eliminarArco(verticeTemp.getListaDeIncidencias().get(posicion).getId());                     
                 }
                 else{
                     continue;
@@ -391,10 +387,10 @@ public class Digrafo implements Grafo
             setArco.clear();
             setPre.clear();
             setSuc.clear();
+        }
     }
 
-    public boolean agregarArco(Arco a) 
-    {
+    public boolean agregarArco(Arco a) {
         int temp = numeroDeLados;
         for(Arco arco : MapaDeArcos.values())
         {
@@ -405,13 +401,13 @@ public class Digrafo implements Grafo
             }
         }
         // Revisaaaar
-        for(Vertice vertice1 : MapaVertices.values())
+        for(Vertice vertice1 : MapaDeVertices.values())
         {
             if(vertice1.getId().equals(a.getExtremoInicial().getId())){
                 vertice1.getListaDeAdyacencias().add(a.getExtremoFinal()); 
                 vertice1.getListaDeSucesores().add(a.getExtremoFinal());
                 //Agregar a nodo a predecesores
-                a.getExtremoFinal().getListaDePredecesores.add(a.getExtremoInicial());
+                a.getExtremoFinal().getListaDePredecesores().add(a.getExtremoInicial());
 
                 numeroDeLados++;
                 lista_de_arcos.add(a);                
@@ -478,16 +474,16 @@ public class Digrafo implements Grafo
 
             if (MapaDeVertices.containsKey(arcoTemp.getExtremoInicial().getId()) && MapaDeVertices.containsKey(arcoTemp.getExtremoFinal().getId())) {
 
-                // Procedemos a borrar los nodos en la lista de suceros y predecesores de cada nodo , devolver excepcion
-                MapaDeVertices.get(arcoTemp.getExtremo1().getId()).getListaDeSucesores().remove(arcoTemp.getExtremo2());
-                MapaDeVertices.get(arcoTemp.getExtremo2().getId()).getListaDePredecesores().remove(arcoTemp.getExtremo1());
+                // Procedemos a borrar los nodos en la lista de sucesores y predecesores de cada nodo , devolver excepcion
+                MapaDeVertices.get(arcoTemp.getExtremoInicial().getId()).getListaDeSucesores().remove(arcoTemp.getExtremoFinal());
+                MapaDeVertices.get(arcoTemp.getExtremoFinal().getId()).getListaDePredecesores().remove(arcoTemp.getExtremoInicial());
 
                 // Procedemos a borrar los vertices en la lista de sucesores y predecesores de cada vertice , devolver excepcion
                 MapaDeVertices.get(arcoTemp.getExtremoInicial().getId()).getListaDeSucesores().remove(arcoTemp.getExtremoFinal());
                 MapaDeVertices.get(arcoTemp.getExtremoFinal().getId()).getListaDePredecesores().remove(aristaTemp.getExtremoInicial());
 
                 //borramos de la lista de adyacencias el nodo de llegada
-                MapaDeVertices.get(arcoTemp.getExtremo1().getId()).getListaDeAdyacencias().remove(arcoTemp.getExtremo2());
+                MapaDeVertices.get(arcoTemp.getExtremoInicial().getId()).getListaDeAdyacencias().remove(arcoTemp.getExtremoFinal());
                 // Procedemos a borrar el lado de la lista de incidencia de ambos nodos
                 aristaTemp.getExtremoInicial().getListaDeIncidencias().remove(arcoTemp);
                 aristaTemp.getExtremoFinal().getListaDeIncidencias().remove(arcoTemp);
