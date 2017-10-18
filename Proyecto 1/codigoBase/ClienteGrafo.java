@@ -9,8 +9,8 @@ public class ClienteGrafo {
   public static void main(String [] args) {
 
     //--------------------------------------------------Cliente Grafo No Dirigido
-    GrafoNoDirigido g = new GrafoNoDirigido();
-    g.cargarGrafo(args[0]);
+    //GrafoNoDirigido g = new GrafoNoDirigido();
+    //g.cargarGrafo(args[0]);
     //g.eliminarArista("arista1");
     //g.eliminarArista("arista2");
     //g.eliminarArista("arista3");
@@ -55,7 +55,7 @@ public class ClienteGrafo {
     //System.out.println(dg.toString());
     //g.eliminarArista("arista1");
     System.out.println(dg.toString());
-    System.out.println("DIGRAFO CLON -----------------------------" + "\n");
-    System.out.println(dg.clone().toString());
+    //System.out.println("DIGRAFO CLON -----------------------------" + "\n");
+    //System.out.println(dg.clone().toString());
   }
 }
