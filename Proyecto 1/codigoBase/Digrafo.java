@@ -8,14 +8,16 @@ public class Digrafo implements Grafo
 {
     private int numeroDeVertices;
     private int numeroDeLados;
-    private List<Vertice> lista_de_vertices;
-    private List<Arco> lista_de_arcos;
-    Map<String, Vertice> MapaDeArcos = New HashMap<String, Arco>();
-    Map<String, Vertice> MapaDeVertices = New HashMap<String, Vertice>();
+    //private List<Vertice> lista_de_vertices;
+    //private List<Arco> lista_de_arcos;
+    private HashMap<String, Vertice> MapaDeArcos;
+    private HashMap<String, Vertice> MapaDeVertices;
 
     public Digrafo() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
+        MapaDeArcos = New HashMap<String, Arco>();
+        MapaDeVertices = New HashMap<String, Vertice>();
       
     }
 
@@ -121,6 +123,107 @@ public class Digrafo implements Grafo
     }
 
     public boolean eliminarVertice(String id) {
+        List<Vertice> temp_lista_adyacencia = new LinkedList<Vertice>();
+        List<Arco> temp_lista_incidencia = new LinkedList<Arco>();
+        List<Arco> temp_lista_sucesores = new LinkedList<Arco>();
+        List<Arco> temp_lista_predecesores = new LinkedList<Arco>();
+
+        if (estaVertice(id)) {
+
+            Vertice verticeTemp = MapaDeVertices.get(id);
+
+            for(Lado l : verticeTemp.getListaDeIncidencias()){
+                    Arco arco = (Arco)l;
+                    //Arista aristaTemp = MapaDeAristas.get(a.getId());
+                    temp_lista_incidencia.add(arco);
+            }
+
+            // Borrando Incidencias
+            for (Lado arco: temp_lista_incidencia) {
+
+                int posicion = verticeTemp.getListaDeIncidencias().indexOf(arco);
+                //eliminarArista(arista.getId());
+                if (posicion != -1) {
+                    eliminarArista(verticeTemp.getListaDeIncidencias().get(posicion).getId());                     
+                }
+                else{
+                    continue;
+                }
+                             
+                
+            }
+
+            //Proceso para borrar los elementos de la lista de sucesores
+            //Primero copiamos los sucesores en el temporal para iterar sobre ellos y luego borrar los elementos en la lista principal
+            for(Vertice vertice : verticeTemp.getListaDeSucesores()){
+                    temp_lista_sucesores.add(vertice);
+            }
+
+            for (Vertice v: temp_lista_sucesores) {
+
+                int pos = verticeTemp.getListaDeSucesores().indexOf(v);
+                
+                if (pos != -1) {
+                   
+                    MapaDeVertices.get(verticeTemp.getListaDeSucesores().get(pos).getId()).getListaDePredecesores().remove(verticeTemp);
+
+                }
+                else{
+                    continue;
+                }
+            }
+
+
+            //Caso Analogo pero para predecesores
+            for(Vertice vertice : verticeTemp.getListaDePredecesores()){
+                    temp_lista_predecesores.add(vertice);
+            }
+
+            for (Vertice v: temp_lista_predecesores) {
+
+                int pos = verticeTemp.getListaDeSucesores().indexOf(v);
+                
+                if (pos != -1) {
+                   
+                    MapaDeVertices.get(verticeTemp.getListaDePredecesores().get(pos).getId()).getListaDeSucesores().remove(verticeTemp);
+
+                }
+                else{
+                    continue;
+                }
+            }
+
+
+
+            //temporal de vertices lista de adyacencias
+            for(Vertice vertice : verticeTemp.getListaDeAdyacencias()){
+                    temp_lista_adyacencia.add(vertice);
+            }
+
+            //Borrando Adyacencias
+            for (Vertice v: temp_lista_adyacencia) {
+
+                int pos = verticeTemp.getListaDeAdyacencias().indexOf(v);
+                
+                if (pos != -1) {
+                   
+                    MapaDeVertices.get(verticeTemp.getListaDeAdyacencias().get(pos).getId()).getListaDeAdyacencias().remove(verticeTemp);
+
+                }
+                else{
+                    continue;
+                }
+            }
+            MapaDeVertices.remove(id);
+            numeroDeVertices--;
+
+            return true;
+        }
+
+        else {
+
+            return false;
+        }
     }
 
     public List<Vertice> vertices() {
@@ -297,8 +400,7 @@ public class Digrafo implements Grafo
         {
             if(arco.getId().equals(a.getId()))
             {
-                System.out.println("El arco con el identificador '"
-                    +a.getId()+"' ya se encuentra en el grafo.");
+                System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
                 return false;
             }
         }

@@ -45,8 +45,8 @@ CLASSES = \
 	Arista.java \
 	Grafo.java \
 	GrafoNoDirigido.java \
-	//Digrafo.java\
-    ClienteGrafo.java
+	Digrafo.java\
+    	ClienteGrafo.java
 
 #
 # the default make target entry
