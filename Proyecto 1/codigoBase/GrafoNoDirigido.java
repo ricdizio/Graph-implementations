@@ -137,7 +137,6 @@ public class GrafoNoDirigido implements Grafo
 
             for(Lado l : verticeTemp.getListaDeIncidencias()){
                     Arista arista = (Arista)l;
-                    //Arista aristaTemp = MapaDeAristas.get(a.getId());
                     temp_lista_incidencia.add(arista);
             }
 
@@ -234,8 +233,24 @@ public class GrafoNoDirigido implements Grafo
     }
     
     public Object clone() {
-        GrafoNoDirigido x = new GrafoNoDirigido();
-        return x;
+        GrafoNoDirigido cloneGND = new GrafoNoDirigido();
+        HashMap<String, Vertice> hashMap_vertices_clone = new HashMap<String, Vertice>();
+        HashMap<String, Arista> hashMap_aristas_clone = new HashMap<String, Arista>();
+
+        for(Vertice v : MapaDeVertices.values()){
+            hashMap_vertices_clone.put(v.getId(),v);
+        }
+        for(Arista a : MapaDeAristas.values()){
+            hashMap_aristas_clone.put(a.getId(), a);
+        }
+        for(Vertice v : hashMap_vertices_clone.values()){
+            //cloneGND.agregarVertice(v.getId(),v.getPeso());
+            cloneGND.agregarVertice(v);
+        }
+        for(Arista a : hashMap_aristas_clone.values()){
+            cloneGND.agregarArista(a);
+        }
+        return cloneGND;
     }
     
     public String toString() {
@@ -265,7 +280,7 @@ public class GrafoNoDirigido implements Grafo
             }
 
             else if (vertice.getListaDeAdyacencias().size() == 0) {
-                sb.append(" No hay elementos adyacentes al vertice ");    
+                sb.append(" No hay elementos adyacentes al vertice ]");    
             }
                        
             sb.append("\n");
