@@ -12,12 +12,12 @@ public class ClienteCorreccionP1 {
 
   	
 	String nombre_archivo  = args[0];
-	//System.out.println("El nombre del archivo es:" + nombre_archivo);
+	System.out.println("El nombre del archivo es:" + nombre_archivo);
 	Digrafo G = new Digrafo();
 	GrafoNoDirigido G2 = new GrafoNoDirigido(); 
 
 	G.cargarGrafo(nombre_archivo);
-	//StdOut.println();
+	StdOut.println();
 	G2.cargarGrafo(nombre_archivo);
 
 	System.out.println();	System.out.println("El digrafo leido ----- ");
