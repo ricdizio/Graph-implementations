@@ -499,13 +499,13 @@ public class Digrafo implements Grafo
 
                 // Procedemos a borrar los vertices en la lista de sucesores y predecesores de cada vertice , devolver excepcion
                 MapaDeVertices.get(arcoTemp.getExtremoInicial().getId()).getListaDeSucesores().remove(arcoTemp.getExtremoFinal());
-                MapaDeVertices.get(arcoTemp.getExtremoFinal().getId()).getListaDePredecesores().remove(aristaTemp.getExtremoInicial());
+                MapaDeVertices.get(arcoTemp.getExtremoFinal().getId()).getListaDePredecesores().remove(arcoTemp.getExtremoInicial());
 
                 //borramos de la lista de adyacencias el nodo de llegada
                 MapaDeVertices.get(arcoTemp.getExtremoInicial().getId()).getListaDeAdyacencias().remove(arcoTemp.getExtremoFinal());
                 // Procedemos a borrar el lado de la lista de incidencia de ambos nodos
-                aristaTemp.getExtremoInicial().getListaDeIncidencias().remove(arcoTemp);
-                aristaTemp.getExtremoFinal().getListaDeIncidencias().remove(arcoTemp);
+                arcoTemp.getExtremoInicial().getListaDeIncidencias().remove(arcoTemp);
+                arcoTemp.getExtremoFinal().getListaDeIncidencias().remove(arcoTemp);
             
                 //Borramos del HashMap de aristas
 
