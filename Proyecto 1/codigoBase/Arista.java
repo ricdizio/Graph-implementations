@@ -3,8 +3,6 @@
  */
 import java.util.*;
 
-import java.util.*;
-
 public class Arista extends Lado
 {
   private Vertice u;

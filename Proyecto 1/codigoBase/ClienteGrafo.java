@@ -16,7 +16,16 @@ public class ClienteGrafo {
     //g.eliminarArista("arista4");
     //g.eliminarArista("arista5");
     //g.eliminarVertice("v5");
-    g.eliminarVertice("v1");
+    //g.eliminarVertice("v1");
+    //System.out.println("El grado del vertice v1 es  "+g.grado("v2"));
+    System.out.println("El numero de Vertices en el grafo es  "+g.numeroDeVertices());
+    System.out.println("El numero de lados en el grafo es  "+g.numeroDeLados());
+    Vertice vertice = new Vertice("v9",10.0);
+    System.out.println("Se agregó el vertice v9?  "+g.agregarVertice(vertice));
+    System.out.println("Esta el vertice 9?  "+g.estaVertice("v9"));
+    System.out.println("Esta el lado?  "+g.estaLado("v1","v2"));
+
+
     System.out.println(g.toString());
 
 
