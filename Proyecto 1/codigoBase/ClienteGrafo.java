@@ -7,7 +7,7 @@ import java.util.*;
 public class ClienteGrafo {
   public static void main(String [] args) {
 
-
+    /*--------------------------------------------------Cliente Grafo No Dirigido
     GrafoNoDirigido g = new GrafoNoDirigido();
     g.cargarGrafo(args[0]);
     //g.eliminarArista("arista1");
@@ -27,9 +27,9 @@ public class ClienteGrafo {
 
 
     System.out.println(g.toString());
+    */
 
-
-/*
+    /*
   	Vertice x = new Vertice("1",1);
   	Vertice y = new Vertice("2" ,2);	
   	String id = x.getId();
@@ -45,8 +45,11 @@ public class ClienteGrafo {
 
   	Arco arco = new Arco("arco1",6.0,x,y);
   	StdOut.print("\n"+arco.toString());
+    */
 
-
-*/
+    Digrafo dg = new Digrafo();
+    dg.cargarGrafo(args[0]);
+    System.out.println(dg.toString());
+    //g.eliminarArista("arista1");
   }
 }
