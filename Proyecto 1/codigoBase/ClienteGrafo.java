@@ -49,6 +49,8 @@ public class ClienteGrafo {
 
     Digrafo dg = new Digrafo();
     dg.cargarGrafo(args[0]);
+    //dg.eliminarArco("arista1");
+    dg.eliminarVertice("v1");
     System.out.println(dg.toString());
     //g.eliminarArista("arista1");
   }

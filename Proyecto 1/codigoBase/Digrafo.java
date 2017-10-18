@@ -501,6 +501,7 @@ public class Digrafo implements Grafo
 
                 //borramos de la lista de adyacencias el nodo de llegada
                 MapaDeVertices.get(arcoTemp.getExtremoInicial().getId()).getListaDeAdyacencias().remove(arcoTemp.getExtremoFinal());
+                MapaDeVertices.get(arcoTemp.getExtremoFinal().getId()).getListaDeAdyacencias().remove(arcoTemp.getExtremoInicial());
                 // Procedemos a borrar el lado de la lista de incidencia de ambos nodos
                 arcoTemp.getExtremoInicial().getListaDeIncidencias().remove(arcoTemp);
                 arcoTemp.getExtremoFinal().getListaDeIncidencias().remove(arcoTemp);
