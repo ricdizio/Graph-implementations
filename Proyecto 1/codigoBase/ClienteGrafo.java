@@ -3,6 +3,7 @@
  */
 
 import java.util.*;
+import java.io.*;
 
 public class ClienteGrafo {
   public static void main(String [] args) {
@@ -25,7 +26,7 @@ public class ClienteGrafo {
     //System.out.println("Esta el vertice 9?  "+g.estaVertice("v9"));
     //System.out.println("Esta el lado?  "+g.estaLado("v1","v2"));
     //System.out.println(g.toString());
-    //System.out.println("GRAFO CLON -----------------------------" + "\n");
+    //System.out.println("GRAFO NO DIRIGIDO CLON -----------------------------" + "\n");
     //System.out.println(g.clone().toString());
     
 
@@ -54,7 +55,7 @@ public class ClienteGrafo {
     //System.out.println(dg.toString());
     //g.eliminarArista("arista1");
     System.out.println(dg.toString());
-    System.out.println("GRAFO CLON -----------------------------" + "\n");
+    System.out.println("DIGRAFO CLON -----------------------------" + "\n");
     System.out.println(dg.clone().toString());
   }
 }

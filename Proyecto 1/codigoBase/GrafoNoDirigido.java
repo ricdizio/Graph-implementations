@@ -3,6 +3,7 @@
  */
 
 import java.util.*;
+import java.io.*;
 
 public class GrafoNoDirigido implements Grafo
 {
@@ -403,6 +404,14 @@ public class GrafoNoDirigido implements Grafo
         }
         throw new NoSuchElementException("La arista no se puede obtener debido a que no se encuentra en la lista");
         
+    }
+
+    public void escribirArchivo(){
+
+        archivo = new FileWrite("GrafoNoDirigido");
+        escritura = new PrintWriter(archivo);
+        escritura.println(NumeroVertices);
+        escritura.println(NumeroDeLados);
     }
 }
 
