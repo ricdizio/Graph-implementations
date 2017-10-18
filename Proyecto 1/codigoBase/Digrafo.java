@@ -54,6 +54,7 @@ public class Digrafo implements Grafo
             System.out.println("No se pudo cargar el archivo");
             return false;
         }
+        return true;
     }
     
     public int numeroDeVertices() {
@@ -118,10 +119,7 @@ public class Digrafo implements Grafo
             
             }
         }
-
-        else{
-            return false;
-        } 
+        return false;
               
     }
 
@@ -241,6 +239,12 @@ public class Digrafo implements Grafo
     }
 
     public List<Lado> lados() {
+        List<Lado> return_list_lados = new LinkedList<Lado>();
+        for (Arco l : MapaDeArcos.values()) {
+            return_list_lados.add(l);
+        }
+
+        return return_list_lados;
     }
 
     public int grado(String id) {
@@ -395,6 +399,7 @@ public class Digrafo implements Grafo
             setPre.clear();
             setSuc.clear();
         }
+        return sb.toString();
     }
 
     public boolean agregarArco(Arco a) {
