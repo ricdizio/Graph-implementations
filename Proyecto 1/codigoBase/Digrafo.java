@@ -134,7 +134,6 @@ public class Digrafo implements Grafo
 
             for(Lado l : verticeTemp.getListaDeIncidencias()){
                     Arco arco = (Arco)l;
-                    //Arista aristaTemp = MapaDeAristas.get(a.getId());
                     temp_lista_incidencia.add(arco);
             }
 
@@ -159,7 +158,7 @@ public class Digrafo implements Grafo
                     temp_lista_sucesores.add(vertice);
             }
 
-            for (Vertice v: temp_lista_sucesores) {
+            for (Vertice v: temp_lista_sucesores) { 
 
                 int pos = verticeTemp.getListaDeSucesores().indexOf(v);
                 
