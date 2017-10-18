@@ -16,8 +16,8 @@ public class Digrafo implements Grafo
     public Digrafo() {
         numeroDeVertices = 0;
         numeroDeLados = 0;
-        MapaDeArcos = New HashMap<String, Arco>();
-        MapaDeVertices = New HashMap<String, Vertice>();
+        MapaDeArcos = new HashMap <String,Arco>();
+        MapaDeVertices = new HashMap <String,Vertice>();
       
     }
 
