@@ -321,6 +321,7 @@ public class Digrafo implements Grafo
         if(MapaDeArcos.containsKey(id)){
             return MapaDeArcos.get(id);
         }
-    }	throw new NoSuchElementException("El arco con el idenficador: " 
+	throw new NoSuchElementException("El arco con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
+    }   
 }
