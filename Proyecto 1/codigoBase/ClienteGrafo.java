@@ -12,6 +12,10 @@ public class ClienteGrafo {
     g.cargarGrafo(args[0]);
     //g.eliminarArista("arista1");
     //g.eliminarArista("arista2");
+    //g.eliminarArista("arista3");
+    //g.eliminarArista("arista4");
+    //g.eliminarArista("arista5");
+    //g.eliminarVertice("v5");
     g.eliminarVertice("v1");
     System.out.println(g.toString());
 

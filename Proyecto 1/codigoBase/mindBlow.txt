@@ -1,13 +1,11 @@
-3
-7
+2
+5
 v1 1.0
 v2 2.0
-v3 3.0
-arista1 v1 v2 1.0
+arista1 v1 v1 1.0
 arista2 v2 v1 2.0
-arista3 v2 v3 3.0
-arista4 v1 v1 4.0
-arista5 v1 v1 5.0
-arista6 v1 v1 6.0
-arista7 v1 v1 7.0
+arista3 v1 v1 1.0
+arista4 v1 v1 1.0
+arista5 v1 v1 1.0
+
 
