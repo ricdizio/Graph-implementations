@@ -382,9 +382,7 @@ public class GrafoNoDirigido implements Grafo
         if (MapaDeAristas.containsKey(id)) {
             return MapaDeAristas.get(id);
         }
-        else{
-            throw new NoSuchElementException("La arista no se puede obtener debido a que no se encuentra en la lista");
-        }
+        throw new NoSuchElementException("La arista no se puede obtener debido a que no se encuentra en la lista");
         
     }
 }
