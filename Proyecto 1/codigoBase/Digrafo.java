@@ -233,7 +233,7 @@ public class Digrafo implements Grafo
             sb.append("\n");
             sb.append("\n");
             sb.append("Vertice id ");
-            sb.append(vertice.getId() + " - " +  "  sucesores --------------> ");
+            sb.append(vertice.getId() +  "        sucesores --------------> ");
             sb.append(" [ ");
             if(vertice.getListaDeSucesores().size() >= 1){
 
@@ -258,7 +258,7 @@ public class Digrafo implements Grafo
             sb.append("\n");
             sb.append("\n");
             sb.append("Vertice id ");
-            sb.append(vertice.getId() + " - " +  "  predecesores --------------> ");
+            sb.append(vertice.getId() +  "        predecesores --------------> ");
             sb.append(" [ ");
             if(vertice.getListaDePredecesores().size() >= 1){
 
