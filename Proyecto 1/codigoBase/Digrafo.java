@@ -21,7 +21,7 @@ public class Digrafo implements Grafo
       
     }
 
-    public boolean cargarGrafo(String dirArchivo) {
+    public boolean cargarGrafo(String dirArchivo){
         // Continuar despues de implementar las funciones del grafo ya que son necesarias para terminar de cargar el grafo
         //In in = new In(args[0]);
         try{
@@ -48,12 +48,12 @@ public class Digrafo implements Grafo
                 agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
 
             }
-            return true;
         }
-        catch(Excepcion e){
+        catch(Exception e){
             System.out.println("No se pudo cargar el archivo");
             return false;
         }
+        return true;
     }
     
     public int numeroDeVertices() {
