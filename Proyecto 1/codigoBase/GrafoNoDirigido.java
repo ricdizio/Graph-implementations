@@ -13,8 +13,7 @@ public class GrafoNoDirigido implements Grafo
     private HashMap<String, Vertice> MapaDeVertices;
 
 
-    public GrafoNoDirigido() 
-    {
+    public GrafoNoDirigido(){
         numeroDeVertices = 0;
         numeroDeLados = 0;
         MapaDeAristas = new HashMap <String,Arista>();
@@ -255,8 +254,8 @@ public class GrafoNoDirigido implements Grafo
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
-        HashSet setVertice = new HashSet();
-        HashSet setArista = new HashSet();
+        HashSet<String> setVertice = new HashSet<String>();
+        HashSet<String> setArista = new HashSet<String>();
 
         for (Vertice vertice: MapaDeVertices.values()) {
             sb.append("\n");
@@ -270,7 +269,7 @@ public class GrafoNoDirigido implements Grafo
                     setVertice.add(v.getId());                  
                 }
 
-                Iterator iterator = setVertice.iterator();
+                Iterator<String> iterator = setVertice.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -296,7 +295,7 @@ public class GrafoNoDirigido implements Grafo
                     setArista.add(l.getId());
                 }
 
-                Iterator iterator = setArista.iterator();
+                Iterator<String> iterator = setArista.iterator();
                 while (iterator.hasNext()) {
                     sb.append(iterator.next() + ", ");
                 }
@@ -407,7 +406,7 @@ public class GrafoNoDirigido implements Grafo
     }
 
     public void escribirArchivo(){
-        Out escritura = new Out("GrafoNoDirigido-out.txt");
+        Out escritura = new Out("GNDout.txt");
         escritura.println(numeroDeVertices);
         escritura.println(numeroDeLados);
         for(Vertice i : MapaDeVertices.values())
