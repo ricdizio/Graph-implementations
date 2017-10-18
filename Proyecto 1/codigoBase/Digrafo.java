@@ -347,7 +347,7 @@ public class Digrafo implements Grafo
 
                 for (Vertice v: vertice.getListaDeSucesores()) {
 
-                    setVertice.add(v.getId());                  
+                    setSuc.add(v.getId());                  
                 }
 
                 Iterator<String> iterator = setVertice.iterator();
@@ -372,7 +372,7 @@ public class Digrafo implements Grafo
 
                 for (Vertice v: vertice.getListaDePredecesores()) {
 
-                    setVertice.add(v.getId());                  
+                    setPre.add(v.getId());                  
                 }
 
                 Iterator<String> iterator = setVertice.iterator();
