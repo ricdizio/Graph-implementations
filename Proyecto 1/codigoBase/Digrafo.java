@@ -408,24 +408,7 @@ public class Digrafo implements Grafo
             return false;
         }
 
-        for(Vertice vertice1 : MapaDeVertices.values()) {
-
-            if(vertice1.getId().equals(a.getExtremoInicial().getId())){
-                vertice1.getListaDeAdyacencias().add(a.getExtremoFinal()); 
-                vertice1.getListaDeSucesores().add(a.getExtremoFinal());
-                //Agregar a nodo a predecesores
-                obtenerVertice(a.getExtremoInicial().getId()).adyacencias.add(a.getExtremoFinal());
-                obtenerVertice(a.getExtremoFinal().getId()).adyacencias.add(a.getExtremoInicial());
-                a.getExtremoFinal().getListaDePredecesores().add(a.getExtremoInicial());
-                obtenerVertice(a.getExtremoInicial().getId()).incidencias.add(a);
-                obtenerVertice(a.getExtremoFinal().getId()).incidencias.add(a);
-
-                numeroDeLados++;
-                MapaDeArcos.put(a.getId(), a);                
-            }
-        }
-
-        /*if ((estaVertice(a.getExtremoInicial().getId())) && ( estaVertice(a.getExtremoFinal().getId()))) {
+        if ((estaVertice(a.getExtremoInicial().getId())) && ( estaVertice(a.getExtremoFinal().getId()))) {
             // En GD debe agregar a un vertice en los sucesores y en el otro en los predecesores
             // para este caso agrega en los adyacentes
             obtenerVertice(a.getExtremoInicial().getId()).adyacencias.add(a.getExtremoFinal());
@@ -434,11 +417,8 @@ public class Digrafo implements Grafo
             // En GD debe agregar a un vertice en los sucesores y en el otro en los predecesores
             // para este caso agrega en los Sucesores y Predecesores
             obtenerVertice(a.getExtremoInicial().getId()).sucesores.add(a.getExtremoFinal());
-            //obtenerVertice(a.getExtremoFinal().getId()).predecesores.add(a.getExtremoInicial());
-            a.getExtremoFinal().getListaDePredecesores().add(a.getExtremoInicial());
-
-            //obtenerVertice(a.getExtremo1().getId()).adyacencias.add(a.getExtremo2());
-            //obtenerVertice(a.getExtremo2().getId()).adyacencias.add(a.getExtremo1());
+            obtenerVertice(a.getExtremoFinal().getId()).predecesores.add(a.getExtremoInicial());
+            
 
             //agregar incidencias
             obtenerVertice(a.getExtremoInicial().getId()).incidencias.add(a);
@@ -447,7 +427,7 @@ public class Digrafo implements Grafo
             numeroDeLados++;
             MapaDeArcos.put(a.getId(), a);
 
-        }*/
+        }
 
         if(temp < numeroDeLados)
         {
