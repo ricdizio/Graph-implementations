@@ -76,7 +76,7 @@ public class Vertice
 
   /**  
     * @param No posee parametro de entrada 
-    * @return Devuelve cada de 
+    * @return Devuelve los datos del Vertice en una cadena de string
     *
     */
 
@@ -84,17 +84,41 @@ public class Vertice
     return "El Vertice tiene el id: " + this.id + " y peso: " + this.peso; 
   }
 
+  /**  
+    * @param No posee parametro de entrada 
+    * @return una lista enlazada de objetos de tipo vertice, la cual representa una lista de adyacencia 
+    *
+    */
+
   public List<Vertice> getListaDeAdyacencias(){
     return this.adyacencias;
   }
+
+  /**  
+    * @param No posee parametro de entrada 
+    * @return una lista enlazada de objetos de tipo lado, la cual representa una lista de incidencias 
+    *
+    */
 
   public List<Lado> getListaDeIncidencias(){
     return this.incidencias;
   }
 
+  /**  
+    * @param No posee parametro de entrada 
+    * @return una lista enlazada de objetos de tipo vertice, la cual representa una lista de vertices predecesores 
+    *
+    */
+
   public List<Vertice> getListaDePredecesores(){
     return this.predecesores;
   }
+
+  /**  
+    * @param No posee parametro de entrada 
+    * @return una lista enlazada de objetos de tipo vertice, la cual representa una lista de vertices sucesores 
+    *
+    */
 
   public List<Vertice> getListaDeSucesores(){
     return this.sucesores;
