@@ -3,7 +3,7 @@
  *    Ejecucion:    java  Digrafo
  *    Dependencias In.java,StdOut.java, Lado.java, Arista.java, Grafo.java
  *    
- *    Clase Grafo No Dirigido que se utiliza en ClienteGrafo.java 
+ *    Clase Grafo Dirigido que se utiliza en ClienteGrafo.java 
  *    
  *    En este archivo se implementa la estructura de datos grafo no dirigido 
  *    con el uso de otras estructuras de datos como HashMap y listas enlazadas
