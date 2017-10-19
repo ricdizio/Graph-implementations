@@ -217,6 +217,19 @@ public class Digrafo implements Grafo
               
     }
 
+    /**  
+     * Busca en el HashMap de vertices el id del vertice deseado y lo elimina
+     * a su vez actualiza el contador del numero de vertices en caso de efectuar la eliminacion
+     * 
+     *  
+     * @param Entra un String id  identificador de un vertice 
+     * @return Devuelve true si elimina el vertice y devuelve false 
+     * en caso contrario
+     * 
+     * 
+     * Tiempo: O(V+E)
+     */
+
     public boolean eliminarVertice(String id) {
         List<Vertice> temp_lista_adyacencia = new LinkedList<Vertice>();
         List<Arco> temp_lista_incidencia = new LinkedList<Arco>();
@@ -320,6 +333,14 @@ public class Digrafo implements Grafo
         }
     }
 
+    /**  
+     * Crea una LinkedList de los vertices que se encuentran en el HashMap de vertices
+     * @param no posee parametros de entrada
+     * @return Devuelve una LinkedList de objetos de tipo Vertice que se encuentran en el grafo 
+     * 
+     * Tiempo: O(V)
+     */
+
     public List<Vertice> vertices() {
 
         List<Vertice> return_list_vertices = new LinkedList<Vertice>();
@@ -331,6 +352,16 @@ public class Digrafo implements Grafo
         return return_list_vertices;
     }
 
+    /**  
+     * Crea una LinkedList de los arcos que se encuentran en el HashMap de arcos
+     * 
+     * @param no posee parametros de entrada
+     * @return Devuelve una LinkedList de Objetos de tipo arco
+     * 
+     * Tiempo: O(E)
+     */
+
+
     public List<Lado> lados() {
         List<Lado> return_list_lados = new LinkedList<Lado>();
         for (Arco l : MapaDeArcos.values()) {
@@ -339,6 +370,13 @@ public class Digrafo implements Grafo
 
         return return_list_lados;
     }
+
+    /**  
+     * Cuenta el grado de un vertice en el grafo 
+     * @param Entra un String con el identificador de un vertice al cual se le desea calcular el grado
+     * @return Devuelve un entero de tipo entero que representa el grado del vertice
+     * Tiempo: O(E)
+     */
 
     public int grado(String id) {
 
@@ -350,6 +388,16 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
+    /**  
+     * Crea una LinkedList de los vertices adyacentes al identificador dado de un vertice
+     * @param recibe un string, el cual es el identificador de un vertice
+     *  
+     * @return Devuelve una LinkedList con los objetos de tipo vertice
+     * que son adyacentes al vertice con un identificador dado
+     * 
+     * Tiempo: O(1)
+     */
+
     public List<Vertice> adyacentes(String id) 
     {
     	if(MapaDeVertices.get(id)!= null)
@@ -359,6 +407,15 @@ public class Digrafo implements Grafo
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
     }
+
+    /**  
+     * Crea una linkedList con las aristas incidentes a un vertice dado por el identificador
+     * @param  recibe un string con el identificador de un vertice   
+     * @return Devuelve una LinkedList con las aristas incidentes al vertice
+     * los cuales son adyacentes a id
+     * 
+     * Tiempo: O(1)
+     */
  
     public List<Lado> incidentes(String id) 
     {
@@ -369,6 +426,16 @@ public class Digrafo implements Grafo
         throw new NoSuchElementException("El vertice con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
     }
+
+
+    /**  
+     * Crea una copia del grafo dirigido
+     * @param no posee parametros de entrada 
+     * @return una copia del grafo dirigido
+     * 
+     * Tiempo: O(V+E)
+     */
+
 
     public Object clone() {
         Digrafo cloneGD = new Digrafo();
@@ -389,6 +456,16 @@ public class Digrafo implements Grafo
         }
         return cloneGD;
     }
+
+
+    /**  
+     * 
+     * @param no posee parametros de entrada
+     * @return Devuelve una representacion del contenido del grafo como 
+     * una cadena de strings
+     * 
+     * Tiempo: O(V+E)
+     */
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -510,6 +587,15 @@ public class Digrafo implements Grafo
         return sb.toString();
     }
 
+    /**  
+     *
+     * @param  Entra un objeto de tipo arco 
+     * @return Devuelve true en caso de que la insercion se lleva a cabo de manera satisfactoria y
+     *  false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
+
     public boolean agregarArco(Arco a) {
         int temp = numeroDeLados;
         if((MapaDeArcos.containsKey(a.getId()))) {
@@ -546,6 +632,19 @@ public class Digrafo implements Grafo
         return false;
     } 
 
+
+    /**  
+     *
+     * @param Entra un identificador de un arco tipo String 
+     * @param Entra un double para el peso del arco
+     * @param Entra un string u el cual es el identificador del vertice 1
+     * @param Entra un string v el cual es el identificador del vertice 2
+     * @return Devuelve true en caso de que la insercion se lleva a cabo de manera satisfactoria,retorna
+     *  false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
+
     public boolean agregarArco(String id, double peso, String u, String v)
     {   
         Vertice v1 = MapaDeVertices.get(u);
@@ -554,6 +653,13 @@ public class Digrafo implements Grafo
         boolean x = agregarArco(a);
         return x;
     }
+     /**  
+     * 
+     * @param Entra un identificador de un vertice tipo string  
+     * @return Devuelve el ggrado interior al dicho vertice
+     * 
+     * Tiempo: O(1)
+     */
 
     public int gradoInterior(String id) {
 
@@ -565,6 +671,13 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
+     /**  
+     * 
+     * @param Entra un identificador de un vertice tipo string  
+     * @return Devuelve el grado exterior al dicho vertice
+     * 
+     * Tiempo: O(1)
+     */
     public int gradoExterior(String id) {
         if(MapaDeVertices.get(id)!= null)
         {
@@ -574,6 +687,13 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
+     /**  
+     * 
+     * @param Entra un identificador de un vertice tipo string  
+     * @return Devuelve la lista de sucesores acociados al vertice
+     * 
+     * Tiempo: O(1)
+     */
     public List<Vertice> sucesores(String id) {
         if(MapaDeVertices.get(id)!= null)
         {
@@ -583,6 +703,15 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
+
+
+     /**  
+     * 
+     * @param Entra un identificador de un vertice tipo string  
+     * @return Devuelve la lista de predecesores acociados al vertice
+     * 
+     * Tiempo: O(1)
+     */
     public List<Vertice> predecesores(String id) {
         if(MapaDeVertices.get(id)!= null)
         {
@@ -592,6 +721,15 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
+
+     /**  
+     * 
+     * @param Entra un identificador de un arco tipo string  
+     * @return Devuelve true en caso de que la eliminacion de la arco se lleva a cabo de manera satisfactoria,
+     * retorna false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
     public boolean eliminarArco(String id) {
         // Capaz tambien hay que verificar si estan ambo nodos de la arcos dentro del grafo
         if (MapaDeArcos.containsKey(id)) {
@@ -633,6 +771,14 @@ public class Digrafo implements Grafo
         }
     }
 
+    /**  
+     * 
+     * @param Entra un identificador de un arco de tipo string  
+     * @return Devuelve el arco que tiene el identificador dado si se encuentra en el grafo dirigido
+     * 
+     * Tiempo: O(1)
+     */
+
     public Arco obtenerArco(String id) throws NoSuchElementException {
         if(MapaDeArcos.containsKey(id)){
             return MapaDeArcos.get(id);
@@ -640,6 +786,14 @@ public class Digrafo implements Grafo
 	throw new NoSuchElementException("El arco con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
     }   
+
+    /**  
+     * @param no posee parametro de entrada
+     * @return escribe en un archivo.txt los resultados del grafo dirigido con la misma estructura que
+     *  el de la lectura
+     *
+     * Tiempo: O(V+E)
+     */
 
     public void escribirArchivo(){
         Out escritura = new Out("DIout.txt");
