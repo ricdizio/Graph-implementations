@@ -1,6 +1,26 @@
-/**
+/**********************************************************************************************************
+ *    Compilacion:  javac Digrafo.java
+ *    Ejecucion:    java  Digrafo
+ *    Dependencias In.java,StdOut.java, Lado.java, Arista.java, Grafo.java
+ *    
+ *    Clase Grafo No Dirigido que se utiliza en ClienteGrafo.java 
+ *    
+ *    En este archivo se implementa la estructura de datos grafo no dirigido 
+ *    con el uso de otras estructuras de datos como HashMap y listas enlazadas
+ *
+ *
+ *     Notacion para el tiempo de ejecucion: 
+ *                                           V : Cardinalidad de vertices en el grafo no dirigido
+ *                                           E : Cardinalidad de arcos en el grafo no dirigido
+ *
+ *    @author  Ricardo Di Zio 11-11274
+ *    @author  Fabio Suarez   12-10578
+ *    @version 1.0
+ *    @since   2016-10-12
+ *
  * 
- */
+ *************************************************************************************************************/
+
 import java.util.*;
 import java.io.*;
 
@@ -8,10 +28,16 @@ public class Digrafo implements Grafo
 {
     private int numeroDeVertices;
     private int numeroDeLados;
-    //private List<Vertice> lista_de_vertices;
-    //private List<Arco> ;
     private HashMap<String, Arco> MapaDeArcos;
     private HashMap<String, Vertice> MapaDeVertices;
+
+    /**  
+     * @param No posee parametro de entrada
+     * @return Crea un contador de tipo entero de Vertices que hay en el grafo dirigido
+     * @return Crea un contador de tipo entero de Arco que hay en el grafo dirigido
+     * @return Inicializa MapaDeVertices un HashMap de objetos de tipo vertice 
+     * @return Inicializa MapaDeArcos  un HashMap de objetos de tipo arco
+     */
 
     public Digrafo() {
         numeroDeVertices = 0;
@@ -20,6 +46,13 @@ public class Digrafo implements Grafo
         MapaDeVertices = new HashMap <String,Vertice>();
       
     }
+
+    /**  
+     * @param Entra un string el cual es el parametro para construir un objeto de tipo In
+     * @return true si se cargo perfectamente el Archivo
+     * 
+     * Tiempo: O(V+E)
+     */
 
     public boolean cargarGrafo(String dirArchivo){
         // Continuar despues de implementar las funciones del grafo ya que son necesarias para terminar de cargar el grafo
@@ -55,14 +88,37 @@ public class Digrafo implements Grafo
         }
         return true;
     }
-    
+   /**
+     * @param no recibe parametro de entrada
+     * @return un contador de tipo entero el cual representa el numero de vertices 
+     * que hay en el grafo no dirigido
+     * 
+     * Tiempo: O(1)
+     */
     public int numeroDeVertices() {
     	return numeroDeVertices;
     }
 
+    /**  
+     * @param no posee 
+     * @return un contador de tipo entero el cual representa el numero de arcos
+     * que hay en el grafo dirigido
+     * 
+     * Tiempo: O(1)
+     */
+
     public int numeroDeLados() {
     	return numeroDeLados;
     }
+
+    /**  
+     * @param recibe un objeto de tipo vertice
+     * @return un booleano el cual representa si se pudo agregar el vertice al grafo dirigido 
+     * de manera satisfactoria o no
+     *
+     * 
+     * Tiempo: O(1)
+     */
    
     public boolean agregarVertice(Vertice v) { 
         // Si el id del vertice ya se encuentra en la lista devuelve un falso, por lo tanto no procede a agregarlo  
@@ -78,6 +134,15 @@ public class Digrafo implements Grafo
         return true;
     }
 
+    /**  
+     * @param recibe un string el cual representa el id del vertice que se desea agregar
+     * @param recibe un double el cual representa el peso del vertice que se desea agregar
+     * @return un booleano el cual representa si se pudo agregar el vertice al grafo dirigido 
+     * de manera satisfactoria o no
+     *
+     * 
+     * Tiempo: O(1)
+     */
 
     public boolean agregarVertice(String id, double peso) { 
         boolean booleano;
@@ -86,7 +151,15 @@ public class Digrafo implements Grafo
         
         return booleano;
     }
-    
+
+    /**  
+     * @param recibe un string el cual representa el id del vertice que se desea obtener
+     * @return vertice en el caso de que se encuentre en el grafo dirigido 
+     * @return un mensaje avisando que el vertice no se encuentra en el grafos
+     *
+     * 
+     * Tiempo: O(1)
+     */
     public Vertice obtenerVertice(String id) {
         if(MapaDeVertices.get(id)!= null)
         {
@@ -97,9 +170,31 @@ public class Digrafo implements Grafo
             +id+ " no se encuentra en el Grafo");
     }
 
+    /**
+     * Busca en el HashMap de vertices el id de un vertice y verifica 
+     * si se encuentran en el grafo dirigido   
+     * @param Entra un String que representa el identificador del vertice que se desea verificar
+     * si se encuentra en el grafo no dirigido
+     * @return un booleano true en caso de que el vertice se encuentre en el grafo dirigido  
+     *  y false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
+
     public boolean estaVertice(String id) {
         return MapaDeVertices.containsKey(id);
     }
+
+    /**  
+     * Busca en el HashMap de vertices el id de ambos vertices y verifica 
+     * si se encuentran conectados mediante una misma arista 
+     * @param Entra un String u el cual es el identificador del extremo incial de la arci
+     * @param Entra un String v el cual es el identificador del extremo final de la arco
+     * @return Devuelve true si el grafo contiene el arco que conecta ambos vertices
+     * devuelve false en caso contrario
+     * 
+     * Tiempo: O(V)
+     */
 
     public boolean estaLado(String u, String v){
 
