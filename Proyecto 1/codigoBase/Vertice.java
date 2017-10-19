@@ -76,10 +76,10 @@ public class Vertice
 
   /**  
     * @param No posee parametro de entrada 
-    * @return Devuelve el valor del atributo id del objeto vertice el cual es del tipo string 
+    * @return Devuelve cada de 
     *
     */
-  
+
   public String toString() { 
     return "El Vertice tiene el id: " + this.id + " y peso: " + this.peso; 
   }
