@@ -1,6 +1,6 @@
 /**********************************************************************************************************
- *    Compilacion:  javac Lado.java
- *    Ejecucion:    java Lado
+ *    Compilacion:  javac GrafoNoDirigido.java
+ *    Ejecucion:    java  GrafoNoDirigido
  *    Dependencias In.java,StdOut.java, Lado.java, Arista.java, Grafo.java
  *    
  *    Clase Grafo No Dirigido que se utiliza en ClienteGrafo.java 
