@@ -57,25 +57,29 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean cargarGrafo(String dirArchivo) {
         try{
+            
             In in = new In(dirArchivo);
             int cantidad_de_nodos = in.readInt();
             int cantidad_de_aristas = in.readInt();
 
-            for (int i=0;i<cantidad_de_nodos;i++) {
-                String id_del_vertice = in.readString();
-                double peso_del_vertice = in.readDouble();
-                
-                agregarVertice(id_del_vertice, peso_del_vertice);
-            }
+            if( cantidad_de_nodos >= 0  && cantidad_de_aristas >= 0 ){
 
-            for (int i=0;i<cantidad_de_aristas;i++) {
-                String id_de_arista = in.readString();
-                String id_vertice_de_Salida = in.readString();
-                String id_vertice_de_Llegada = in.readString();
-                double peso_de_arista = in.readDouble();
-                
-                agregarArista(id_de_arista, peso_de_arista,id_vertice_de_Salida, id_vertice_de_Llegada);
-                
+                for (int i=0;i<cantidad_de_nodos;i++) {
+                    String id_del_vertice = in.readString();
+                    double peso_del_vertice = in.readDouble();
+                    
+                    agregarVertice(id_del_vertice, peso_del_vertice);
+                }
+
+                for (int i=0;i<cantidad_de_aristas;i++) {
+                    String id_de_arista = in.readString();
+                    String id_vertice_de_Salida = in.readString();
+                    String id_vertice_de_Llegada = in.readString();
+                    double peso_de_arista = in.readDouble();
+                    
+                    agregarArista(id_de_arista, peso_de_arista,id_vertice_de_Salida, id_vertice_de_Llegada);
+                    
+                }
             }
         }
         catch(Exception e){
