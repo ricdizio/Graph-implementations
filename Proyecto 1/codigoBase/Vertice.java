@@ -1,6 +1,26 @@
-/**
+/**********************************************************************************************************
+ *  Compilacion:  javac Vertice.java
+ *  Ejecucion:    java Vertice
+    Dependencias: ninguna
+ *
+ *  Clase Vertice que se utiliza para poder compilar y correr Arista.java, Arco.java,GrafoNoDirigido.java,  
+ *  Digrafo.java y ClienteGrafo.java 
+ *  los cuales forman  parte de la implementacion de la estructura de datos grafo no dirigido y dirigido mediante  
+ *  el uso de las estructuras de datos de hashMap y listas enlazadas. 
+ *    
+ *  @author  Ricardo Di Zio 11-11274
+ *  @author  Fabio Suarez   12-10578
+ *  @version 1.0
+ *  @since   2017-10-19
  * 
- */
+ *************************************************************************************************************/
+/* 
+   * Clase constructora que inicializa al Vertice con atributo id el cual representa 
+   * la identificacion del Vertice de tipo String y el atributo peso el cual es de tipo double 
+   * y representa el valor del vertice, a su vez tambien inicializa las listas de vertices de adyacencias
+   * sucesores y predecesores, e inicializa la lista de lados la cual representa las incidencias para cada vertice. 
+   *
+   */
 
 import java.util.*;
 
@@ -13,11 +33,12 @@ public class Vertice
   public List<Vertice> predecesores;
   public List<Lado> incidencias;
 
-  //private List<Vertice> getListaDeAdyacencias;
-  //private List<Vertice> getListaDeSucesores;
-  //private List<Vertice> getListaDePredecesores;
-  //private List<Lado> getListaDeIncidencias;
 
+  /**  
+     * @param tipo string el cual representa la identificacion del vertice
+     * @param tipo double el cual representa el valor del Vertice  
+     *
+     */
   
   public Vertice(String id, double peso) {
     this.id = id;
@@ -33,14 +54,32 @@ public class Vertice
     List<Lado> incidencias = new LinkedList<Lado>();
   }
 
+  /**  
+    * @param No posee parametro de entrada 
+    * @return Devuelve el valor del atributo peso del objeto vertice el cual es del tipo double 
+    *
+    */
+
   public double getPeso() {
     return this.peso;
   }
+
+  /**  
+    * @param No posee parametro de entrada 
+    * @return Devuelve el valor del atributo id del objeto vertice el cual es del tipo string 
+    *
+    */
 
   public String getId() {
     return this.id;
   }
 
+  /**  
+    * @param No posee parametro de entrada 
+    * @return Devuelve el valor del atributo id del objeto vertice el cual es del tipo string 
+    *
+    */
+  
   public String toString() { 
     return "El Vertice tiene el id: " + this.id + " y peso: " + this.peso; 
   }
