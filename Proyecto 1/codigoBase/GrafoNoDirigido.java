@@ -412,7 +412,16 @@ public class GrafoNoDirigido implements Grafo
         {
             String a = i.getId();
             String p = String.valueOf(i.getPeso());
-            escritura.print(a + p);
+            escritura.print(a +" "+ p);
+            escritura.print("\n");
+        }
+        for(Arista i : MapaDeAristas.values())
+        {
+            String a = i.getId();
+            String l1 = i.getExtremo1().getId();
+            String l2 = i.getExtremo2().getId();
+            String p = String.valueOf(i.getPeso());
+            escritura.print(a +" "+ l1 +" "+ l2+" "+ p);
             escritura.print("\n");
         }
     }
