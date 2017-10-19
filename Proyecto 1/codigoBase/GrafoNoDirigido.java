@@ -500,6 +500,15 @@ public class GrafoNoDirigido implements Grafo
 
     }
 
+    /**  
+     *
+     * @param  Entra un objeto de tipo arista   
+     * @return Devuelve true en caso de que la insercion se lleva a cabo de manera satisfactoria y
+     *  false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
+
     public boolean agregarArista(Arista a) {
         
         int temp = numeroDeLados;
@@ -530,6 +539,18 @@ public class GrafoNoDirigido implements Grafo
         return false;
     }
 
+    /**  
+     *
+     * @param Entra un identificador de una arista tipo String 
+     * @param Entra un double para el peso de la arista
+     * @param Entra un string u el cual es el identificador del vertice 1
+     * @param Entra un string v el cual es el identificador del vertice 2
+     * @return Devuelve true en caso de que la insercion se lleva a cabo de manera satisfactoria,retorna
+     *  false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
+
     public boolean agregarArista(String id, double peso, String u, String v) {
 
         if(estaVertice(u) && estaVertice(v))
@@ -541,6 +562,15 @@ public class GrafoNoDirigido implements Grafo
         }
         return false;
     }
+
+     /**  
+     * 
+     * @param Entra un identificador de una arista tipo string  
+     * @return Devuelve true en caso de que la eliminacion de la arista se lleva a cabo de manera satisfactoria,
+     * retorna false en caso contrario
+     * 
+     * Tiempo: O(1)
+     */
 
     public boolean eliminarArista(String id) {
         // Capaz tambien hay que verificar si estan ambo nodos de la arista dentro del grafo
@@ -575,6 +605,13 @@ public class GrafoNoDirigido implements Grafo
         }
     }
 
+    /**  
+     * 
+     * @param Entra un identificador de una arista de tipo string  
+     * @return Devuelve la arista que tiene el identificador dado si se encuentra en el grafo no dirigido
+     * 
+     * Tiempo: O(1)
+     */
     public Arista obtenerArista(String id) throws NoSuchElementException { 
         if (MapaDeAristas.containsKey(id)) {
             return MapaDeAristas.get(id);
@@ -582,6 +619,15 @@ public class GrafoNoDirigido implements Grafo
         throw new NoSuchElementException("La arista no se puede obtener debido a que no se encuentra en la lista");
         
     }
+
+    /**  
+     * @param no posee parametro de entrada
+     * @return escribe en un archivo.txt los resultados del grafo no dirigido con la misma estructura que
+     *  el de la lectura
+     *
+     * Tiempo: O(V+E)
+     */
+
     public void escribirArchivo(){
         Out escritura = new Out("GNDout.txt");
         escritura.println(numeroDeVertices);
@@ -605,3 +651,10 @@ public class GrafoNoDirigido implements Grafo
     }
 }
 
+<<<<<<< HEAD
+=======
+    
+        
+
+        
+>>>>>>> 29caf4ae18fb21ac6c054783bf59bc3e999976ad
