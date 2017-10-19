@@ -650,11 +650,3 @@ public class GrafoNoDirigido implements Grafo
         }
     }
 }
-
-<<<<<<< HEAD
-=======
-    
-        
-
-        
->>>>>>> 29caf4ae18fb21ac6c054783bf59bc3e999976ad
