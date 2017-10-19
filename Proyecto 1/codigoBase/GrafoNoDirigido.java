@@ -12,7 +12,6 @@ public class GrafoNoDirigido implements Grafo
     private HashMap<String, Arista> MapaDeAristas;
     private HashMap<String, Vertice> MapaDeVertices;
 
-
     public GrafoNoDirigido(){
         numeroDeVertices = 0;
         numeroDeLados = 0;
@@ -426,7 +425,3 @@ public class GrafoNoDirigido implements Grafo
         }
     }
 }
-
-    
-        
-        
