@@ -545,4 +545,26 @@ public class Digrafo implements Grafo
 	throw new NoSuchElementException("El arco con el idenficador: " 
             +id+ " no se encuentra en el Grafo");
     }   
+
+    public void escribirArchivo(){
+        Out escritura = new Out("DIout.txt");
+        escritura.println(numeroDeVertices);
+        escritura.println(numeroDeLados);
+        for(Vertice i : MapaDeVertices.values())
+        {
+            String a = i.getId();
+            String p = String.valueOf(i.getPeso());
+            escritura.print(a +" "+ p);
+            escritura.print("\n");
+        }
+        for(Arco i : MapaDeArcos.values())
+        {
+            String a = i.getId();
+            String l1 = i.getExtremoInicial().getId();
+            String l2 = i.getExtremoFinal().getId();
+            String p = String.valueOf(i.getPeso());
+            escritura.print(a +" "+ l1 +" "+ l2+" "+ p);
+            escritura.print("\n");
+        }
+    }
 }

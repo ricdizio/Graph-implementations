@@ -51,6 +51,9 @@ public class ClienteGrafo {
     GrafoNoDirigido dg = new GrafoNoDirigido();
     dg.cargarGrafo(args[0]);
     dg.escribirArchivo();
+    Digrafo g = new Digrafo();
+    g.cargarGrafo(args[0]);
+    g.escribirArchivo();
     //dg.eliminarArco("arista1");
     //dg.eliminarVertice("v1");
     //System.out.println(dg.toString());
