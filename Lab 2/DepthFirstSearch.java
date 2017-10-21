@@ -9,7 +9,7 @@ public class DepthFirstSearch {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public DepthFirstSearch(Graph G, Vertice s) {
+    public DepthFirstSearch(Digrafo G, Vertice s) {
         List<Vertice> listaDeVertices = new LinkedList<Vertice>();
         marked = new boolean[G.numeroDeVertices()];
         validateVertex(G,s);
@@ -18,7 +18,7 @@ public class DepthFirstSearch {
 
     // depth first search from v
     //G.adj(v) son los adyacentes de v
-    private void dfs(Grafo G, Vertice v) {
+    private void dfs(Digrafo G, Vertice v) {
         count++;
         marked[listaDeVertices.indexOf(v)] = true;
         for (Vertice w : G.getListaDeAdyacentes(v.getId())) {
