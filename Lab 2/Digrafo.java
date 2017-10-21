@@ -18,7 +18,7 @@
  *    @version 1.0
  *    @since   2017-19-10
  *
- * 
+ *  Lab4
  *************************************************************************************************************/
 
 import java.util.*;
@@ -61,15 +61,23 @@ public class Digrafo implements Grafo
             In in = new In(dirArchivo);
             int cantidad_de_nodos = in.readInt();
             int cantidad_de_arcos = in.readInt();
+            String string = "";
 
             for(int i=0;i<cantidad_de_nodos;i++){
-                String id_del_vertice = Integer.toString(i);
+
+                //String id_del_vertice = Integer.toString(i);
+
+                String id_del_vertice = String.valueOf(i);
+
                 double peso_del_vertice = (double) i;
                 agregarVertice(id_del_vertice,peso_del_vertice);
             }
 
             for (int i=0;i<cantidad_de_arcos;i++) {
-                String id_de_arco = Integer.toString(i);
+
+                //String id_de_arco = Integer.toString(i);
+
+                String id_de_arco = String.valueOf(i);
                 String id_vertice_de_Salida = in.readString();
                 String id_vertice_de_Llegada = in.readString();
                 double peso_del_arco = (double) i;
