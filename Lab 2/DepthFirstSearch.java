@@ -5,7 +5,6 @@ public class DepthFirstSearch {
     private boolean[] marked;    // marked[v] = is there an s-v path?
     private int count;           // number of vertices connected to s
     private List<Vertice> listaDeVertices;
-    ArrayList<String> nodos = new ArrayList<String>();
 
 
     public DepthFirstSearch(Digrafo G, Vertice v) {
@@ -81,18 +80,18 @@ public class DepthFirstSearch {
         else {
             throw new NoSuchElementException("El vertice con id " +v.getId() + " no se encuentra en el Grafo");
         }
-    }
-
+    } 
     public void printPath(Digrafo G, Vertice s, Vertice v) {
         if (v == s){
-            System.out.print(s + " ");
+            System.out.print(Integer.parseInt(s.getId()) + " ");
         }
         else if (v.getListaDePredecesores().size() == 0){
             System.out.println("No hay camino del vertice s al vertice v");
         }
         else {
-            printPath(G, s, v.getListaDePredecesores().peekLast().getId());
-            System.out.print(v + " ");
+            Vertice ultimo = v.getListaDePredecesores().get(G.numeroDeVertices());
+            printPath(G, s, ultimo);
+            System.out.print(Integer.parseInt(v.getId()) + " ");
         }
     }
 }
