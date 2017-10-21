@@ -91,7 +91,7 @@ public class DepthFirstSearch {
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true)
                 {
-                   printPath(G,this.inicial,i); 
+                   this.printPath(G,this.inicial,i); 
                 }
             }
         }
