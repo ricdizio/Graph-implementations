@@ -1,20 +1,26 @@
 
-//Lab04 DFS
+//Lab04 DFSSS
 import java.util.*;
 public class DepthFirstSearch {
     private boolean[] marked;    // marked[v] = is there an s-v path?
     private int count;           // number of vertices connected to s
     private List<Vertice> listaDeVertices;
+    private Vertice inicial;
+    ArrayList<String> nodos = new ArrayList<String>();
+    private int seleccion;
 
 
-    public DepthFirstSearch(Digrafo G, Vertice v) {
+
+    public DepthFirstSearch(Digrafo G, Vertice v,int x, int y) {
         //this.listaDeVertices = G.vertices();
+        this.inicial = v;
+        this.seleccion = y;
         this.listaDeVertices = new LinkedList<Vertice>();
         this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
         if(this.validateVertex(G,v)){
             this.dfs(G, v);
-            this.imprimir(G,3);
+            this.imprimir(G);
         }
      }
 
@@ -39,13 +45,26 @@ public class DepthFirstSearch {
         return this.count;
     }
 
-    public void imprimir(Digrafo G,int x){
-        if(x==3){
+    public void imprimir(Digrafo G){
+        for(Vertice i : G.MapaDeVertices.values())
+        {
+            if(marked[Integer.parseInt(i.getId())]==true)
+            {
+                for(Vertice j : i.predecesores)
+                {
+                    System.out.print(j.getId()+" ");
+                }
+            }
+        }
+        System.out.print("\n");
+        System.out.print("\n");
+        if(this.seleccion == 2){
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true){
                     System.out.print(i.getId()+": ");
                     for(Vertice j : i.predecesores){
-                        System.out.print(j.getId()+" ");
+                        System.out.print(j.getId());
+                        break;
                     }
                     System.out.print("\n");
                 }
@@ -54,7 +73,7 @@ public class DepthFirstSearch {
                 }
             }
         }
-        if(x==1){
+        if(this.seleccion == 0){
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true){
                     System.out.print(i.getId()+": ");
@@ -69,7 +88,14 @@ public class DepthFirstSearch {
                 }
             }
         }
-
+        if(this.seleccion == 1){
+            for(Vertice i : G.MapaDeVertices.values()){
+                if(marked[Integer.parseInt(i.getId())]==true)
+                {
+                   this.printPath(G,this.inicial,i); 
+                }
+            }
+        }
     }
 
     private boolean validateVertex(Digrafo G,Vertice v) {
