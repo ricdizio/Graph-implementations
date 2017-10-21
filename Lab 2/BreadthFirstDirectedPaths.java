@@ -1,33 +1,34 @@
+//Lab04
+import java.util.*;
 public class BreadthFirstDirectedPaths {
     private static final int INFINITY = Integer.MAX_VALUE;
     private boolean[] marked;  // marked[v] = is there an s->v path?
-    private String[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
+    private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
     private int[] distTo;      // distTo[v] = length of shortest s->v path
-
-    /**
-     * Computes the shortest path from {@code s} and every other vertex in graph {@code G}.
-     * @param G the digraph
-     * @param s the source vertex
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     */
+ 
     // s es el vertice
     public BreadthFirstDirectedPaths(Digrafo G, Vertice s) {
-        List<Vertice> listaDeVertices = new LinkedList<Vertice>();
-        listaDeVertices = G.vertices();
-        marked = new boolean[G.numeroDeVertices()];
-        distTo = new int[G.numeroDeVertices()];
-        edgeTo = new String[G.numeroDeVertices()];
+        this.marked = new boolean[G.numeroDeVertices()];
+        this.distTo = new int[G.numeroDeVertices()];
+        this.edgeTo = new int[G.numeroDeVertices()];
+        int largo = G.numeroDeVertices();
+        
+        for (int i = 0; i < largo;i++) {
+            marked[i] = false;            
+        }
+
         for (Vertice v: G.vertices()){
             if (v != s) {
-                distTo[listaDeVertices.indexOf(v)] = INFINITY;
+                distTo[Integer.parseInt(v.getId())] = INFINITY;
             }
             else{
-                distTo[listaDeVertices.indexOf(v)] = 0;
+                distTo[Integer.parseInt(v.getId())] = 0;
             }
+        }
             
         // validate vertex
         //validateVertex(s);
-        if (listaDeVertices.contains(s)) {
+        if (marked[Integer.parseInt(s.getId())] == true) {
             bfs(G, s);
         }
         else {
@@ -37,19 +38,23 @@ public class BreadthFirstDirectedPaths {
     }
     // BFS from single source
     private void bfs(Digrafo G, Vertice s) {
-        Queue<Vertice> q = new Queue<Vertice>();
-        marked[listaDeVertices.indexOf(s)] = true;
-        distTo[listaDeVertices.indexOf(s)] = 0;
-        q.enqueue(listaDeVertices.indexOf(s));
+        int largo = G.numeroDeVertices();
+        Queue<Integer> q = new LinkedList<Integer>();
+        for (int v = 0; v < largo; v++) {
+            distTo[v] = INFINITY;
+        }
+        marked[Integer.parseInt(s.getId())] = true;
+        distTo[Integer.parseInt(s.getId())] = 0;
+        q.enqueue(Integer.parseInt(s.getId()));
         while (!q.isEmpty()) {
-            Vertice v = q.dequeue();
+            int v = q.dequeue();
      
             for (Vertice w : G.adyacentes(v.getId())) {
-                if (!listaDeVertices.indexOf(w)]) {
-                    edgeTo[listaDeVertices.indexOf(w)] = v.getExtremoFinal().getId();
-                    distTo[listaDeVertices.indexOf(w)] = distTo[listaDeVertices.indexOf(v)] + 1;
-                    marked[listaDeVertices.indexOf(w)] = true;
-                    q.enqueue(w);
+                if (marked[Integer.parseInt(w.getId())] == false) {
+                    edgeTo[Integer.parseInt(w.getId())] = edgeTo[Integer.parseInt(v.getId())];
+                    distTo[Integer.parseInt(w.getId())] = distTo[Integer.parseInt(v.getId())] + 1;
+                    marked[Integer.parseInt(w.getId())] = true;
+                    q.enqueue(Integer.parseInt(w.getId()));
                 }
             }
         }
