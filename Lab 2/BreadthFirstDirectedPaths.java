@@ -39,22 +39,22 @@ public class BreadthFirstDirectedPaths {
     // BFS from single source
     private void bfs(Digrafo G, Vertice s) {
         int largo = G.numeroDeVertices();
-        Queue<Integer> q = new LinkedList<Integer>();
+        Queue<Vertice> q = new LinkedList<Vertice>();
         for (int v = 0; v < largo; v++) {
             distTo[v] = INFINITY;
         }
         marked[Integer.parseInt(s.getId())] = true;
         distTo[Integer.parseInt(s.getId())] = 0;
-        q.enqueue(Integer.parseInt(s.getId()));
+        q.add(s);
         while (!q.isEmpty()) {
-            int v = q.dequeue();
+            Vertice v = q.remove();
      
             for (Vertice w : G.adyacentes(v.getId())) {
                 if (marked[Integer.parseInt(w.getId())] == false) {
                     edgeTo[Integer.parseInt(w.getId())] = edgeTo[Integer.parseInt(v.getId())];
                     distTo[Integer.parseInt(w.getId())] = distTo[Integer.parseInt(v.getId())] + 1;
                     marked[Integer.parseInt(w.getId())] = true;
-                    q.enqueue(Integer.parseInt(w.getId()));
+                    q.add(w);
                 }
             }
         }
