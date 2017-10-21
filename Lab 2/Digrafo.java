@@ -813,4 +813,9 @@ public class Digrafo implements Grafo
             escritura.print("\n");
         }
     }
+
+    public HashMap getMapaVertices(){
+        return MapaDeVertices;
+    }
+
 }
