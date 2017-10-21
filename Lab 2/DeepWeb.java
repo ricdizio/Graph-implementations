@@ -12,54 +12,60 @@ public class DeepWeb {
     Vertice a = new Vertice(args[1],Double.parseDouble(args[1]));
     //int a = Integer.parseInt(args[1]);
     String algoritmo = args[2];
-    int logitud = args.length;
-    int t;
-    String[] op = {"--arb", "--ord", "--pred"};
+    int longitud = args.length;
+    int t = null;
+    int posicion = 0;
+    boolean salir = true;
 
-    if(logitud==5 && args[3].equalsIgnoreCase("--trunc")){
+    Digrafo g = new Digrafo();
+    g.cargarGrafo(file);
+
+    String d = new String("dfs");
+    String b = new String("bfs");
+
+    String[] op = {"--arb", "--ord", "--pred"};
+    if(longitud==5 && args[3].equalsIgnoreCase("--trunc")){
         t = Integer.parseInt(args[4]);
+        System.out.println(t);
+        salir = false;
+
     }
-    else if(logitud==6 || logitud==4){
-        if(logitud==4){
-            for(String i : op){
+    else if(longitud==6 || longitud==4){
+        if(longitud==4){
+            for(String i : op)
+            {
                 if(args[3].equalsIgnoreCase(i)){
+                    salir = false;
+                    //System.out.println(i);
                     break;
                 }
-                else{
-                    System.out.println("Opcion "+ i +" no valida");
-                    System.exit(0);
-                }
+                posicion++;
             }
-            
         }
 
-        else if(logitud==6){
+        else if(longitud==6 && args[3].equalsIgnoreCase("--trunc")){
             t = Integer.parseInt(args[4]);
             for(String i : op){
                 if(args[5].equalsIgnoreCase(i)){
-                    // Selecciono el tipo de datos
+                    salir = false;
+                    //System.out.println(t+" "+i);
+                    break;
                 }
-                else{
-                    System.out.print("Opcion "+ i +" no valida");
-                    System.exit(0);
-                }
+                posicion++;
             }
         }
     }
-    else{
+    if(salir){
         System.out.println("No valido");
         System.exit(0);
     }
 
-    Digrafo g = new Digrafo();
-    g.cargarGrafo(file);
-    String d = new String("dfs");
-    String b = new String("bfs");
-
-    if(algoritmo.equalsIgnoreCase(d)){
-        DepthFirstSearch x = new DepthFirstSearch(g,a);
+    if(algoritmo.equalsIgnoreCase(d))
+    {
+        DepthFirstSearch x = new DepthFirstSearch(g,a,t,posicion);
     }
-    else if(algoritmo.equalsIgnoreCase(b)){
+    else if(algoritmo.equalsIgnoreCase(b))
+    {
         //BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a);
     }
   }
