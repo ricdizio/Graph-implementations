@@ -13,7 +13,9 @@ public class DeepWeb {
     //int a = Integer.parseInt(args[1]);
     String algoritmo = args[2];
     int longitud = args.length;
+
     int t = 0;
+    //int t = null;
     int posicion = 0;
     boolean salir = true;
 
@@ -66,7 +68,7 @@ public class DeepWeb {
     }
     else if(algoritmo.equalsIgnoreCase(b))
     {
-        //BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a);
+        BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a);
     }
   }
 }
