@@ -8,12 +8,15 @@ public class BreadthFirstDirectedPaths {
  
     // s es el vertice
     public BreadthFirstDirectedPaths(Digrafo G, Vertice s) {
-       
-        this.listaDeVertices = new LinkedList<Vertice>();
-        this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
         this.distTo = new int[G.numeroDeVertices()];
         this.edgeTo = new String[G.numeroDeVertices()];
+        int largo = G.numeroDeVertices();
+        
+        for (int i = 0; i < largo;i++) {
+            marked[i] = false;            
+        }
+
         for (Vertice v: G.vertices()){
             if (v != s) {
                 distTo[Integer.parseInt(v.getId())] = INFINITY;
@@ -25,7 +28,7 @@ public class BreadthFirstDirectedPaths {
             
         // validate vertex
         //validateVertex(s);
-        if (listaDeVertices.contains(s)) {
+        if (marked[Integer.parseInt(s.getId())] == true) {
             bfs(G, s);
         }
         else {
@@ -35,7 +38,7 @@ public class BreadthFirstDirectedPaths {
     }
     // BFS from single source
     private void bfs(Digrafo G, Vertice s) {
-        Queue<Vertice> q = new LinkedList<Vertice>();
+        Queue<Integer> q = new LinkedList<Integer>();
         marked[Integer.parseInt(s.getId())] = true;
         distTo[Integer.parseInt(s.getId())] = 0;
         q.enqueue(Integer.parseInt(s.getId()));
@@ -43,11 +46,11 @@ public class BreadthFirstDirectedPaths {
             Vertice v = q.dequeue();
      
             for (Vertice w : G.adyacentes(v.getId())) {
-                if (listaDeVertices.indexOf(w) == -1) {
+                if (marked[Integer.parseInt(s.getId())] == false) {
                     edgeTo[Integer.parseInt(w.getId())] = edgeTo[Integer.parseInt(w.getId())] +" "+ v.getId();
                     distTo[Integer.parseInt(w.getId())] = distTo[Integer.parseInt(v.getId())] + 1;
                     marked[Integer.parseInt(w.getId())] = true;
-                    q.enqueue(w);
+                    q.enqueue(Integer.parseInt(w.getId()));
                 }
             }
         }
