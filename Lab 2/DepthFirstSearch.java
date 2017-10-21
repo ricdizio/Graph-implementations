@@ -117,9 +117,13 @@ public class DepthFirstSearch {
             System.out.println("No hay camino del vertice s al vertice v");
         }
         else {
-            Vertice ultimo = v.getListaDePredecesores().get(G.numeroDeVertices());
-            printPath(G, s, ultimo);
-            System.out.print(Integer.parseInt(v.getId()) + " ");
+            if(!v.getListaDePredecesores().isEmpty())
+            {
+                Vertice ultimo = v.getListaDePredecesores().get(0);
+                printPath(G, s, ultimo);
+                System.out.print(Integer.parseInt(v.getId()) + " ");
+            }
+            
         }
     }
 }
