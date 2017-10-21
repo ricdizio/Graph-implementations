@@ -1,5 +1,5 @@
 
-//Lab04
+//Lab04 DFS
 import java.util.*;
 public class DepthFirstSearch {
     private boolean[] marked;    // marked[v] = is there an s-v path?
@@ -8,16 +8,10 @@ public class DepthFirstSearch {
     ArrayList<String> nodos = new ArrayList<String>();
 
 
-    /**
-     * Computes the vertices in graph {@code G} that are
-     * connected to the source vertex {@code s}.
-     * @param G the graph
-     * @param s the source vertex
-     * @throws IllegalArgumentException unless {@code 0 <= s < V}
-     */
-
     public DepthFirstSearch(Digrafo G, Vertice v) {
         //this.listaDeVertices = G.vertices();
+        this.listaDeVertices = new LinkedList<Vertice>();
+        this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
         if(this.validateVertex(G,v)){
             this.dfs(G, v);
@@ -25,8 +19,6 @@ public class DepthFirstSearch {
         }
      }
 
-    // depth first search from v
-    //G.adj(v) son los adyacentes de v
     private void dfs(Digrafo G, Vertice v) {
         this.count++;
         this.marked[Integer.parseInt(v.getId())] = true;
@@ -37,14 +29,6 @@ public class DepthFirstSearch {
             }
         }
     }
-
-    /**
-     * Is there a path between the source vertex {@code s} and vertex {@code v}?
-     * @param v the vertex
-     * @return {@code true} if there is a path, {@code false} otherwise
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     */
-
     public void marked(Digrafo G, Vertice v) {
 
         if (validateVertex(G,v) == true) {
@@ -52,10 +36,6 @@ public class DepthFirstSearch {
         }
     }
 
-    /**
-     * Returns the number of vertices connected to the source vertex {@code s}.
-     * @return the number of vertices connected to the source vertex {@code s}
-     */
     public int count() {
         return this.count;
     }
@@ -82,6 +62,19 @@ public class DepthFirstSearch {
         }
         else {
             throw new NoSuchElementException("El vertice con id " +v.getId() + " no se encuentra en el Grafo");
+        }
+    }
+
+    public void printPath(Digrafo G, Vertice s, Vertice v) {
+        if (v == s){
+            System.out.print(s + " ");
+        }
+        else if (v.getListaDePredecesores().size() == 0){
+            System.out.println("No hay camino del vertice s al vertice v");
+        }
+        else {
+            printPath(G, s, v.getListaDePredecesores().peekLast().getId());
+            System.out.print(v + " ");
         }
     }
 }
