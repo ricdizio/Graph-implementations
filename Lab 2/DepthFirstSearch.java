@@ -1,6 +1,6 @@
 
+//Lab04
 import java.util.*;
-
 public class DepthFirstSearch {
     private boolean[] marked;    // marked[v] = is there an s-v path?
     private int count;           // number of vertices connected to s
@@ -15,6 +15,7 @@ public class DepthFirstSearch {
      */
     public DepthFirstSearch(Digrafo G, Vertice s) {
         this.listaDeVertices = new LinkedList<Vertice>();
+        this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
         this.validateVertex(G,s);
         this.dfs(G, s);
@@ -40,7 +41,9 @@ public class DepthFirstSearch {
      * @return {@code true} if there is a path, {@code false} otherwise
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
+
     public void marked(Digrafo G, Vertice v) {
+
         if (validateVertex(G,v) == true) {
             this.marked[this.listaDeVertices.indexOf(v)] = true;
         }
@@ -64,5 +67,3 @@ public class DepthFirstSearch {
         }
     }
 }
-
-   
