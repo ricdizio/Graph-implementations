@@ -48,15 +48,21 @@ public class ClienteGrafo {
   	StdOut.print("\n"+arco.toString());
     */
     //----------------------------------------------------------------------- Cliente Digrafos
-    GrafoNoDirigido dg = new GrafoNoDirigido();
+    Digrafo dg = new Digrafo();
     dg.cargarGrafo(args[0]);
-    dg.escribirArchivo();
-    Digrafo g = new Digrafo();
-    g.cargarGrafo(args[0]);
-    g.escribirArchivo();
+    //dg.escribirArchivo();
+    //dg.escribirArchivo();
     //dg.eliminarArco("arista1");
     //dg.eliminarVertice("v1");
-    //System.out.println(dg.toString());
+    System.out.println(dg.toString());
+    //System.out.println("Grado Interior nodo 6 "+ dg.gradoInterior("6"));
+    //System.out.println("Grado Exterior nodo 6 "+ dg.gradoExterior("6"));
+    //System.out.println("Grado Interior nodo 10 "+ dg.gradoInterior("10"));
+    //System.out.println("Grado Exterior nodo 10 "+ dg.gradoExterior("10"));
+    //System.out.println("Grado Interior nodo 15 "+ dg.gradoInterior("15"));
+    //System.out.println("Grado Exterior nodo 15 "+ dg.gradoExterior("15"));
+    //System.out.println("Grado Interior nodo 22 "+ dg.gradoInterior("22"));
+    //System.out.println("Grado Exterior nodo 22 "+ dg.gradoExterior("22"));
     //g.eliminarArista("arista1");
     //System.out.println(dg.toString());
     //System.out.println("DIGRAFO CLON -----------------------------" + "\n");
