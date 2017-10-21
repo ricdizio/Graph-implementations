@@ -9,7 +9,8 @@ public class DeepWeb {
   public static void main(String [] args) {
 
     String file = args[0];
-    int a = args[1].parseInt();
+    Vertice a = new Vertice(args[1],Double.parseDouble(args[1]));
+    //int a = Integer.parseInt(args[1]);
     String algoritmo = args[2];
 
     Digrafo g = new Digrafo();
@@ -17,11 +18,11 @@ public class DeepWeb {
     String d = new String("DFS");
     String b = new String("BFS");
 
-    if(algoritmo==d.String.equalsIgnoreCase()){
+    if(algoritmo.equalsIgnoreCase(d)){
         DepthFirstSearch x = new DepthFirstSearch(g,a);
     }
-    else if(algoritmo==b.String.equalsIgnoreCase()){
-        BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a);
+    else if(algoritmo.equalsIgnoreCase(b)){
+        //BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a);
     }
   }
 }

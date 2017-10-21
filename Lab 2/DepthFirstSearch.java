@@ -14,20 +14,22 @@ public class DepthFirstSearch {
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
     public DepthFirstSearch(Digrafo G, Vertice s) {
-        List<Vertice> listaDeVertices = new LinkedList<Vertice>();
-        marked = new boolean[G.numeroDeVertices()];
-        validateVertex(G,s);
-        dfs(G, s);
+        this.listaDeVertices = new LinkedList<Vertice>();
+        this.marked = new boolean[G.numeroDeVertices()];
+        this.validateVertex(G,s);
+        this.dfs(G, s);
      }
 
     // depth first search from v
     //G.adj(v) son los adyacentes de v
     private void dfs(Digrafo G, Vertice v) {
-        count++;
-        marked[listaDeVertices.indexOf(v)] = true;
+        this.count++;
+        System.out.println(listaDeVertices.indexOf(v));
+        this.marked[listaDeVertices.indexOf(v)] = true;
         for (Vertice w : G.adyacentes(v.getId())) {
-            if (!marked[listaDeVertices.indexOf(w)]) {
-                dfs(G, w);
+            if (!this.marked[listaDeVertices.indexOf(w)]) {
+                this.dfs(G, w);
+                System.out.println(w.getId());
             }
         }
     }
@@ -40,7 +42,7 @@ public class DepthFirstSearch {
      */
     public void marked(Digrafo G, Vertice v) {
         if (validateVertex(G,v) == true) {
-            marked[listaDeVertices.indexOf(v)] = true;
+            this.marked[this.listaDeVertices.indexOf(v)] = true;
         }
     }
 
@@ -49,7 +51,7 @@ public class DepthFirstSearch {
      * @return the number of vertices connected to the source vertex {@code s}
      */
     public int count() {
-        return count;
+        return this.count;
     }
 
     private boolean validateVertex(Digrafo G,Vertice v) {
