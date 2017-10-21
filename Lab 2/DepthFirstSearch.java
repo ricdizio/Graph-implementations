@@ -21,7 +21,7 @@ public class DepthFirstSearch {
     private void dfs(Grafo G, Vertice v) {
         count++;
         marked[listaDeVertices.indexOf(v)] = true;
-        for (Vertice w : G.getListaDeAdyacentes()) {
+        for (Vertice w : G.getListaDeAdyacentes(v.getId())) {
             if (!marked[listaDeVertices.indexOf(w)]) {
                 dfs(G, w);
             }
