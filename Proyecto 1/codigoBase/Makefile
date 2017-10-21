@@ -37,7 +37,7 @@ JC = javac
 
 CLASSES = \
 	In.java \
-	StdIn.java \
+	Out.java \
         StdOut.java \
 	Vertice.java \
 	Lado.java \
