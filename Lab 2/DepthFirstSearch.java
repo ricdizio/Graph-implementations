@@ -1,6 +1,10 @@
+
+import java.util.*;
+
 public class DepthFirstSearch {
     private boolean[] marked;    // marked[v] = is there an s-v path?
     private int count;           // number of vertices connected to s
+    private List<Vertice> listaDeVertices;
 
     /**
      * Computes the vertices in graph {@code G} that are
@@ -21,7 +25,7 @@ public class DepthFirstSearch {
     private void dfs(Digrafo G, Vertice v) {
         count++;
         marked[listaDeVertices.indexOf(v)] = true;
-        for (Vertice w : G.getListaDeAdyacentes(v.getId())) {
+        for (Vertice w : G.adyacentes(v.getId())) {
             if (!marked[listaDeVertices.indexOf(w)]) {
                 dfs(G, w);
             }
@@ -34,7 +38,7 @@ public class DepthFirstSearch {
      * @return {@code true} if there is a path, {@code false} otherwise
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
-    public void marked(Grafo G, Vertice v) {
+    public void marked(Digrafo G, Vertice v) {
         if (validateVertex(G,v) = true) {
             marked[listaDeVertices.indexOf(v)] = true;
         }
@@ -48,7 +52,7 @@ public class DepthFirstSearch {
         return count;
     }
 
-    private boolean validateVertex(Grafo G,Vertice v) {
+    private boolean validateVertex(Digrafo G,Vertice v) {
          if (G.estaVertice(s.getId())) {
             return true;
            
