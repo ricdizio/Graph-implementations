@@ -5,6 +5,7 @@ public class DepthFirstSearch {
     private boolean[] marked;    // marked[v] = is there an s-v path?
     private int count;           // number of vertices connected to s
     private List<Vertice> listaDeVertices;
+    ArrayList<String> nodos = new ArrayList<String>();
 
 
     /**
@@ -20,6 +21,7 @@ public class DepthFirstSearch {
         this.marked = new boolean[G.numeroDeVertices()];
         if(this.validateVertex(G,v)){
             this.dfs(G, v);
+            this.imprimir(G,3);
         }
      }
 
@@ -30,7 +32,7 @@ public class DepthFirstSearch {
         this.marked[Integer.parseInt(v.getId())] = true;
         for (Vertice w : G.adyacentes(v.getId())) {
             if (!this.marked[Integer.parseInt(w.getId())]) {
-                System.out.println(w.getId());
+                //System.out.println(w.getId());
                 this.dfs(G, w);
             }
         }
@@ -56,6 +58,21 @@ public class DepthFirstSearch {
      */
     public int count() {
         return this.count;
+    }
+
+    public void imprimir(Digrafo G,int x){
+        if(x==3){
+            for(Vertice i : G.MapaDeVertices.values()){
+                if(marked[Integer.parseInt(i.getId())]==true){
+                    System.out.print(i.getId()+": ");
+                    for(Vertice j : i.predecesores){
+                        System.out.print(j.getId()+" ");
+                    }
+                    System.out.print("\n");
+                }
+            }
+        }
+
     }
 
     private boolean validateVertex(Digrafo G,Vertice v) {

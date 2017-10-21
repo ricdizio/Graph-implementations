@@ -29,7 +29,7 @@ public class Digrafo implements Grafo
     private int numeroDeVertices;
     private int numeroDeLados;
     private HashMap<String, Arco> MapaDeArcos;
-    private HashMap<String, Vertice> MapaDeVertices;
+    public HashMap<String, Vertice> MapaDeVertices;
 
     /**  
      * @param No posee parametro de entrada
