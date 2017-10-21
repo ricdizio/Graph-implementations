@@ -62,20 +62,17 @@ public class Digrafo implements Grafo
             int cantidad_de_nodos = in.readInt();
             int cantidad_de_arcos = in.readInt();
 
-            for (int i=0;i<cantidad_de_nodos;i++) {
-                String id_del_vertice = in.readString();
-                double peso_del_vertice = in.readDouble();
-                // se proceden a crear y verificar si ya fueron agregados los vertices
-
+            for(int i=0;i<cantidad_de_nodos;i++){
+                String id_del_vertice = i.toString();
+                double peso_del_vertice = (double) i;
                 agregarVertice(id_del_vertice,peso_del_vertice);
-
             }
 
             for (int i=0;i<cantidad_de_arcos;i++) {
-                String id_de_arco = in.readString();
+                String id_de_arco = i.toString();
                 String id_vertice_de_Salida = in.readString();
                 String id_vertice_de_Llegada = in.readString();
-                double peso_del_arco = in.readDouble();
+                double peso_del_arco = (double) i;
                 // se proceden a crear y verificar si ya fueron agregados los arcos
 
                 agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);

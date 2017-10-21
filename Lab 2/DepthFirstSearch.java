@@ -34,7 +34,7 @@ public class DepthFirstSearch {
      * @return {@code true} if there is a path, {@code false} otherwise
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
-    public void marked(Grafo, Vertice v) {
+    public void marked(Grafo G, Vertice v) {
         if (validateVertex(G,v) = true) {
             marked[listaDeVertices.indexOf(v)] = true;
         }
