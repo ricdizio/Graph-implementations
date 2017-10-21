@@ -5,12 +5,16 @@ public class BreadthFirstDirectedPaths {
     private boolean[] marked;  // marked[v] = is there an s->v path?
     private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
     private int[] distTo;      // distTo[v] = length of shortest s->v path
+    private int seleccion;
+    private Vertice inicial;
  
     // s es el vertice
-    public BreadthFirstDirectedPaths(Digrafo G, Vertice s) {
+    public BreadthFirstDirectedPaths(Digrafo G, Vertice s,int x, int y) {
         this.marked = new boolean[G.numeroDeVertices()];
         this.distTo = new int[G.numeroDeVertices()];
         this.edgeTo = new int[G.numeroDeVertices()];
+        this.seleccion = y;
+        this.inicial = s;
         int largo = G.numeroDeVertices();
         
         for (int i = 0; i < largo;i++) {
@@ -57,6 +61,75 @@ public class BreadthFirstDirectedPaths {
                     q.add(w);
                 }
             }
+        }
+    }
+
+    public void imprimir(Digrafo G){
+        for(Vertice i : G.MapaDeVertices.values())
+        {
+            if(marked[Integer.parseInt(i.getId())]==true)
+            {
+                for(Vertice j : i.predecesores)
+                {
+                    System.out.print(j.getId()+" ");
+                }
+            }
+        }
+        System.out.print("\n");
+        System.out.print("\n");
+        //Ordinales
+        if(this.seleccion == 1){
+            for(Vertice i : G.MapaDeVertices.values()){
+                if(marked[Integer.parseInt(i.getId())]==true){
+                    System.out.print(i.getId()+": ");
+                    for(Vertice j : i.predecesores){
+                        System.out.print(j.getId());
+                        break;
+                    }
+                    System.out.print("\n");
+                }
+                else{
+                    System.out.println(i.getId()+": -1");
+                }
+            }
+        }
+        //Predecesores
+        if(this.seleccion == 2){
+            for(Vertice i : G.MapaDeVertices.values()){
+                if(marked[Integer.parseInt(i.getId())]==true){
+                    System.out.print(i.getId()+": ");
+                    for(Vertice j : i.predecesores){
+                        System.out.print(j.getId()+" ");
+                        break;
+                    }
+                    System.out.print("\n");
+                }
+                else{
+                    System.out.println(i.getId()+": -1");
+                }
+            }
+        }
+        if(this.seleccion == 0){
+            for(Vertice i : G.MapaDeVertices.values()){
+                if(marked[Integer.parseInt(i.getId())]==true)
+                {
+                   this.printPath(G,this.inicial,i); 
+                }
+            }
+        }
+    }
+
+    public void printPath(Digrafo G, Vertice s, Vertice v) {
+        if (v == s){
+            System.out.print(Integer.parseInt(s.getId()) + " ");
+        }
+        else if (v.getListaDePredecesores().size() == 0){
+            System.out.println("No hay camino del vertice s al vertice v");
+        }
+        else {
+            Vertice ultimo = v.getListaDePredecesores().get(0);
+            printPath(G, s, ultimo);
+            System.out.print(Integer.parseInt(v.getId()) + " ");
         }
     }
 }
