@@ -5,12 +5,14 @@ public class BreadthFirstDirectedPaths {
     private boolean[] marked;  // marked[v] = is there an s->v path?
     private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
     private int[] distTo;      // distTo[v] = length of shortest s->v path
+    private int seleccion;
  
     // s es el vertice
-    public BreadthFirstDirectedPaths(Digrafo G, Vertice s) {
+    public BreadthFirstDirectedPaths(Digrafo G, Vertice s,int x, int y) {
         this.marked = new boolean[G.numeroDeVertices()];
         this.distTo = new int[G.numeroDeVertices()];
         this.edgeTo = new int[G.numeroDeVertices()];
+        this.seleccion = y;
         int largo = G.numeroDeVertices();
         
         for (int i = 0; i < largo;i++) {
