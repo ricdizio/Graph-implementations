@@ -13,12 +13,12 @@ public class DepthFirstSearch {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public DepthFirstSearch(Digrafo G, Vertice s) {
-        this.listaDeVertices = new LinkedList<Vertice>();
+    public DepthFirstSearch(Digrafo G, Vertice v) {
         this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
-        this.validateVertex(G,s);
-        this.dfs(G, s);
+        if(this.validateVertex(G,v)){
+            this.dfs(G, v);
+        }
      }
 
     // depth first search from v
