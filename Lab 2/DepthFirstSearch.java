@@ -30,8 +30,8 @@ public class DepthFirstSearch {
         this.marked[Integer.parseInt(v.getId())] = true;
         for (Vertice w : G.adyacentes(v.getId())) {
             if (!this.marked[Integer.parseInt(w.getId())]) {
-                this.dfs(G, w);
                 System.out.println(w.getId());
+                this.dfs(G, w);
             }
         }
     }
