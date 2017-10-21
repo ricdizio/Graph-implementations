@@ -14,7 +14,7 @@ public class DeepWeb {
     String algoritmo = args[2];
     int longitud = args.length;
     int t = 0;
-    int posicion = -1;
+    int posicion = 0;
     boolean salir = true;
 
     Digrafo g = new Digrafo();
@@ -26,6 +26,7 @@ public class DeepWeb {
     String[] op = {"--arb", "--ord", "--pred"};
     if(longitud == 3){
         salir = false;
+        posicion = 4;
     }
     if(longitud==5 && args[3].equalsIgnoreCase("--trunc")){
         t = Integer.parseInt(args[4]);
