@@ -58,7 +58,8 @@ public class DepthFirstSearch {
         }
         System.out.print("\n");
         System.out.print("\n");
-        if(this.seleccion == 2){
+        //Ordinales
+        if(this.seleccion == 1){
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true){
                     System.out.print(i.getId()+": ");
@@ -73,7 +74,8 @@ public class DepthFirstSearch {
                 }
             }
         }
-        if(this.seleccion == 0){
+        //Predecesores
+        if(this.seleccion == 2){
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true){
                     System.out.print(i.getId()+": ");
@@ -88,7 +90,7 @@ public class DepthFirstSearch {
                 }
             }
         }
-        if(this.seleccion == 1){
+        if(this.seleccion == 0){
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true)
                 {

@@ -13,7 +13,7 @@ public class DeepWeb {
     //int a = Integer.parseInt(args[1]);
     String algoritmo = args[2];
     int longitud = args.length;
-    int t = null;
+    int t = 0;
     int posicion = 0;
     boolean salir = true;
 
