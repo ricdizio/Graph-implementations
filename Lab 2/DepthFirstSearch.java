@@ -6,6 +6,7 @@ public class DepthFirstSearch {
     private int count;           // number of vertices connected to s
     private List<Vertice> listaDeVertices;
 
+
     /**
      * Computes the vertices in graph {@code G} that are
      * connected to the source vertex {@code s}.
@@ -13,22 +14,22 @@ public class DepthFirstSearch {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public DepthFirstSearch(Digrafo G, Vertice s) {
-        this.listaDeVertices = new LinkedList<Vertice>();
-        this.listaDeVertices = G.vertices();
+
+    public DepthFirstSearch(Digrafo G, Vertice v) {
+        //this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
-        this.validateVertex(G,s);
-        this.dfs(G, s);
+        if(this.validateVertex(G,v)){
+            this.dfs(G, v);
+        }
      }
 
     // depth first search from v
     //G.adj(v) son los adyacentes de v
     private void dfs(Digrafo G, Vertice v) {
         this.count++;
-        System.out.println(listaDeVertices.indexOf(v));
-        this.marked[listaDeVertices.indexOf(v)] = true;
+        this.marked[Integer.parseInt(v.getId())] = true;
         for (Vertice w : G.adyacentes(v.getId())) {
-            if (!this.marked[listaDeVertices.indexOf(w)]) {
+            if (!this.marked[Integer.parseInt(w.getId())]) {
                 this.dfs(G, w);
                 System.out.println(w.getId());
             }
