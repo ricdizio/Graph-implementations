@@ -72,7 +72,7 @@ public class DeepWeb {
     }
     else if(algoritmo.equalsIgnoreCase(b))
     {
-        BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a);
+        BreadthFirstDirectedPaths x = new BreadthFirstDirectedPaths(g,a,t,posicion);
     }
   }
 }

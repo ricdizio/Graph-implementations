@@ -32,12 +32,13 @@ public class BreadthFirstDirectedPaths {
             
         // validate vertex
         //validateVertex(s);
-        if (marked[Integer.parseInt(s.getId())] == true) {
+        if (validateVertex(G,s)) {
             bfs(G, s);
         }
         else {
             throw new NoSuchElementException("El vertice con id " +s.getId() + " no se encuentra en el Grafo");
         }
+        imprimir(G);
         
     }
     // BFS from single source
@@ -118,6 +119,17 @@ public class BreadthFirstDirectedPaths {
             }
         }
     }
+
+
+    private boolean validateVertex(Digrafo G,Vertice v) {
+         if (G.estaVertice(v.getId())) {
+            return true;
+           
+        }
+        else {
+            throw new NoSuchElementException("El vertice con id " +v.getId() + " no se encuentra en el Grafo");
+        }
+    } 
 
     public void printPath(Digrafo G, Vertice s, Vertice v) {
         if (v == s){
