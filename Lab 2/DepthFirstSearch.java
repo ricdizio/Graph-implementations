@@ -61,12 +61,25 @@ public class DepthFirstSearch {
     }
 
     public void imprimir(Digrafo G,int x){
+        for(Vertice i : G.MapaDeVertices.values())
+        {
+            if(marked[Integer.parseInt(i.getId())]==true)
+            {
+                for(Vertice j : i.predecesores)
+                {
+                    System.out.print(j.getId()+" ");
+                }
+            }
+        }
+        System.out.print("\n");
+        System.out.print("\n");
         if(x==3){
             for(Vertice i : G.MapaDeVertices.values()){
                 if(marked[Integer.parseInt(i.getId())]==true){
                     System.out.print(i.getId()+": ");
                     for(Vertice j : i.predecesores){
-                        System.out.print(j.getId()+" ");
+                        System.out.print(j.getId());
+                        break;
                     }
                     System.out.print("\n");
                 }
