@@ -39,7 +39,7 @@ public class DepthFirstSearch {
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
     public void marked(Digrafo G, Vertice v) {
-        if (validateVertex(G,v) = true) {
+        if (validateVertex(G,v) == true) {
             marked[listaDeVertices.indexOf(v)] = true;
         }
     }
@@ -53,13 +53,12 @@ public class DepthFirstSearch {
     }
 
     private boolean validateVertex(Digrafo G,Vertice v) {
-         if (G.estaVertice(s.getId())) {
+         if (G.estaVertice(v.getId())) {
             return true;
            
         }
         else {
-            throw new NoSuchElementException("El vertice con id " +s.getId() + " no se encuentra en el Grafo");
-            return false;
+            throw new NoSuchElementException("El vertice con id " +v.getId() + " no se encuentra en el Grafo");
         }
     }
 }
