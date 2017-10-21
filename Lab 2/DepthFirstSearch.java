@@ -50,6 +50,24 @@ public class DepthFirstSearch {
                     }
                     System.out.print("\n");
                 }
+                else{
+                    System.out.println(i.getId()+": -1");
+                }
+            }
+        }
+        if(x==1){
+            for(Vertice i : G.MapaDeVertices.values()){
+                if(marked[Integer.parseInt(i.getId())]==true){
+                    System.out.print(i.getId()+": ");
+                    for(Vertice j : i.predecesores){
+                        System.out.print(j.getId()+" ");
+                        break;
+                    }
+                    System.out.print("\n");
+                }
+                else{
+                    System.out.println(i.getId()+": -1");
+                }
             }
         }
 
