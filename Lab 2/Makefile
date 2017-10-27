@@ -46,6 +46,9 @@ CLASSES = \
 	Grafo.java \
 	GrafoNoDirigido.java \
 	Digrafo.java\
+	BreadthFirstDirectedPaths.java\
+	DepthFirstSearch.java\
+	DeepWeb.java\
     	ClienteGrafo.java
 
 #

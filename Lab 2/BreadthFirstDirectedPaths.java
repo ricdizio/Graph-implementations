@@ -16,10 +16,6 @@ public class BreadthFirstDirectedPaths {
         this.seleccion = y;
         this.inicial = s;
         int largo = G.numeroDeVertices();
-        
-        for (int i = 0; i < largo;i++) {
-            marked[i] = false;            
-        }
 
         for (Vertice v: G.vertices()){
             if (v != s) {
