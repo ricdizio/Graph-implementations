@@ -17,6 +17,7 @@ public class SumaArboles{
         List<Integer> acumulador1 = new ArrayList<Integer>();
         List<String> arregloDeLineas = new ArrayList<String>(); 
         StringBuilder tmp = new StringBuilder();
+        int cuentaLineas = 1;
         
         //Array[int] = ;
 
@@ -25,7 +26,7 @@ public class SumaArboles{
         while(in.hasNextLine()){
             line = in.readLine().replaceAll("\\s+","");
             words = line.split("");
-            MetodoGrafoVariasLineas(words,arregloDeLineas,in, line);
+            MetodoGrafoVariasLineas(words,arregloDeLineas,in, line, cuentaLineas);
             acumulador = "";
             // Sacamos el primer entero
             for(int i=0;i<words.length;i++){
@@ -48,6 +49,7 @@ public class SumaArboles{
         String tempLine;
         String tempWords[];
         String linea[];
+        int cuentaLineas; // cuenta la cantidad de lineas consecutivas de la lectura que pertenecen al mismo grafo
 
         for (int i=0; i < words.length;i++) {
             if (words[i].equals("(")) {
@@ -57,11 +59,19 @@ public class SumaArboles{
                 contador1++;
             }
             if (contador == contador1 && i+1 == words.length) {
-                arregloDeLineas.add(line);
-                return arregloDeLineas;
+                if (cuentaLineas == 1) {
+                    arregloDeLineas.add(line);
+                    return arregloDeLineas;
+                }
+                if (cuentaLineas > 1) {
+                    /// volver un string poner en el add
+                    arregloDeLineas.add(line);
+                    return arregloDeLineas;
+                }
             }
             if (contador != contador1 && i+1 == words.length) {
                 //Implementar llamada recursiva para este caso
+                cuentaLineas++;
                 tempLine = in.readLine().replaceAll("\\s+","");
                 tempWords = tempLine.split("");
                 //Concatena ambos arreglos
@@ -73,7 +83,7 @@ public class SumaArboles{
                     linea[count++] = tempWords[j];
                 } 
                 //linea = ArrayUtils.addAll(words,tempWords);
-                MetodoGrafoVariasLineas(linea,arregloDeLineas,in,line);
+                MetodoGrafoVariasLineas(linea,arregloDeLineas,in,line,cuentaLineas);
 
             }
         }
