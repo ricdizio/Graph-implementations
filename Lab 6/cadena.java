@@ -31,7 +31,7 @@ public class cadena
 {
 
   private int longitud = 0;
-  private String chain[];
+  public String chain[];
   private int pointer = 0;
 
 

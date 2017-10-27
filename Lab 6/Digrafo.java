@@ -54,45 +54,138 @@ public class Digrafo implements Grafo
      * Tiempo: O(V+E)
      */
 
-    public boolean cargarGrafo(String dirArchivo){
-        // Continuar despues de implementar las funciones del grafo ya que son necesarias para terminar de cargar el grafo
-        //In in = new In(args[0]);
+    public boolean cargarGrafo(String[] arbol, int nodoAnterior, int id)
+    {
+
         try{
+            
+            //Creamos un objecto de tipo cadena
+            cadena c = new cadena(arbol.lentgh);
 
-/*
-
-            String line = in.readLine;
-            line.split
-
-
-            int cantidad_de_nodos = in.readInt();
-            int cantidad_de_arcos = in.readInt();
-            String string = "";
-
-            for(int i=0;i<cantidad_de_nodos;i++){
-
-                //String id_del_vertice = Integer.toString(i);
-
-                String id_del_vertice = String.valueOf(i);
-
-                double peso_del_vertice = (double) i;
-                agregarVertice(id_del_vertice,peso_del_vertice);
+            //Copiamos todos los elementos del array arbol de string a cadena
+            for(int i= 0;i<arbol.length;i++)
+            {
+                c.agregar(arbol[i]);
             }
 
-            for (int i=0;i<cantidad_de_arcos;i++) {
+            //Borramos primer y ultimo parentesis
+            c.toString();
+            c.deleteByPos(0);
+            c.deleteByPos(arbol.length-1);
+            c.toString();
 
-                //String id_de_arco = Integer.toString(i);
-
-                String id_de_arco = String.valueOf(i);
-                String id_vertice_de_Salida = in.readString();
-                String id_vertice_de_Llegada = in.readString();
-                double peso_del_arco = (double) i;
-                // se proceden a crear y verificar si ya fueron agregados los arcos
-
-                agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
-
+            //Sacamos el nodo a agregar
+            int last = 0;
+            String acumulador = "";
+            for(int i= 0;i<c.getTam;i++)
+            {
+                if(c.chain[i] == "(")
+                {
+                    break;
+                }
+                else
+                {
+                    acumulador = acumulador + c.chain[i];
+                }
+                last = i;
             }
-            */
+
+            //borramos el nodo del objecto cadena
+            for(int i=0;i<=last;i++)
+            {
+                c.deleteByPos(i);
+            }
+
+            //Imprimimos para ver como quedo la cadena sin el ndo que agregaremos
+            c.toString();
+
+            //Acumulador tiene el nodo
+            int nodo = String.parseInt(acumulador);
+
+            //Sumamos 1 al id para que sean diferentes en el hashmap
+            id++;
+
+            //Agregamos el nodo al hashmap
+            agregarVertice(Integer.toString(id),nodo);
+            
+            //Agregamos arco con el nodo anterior
+            if(nodoAnterior != -1)
+            {
+                agregarArco(Integer.toString(id),1,nodoAnterior,nodo);
+            }
+
+            // Contamos parentesis abiertos y cerrados
+            int numParentesis = 0;
+            for(int i= 0;i<c.getTam;i++)
+            {
+                if(c.chain[i] == "(" || c.chain[i] == ")")
+                {
+                    numParentesis++;
+                }
+            }
+
+            //Sacamos la mitad
+            int mitad = numParentesis/2;
+
+            //Procedemos a dividir el arbol en 2
+            //Izquierdo c1 , derecho c2
+            int c1 = 0;
+            int ultima = 0;
+            ArrayList l1 = new ArrayList();
+            for(int i= 0;i<c.getTam;i++)
+            {
+                l1.add(c.chain[i])
+                if(c.chain[i] == "(" || c.chain[i] == ")")
+                {
+                    c1++;
+                }
+                ultima = i;
+                if(c1 == mitad)
+                {
+                    break;
+                }
+            }
+
+
+            // Arbol derecho c2
+            int c2 = 0;
+            ArrayList l2 = new ArrayList();
+            for(int i= ultima;i<c.getTam;i++)
+            {
+                l2.add(c.chain[i])
+                if(c.chain[i] == "(" || c.chain[i] == ")")
+                {
+                    c1++;
+                }
+                if(c1 == mitad)
+                {
+                    break;
+                }
+            }
+
+            //Convertimos l1 y l2 a k1 y k2 de tipo String array
+            String k1[l1.size()];
+            k1 = l1.toArray();
+
+            String k2[l2.size()];
+            k2 = l2.toArray();
+
+            //Si l1 no es vacio, tiene elementos a particionar
+            if(l1.size() != 0)
+            {
+                //Llamada recursiva
+                cargarGrafo(k1,nodo,id);
+            }
+
+            //Si l1 no es vacio, tiene elementos a particionar
+            if(l2.size() != 0)
+            {
+                //Llamada recursiva
+                cargarGrafo(k2,nodo,id);
+            }
+
+
+
         }
         catch(Exception e){
             System.out.println("No se pudo cargar el archivo");
