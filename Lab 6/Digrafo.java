@@ -58,9 +58,9 @@ public class Digrafo implements Grafo
     {
 
         try{
-            
+
             //Creamos un objecto de tipo cadena
-            cadena c = new cadena(arbol.lentgh);
+            cadena c = new cadena(arbol.length);
 
             //Copiamos todos los elementos del array arbol de string a cadena
             for(int i= 0;i<arbol.length;i++)
