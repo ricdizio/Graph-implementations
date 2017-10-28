@@ -170,28 +170,20 @@ public class Digrafo implements Grafo
             }
 
             //Convertimos l1 y l2 a k1 y k2 de tipo String array
-<<<<<<< HEAD
             
             String k1[] = new String[l1.size()];
-            k1 = l1.toArray();
-
-            String k2[] = new String[l2.size()];;
-            k2 = l2.toArray();
-=======
-            String k1[] = new String[l1.size()];
-            //k1 = l1.toArray();
-            for (int i=0;i<l1.size();i++ ) {
-                k1[i] = l1.get(i);
-                
-            }
 
             String k2[] = new String[l2.size()];
-            //k2 = l2.toArray();
-            for (int i=0;i<l2.size();i++ ) {
-                k1[i] = l1.get(i);
-                
+
+            for (int i=0;i<l1.size();i++ ) 
+            {
+                k1[i] = l1.get(i);  
             }
->>>>>>> 572d2ab3f8d4639255e9b28f5a378d70de038d7a
+
+            for (int i=0;i<l2.size();i++ )
+            {
+                k1[i] = l1.get(i); 
+            }
 
             //Si l1 no es vacio, tiene elementos a particionar
             if(l1.size() != 0)
