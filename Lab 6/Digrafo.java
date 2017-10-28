@@ -102,18 +102,23 @@ public class Digrafo implements Grafo
             //Acumulador tiene el nodo
             int nodo = Integer.parseInt(acumulador);
 
-            //Sumamos 1 al id para que sean diferentes en el hashmap
-            id++;
+            int a = id;
+
 
             //Agregamos el nodo al hashmap
-            Vertice z = new Vertice(Integer.toString(id),nodo);
+            Vertice z = new Vertice(Integer.toString(a),nodo);
             agregarVertice(z);
+            this.numeroDeVertices++;
             
             //Agregamos arco con el nodo anterior
-            if(nodoAnterior != -1)
+            if(nodoAnterior != 0)
             {
-                agregarArco(Integer.toString(id),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
+                agregarArco(Integer.toString(a),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
+                this.numeroDeLados++;
             }
+
+            //Sumamos 1 al a para que sean diferentes en el hashmap
+            a++;
 
             // Contamos parentesis abiertos y cerrados
             int numParentesis = 0;
@@ -196,7 +201,7 @@ public class Digrafo implements Grafo
             if(l2.size() != 0)
             {
                 //Llamada recursiva
-                cargarGrafo(k2,id,id);
+                cargarGrafo(k2,id,a);
             }
 
         }
@@ -225,7 +230,8 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
 
-    public int numeroDeLados() {
+    public int numeroDeLados() 
+    {
     	return numeroDeLados;
     }
 
@@ -299,9 +305,29 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
 
-    public boolean estaVertice(String id) {
+    public boolean estaVertice(String id) 
+    {
         return MapaDeVertices.containsKey(id);
     }
+
+
+    public boolean estaPeso(Double p) {
+        return MapaDeVertices.containsValue(p);
+    }
+
+    public String ObtIdByPeso(Double p) 
+    {
+        for (Vertice v : MapaDeVertices.values()) 
+        {
+            if(v.getPeso() == p)
+            {
+                return v.getId();
+            }
+        }
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +p+ " no se encuentra en el Grafo");
+    }
+
 
     /**  
      * Busca en el HashMap de vertices el id de ambos vertices y verifica 
