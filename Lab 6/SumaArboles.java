@@ -22,9 +22,20 @@ public class SumaArboles{
         Digrafo g = new Digrafo();
         //String line;
         String words[];
+        List<String> words1 = new ArrayList<String>();
+        int index = 0;
         String acumulador = "";
         List<Integer> acumulador1 = new ArrayList<Integer>();
         In in = new In(file);
+        // Extraemos los enteros
+        while(in.hasNextLine()){
+            line = in.readLine().replaceAll("\\s+","");
+            words = line.split("");
+            index = line.indexOf("(");
+            if (line.substring(0,index) != " ") {
+                words1.add(line.substring(0,index));   
+            }
+        }
     
         while(in.hasNextLine()){
             line = in.readLine().replaceAll("\\s+","");
