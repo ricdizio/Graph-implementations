@@ -46,30 +46,10 @@ public class SumaArboles{
                 words1.add(line.substring(0,index)); 
             }
         }
-<<<<<<< HEAD
-    
-        while(in.hasNextLine()){
-            line = in.readLine().replaceAll("\\s+","");
-            words = line.split("");
-            new SumaArboles().MetodoGrafoVariasLineas(words,in, line);
-            acumulador = "";
-            // Sacamos los enteros de la suma de los caminos
-            for(int i=0;i<words.length;i++){
-                if (words[i].equals("("))
-                {
-                    break;
-                }
-                else
-                {
-                    acumulador = acumulador + words[i];
-                }
-            }
-=======
 
         for (int i=0;i<words1.size();i++) {
             System.out.println(words1.get(i));
             
->>>>>>> 461b3663a940d72588627e8cf9df600b5a0c94c5
         }
     
         In iin = new In(file);
@@ -110,5 +90,4 @@ public class SumaArboles{
         }
     }
 }
-
 
