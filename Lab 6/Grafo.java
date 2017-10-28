@@ -16,7 +16,7 @@ import java.util.*;
 
 public interface Grafo
 {
-    public boolean cargarGrafo(String dirArchivo);
+    public boolean cargarGrafo(String[] arbol, int nodoAnterior, int id);
     
     public int numeroDeVertices();
 

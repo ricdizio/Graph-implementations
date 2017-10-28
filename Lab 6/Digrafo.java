@@ -77,7 +77,7 @@ public class Digrafo implements Grafo
             //Sacamos el nodo a agregar
             int last = 0;
             String acumulador = "";
-            for(int i= 0;i<c.getTam;i++)
+            for(int i= 0;i<c.getTam();i++)
             {
                 if(c.chain[i] == "(")
                 {
@@ -100,23 +100,24 @@ public class Digrafo implements Grafo
             c.toString();
 
             //Acumulador tiene el nodo
-            int nodo = String.parseInt(acumulador);
+            int nodo = Integer.parseInt(acumulador);
 
             //Sumamos 1 al id para que sean diferentes en el hashmap
             id++;
 
             //Agregamos el nodo al hashmap
-            agregarVertice(Integer.toString(id),nodo);
+            Vertice z = new Vertice(Integer.toString(id),nodo);
+            agregarVertice(z);
             
             //Agregamos arco con el nodo anterior
             if(nodoAnterior != -1)
             {
-                agregarArco(Integer.toString(id),1,nodoAnterior,nodo);
+                agregarArco(Integer.toString(id),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
             }
 
             // Contamos parentesis abiertos y cerrados
             int numParentesis = 0;
-            for(int i= 0;i<c.getTam;i++)
+            for(int i= 0;i<c.getTam();i++)
             {
                 if(c.chain[i] == "(" || c.chain[i] == ")")
                 {
@@ -131,10 +132,10 @@ public class Digrafo implements Grafo
             //Izquierdo c1 , derecho c2
             int c1 = 0;
             int ultima = 0;
-            ArrayList l1 = new ArrayList();
-            for(int i= 0;i<c.getTam;i++)
+            List<String> l1 = new ArrayList<String>();
+            for(int i= 0;i<c.getTam();i++)
             {
-                l1.add(c.chain[i])
+                l1.add(c.chain[i]);
                 if(c.chain[i] == "(" || c.chain[i] == ")")
                 {
                     c1++;
@@ -149,10 +150,10 @@ public class Digrafo implements Grafo
 
             // Arbol derecho c2
             int c2 = 0;
-            ArrayList l2 = new ArrayList();
-            for(int i= ultima;i<c.getTam;i++)
+            List<String> l2 = new ArrayList<String>();
+            for(int i= ultima;i<c.getTam();i++)
             {
-                l2.add(c.chain[i])
+                l2.add(c.chain[i]);
                 if(c.chain[i] == "(" || c.chain[i] == ")")
                 {
                     c1++;
@@ -164,27 +165,25 @@ public class Digrafo implements Grafo
             }
 
             //Convertimos l1 y l2 a k1 y k2 de tipo String array
-            String k1[l1.size()];
+            String k1[];
             k1 = l1.toArray();
 
-            String k2[l2.size()];
+            String k2[];
             k2 = l2.toArray();
 
             //Si l1 no es vacio, tiene elementos a particionar
             if(l1.size() != 0)
             {
                 //Llamada recursiva
-                cargarGrafo(k1,nodo,id);
+                cargarGrafo(k1,id,id);
             }
 
             //Si l1 no es vacio, tiene elementos a particionar
             if(l2.size() != 0)
             {
                 //Llamada recursiva
-                cargarGrafo(k2,nodo,id);
+                cargarGrafo(k2,id,id);
             }
-
-
 
         }
         catch(Exception e){
