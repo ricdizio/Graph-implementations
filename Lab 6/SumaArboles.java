@@ -16,6 +16,7 @@ public class SumaArboles{
         List<String>  arregloDeLineas = new ArrayList<String>();
         //this.in = new In(file);
         String words[];
+        String grafoArray[];
         int cuentaLineas = 1;
         //Cargamos archivo
         String line;
@@ -36,6 +37,7 @@ public class SumaArboles{
         String tempLine;
         String tempWords[];
         String[] linea;
+        String temporal;
 
         // Extraemos los enteros
         while(in.hasNextLine()){
@@ -49,7 +51,6 @@ public class SumaArboles{
 
         for (int i=0;i<words1.size();i++) {
             System.out.println(words1.get(i));
-            
         }
     
         In iin = new In(file);
@@ -58,34 +59,30 @@ public class SumaArboles{
         for (int i=0; i < words.length;i++) {
             if (contador >= 1) {
                 builder.append(words[i]);
-                //System.out.println("Esta entrando2");
             }
             if (words[i].equals("(")) {
-                //System.out.println("Esta entrando");
                 builder.append(words[i]);
                 contador++;
             }
             if (words[i].equals(")")) {
-                //System.out.println("Esta entrando1");
                 contador1++;
             }
             if (contador == contador1) {
-                //System.out.println(builder.toString());
                 arregloDeLineas.add(builder.toString());
                 contador = 0;
                 contador1 = 0;
-                //StringBuilder builder = new StringBuilder();
                 builder.setLength(0);
             }            
         }
 
-        //for (int i=0;i<arregloDeLineas.size();i++) {
-        //    System.out.println(arregloDeLineas.get(i));
-            
-        //}
-        //System.out.println(linee);
         for (int i=0;i<arregloDeLineas.size();i++) {
-            System.out.println(arregloDeLineas.get(i));
+            temporal = arregloDeLineas.get(i);
+            grafoArray = temporal.split(""); ;
+            //System.out.println(arregloDeLineas.get(i));
+            for (int j=0;j<grafoArray.length;j++) {
+                System.out.println(grafoArray[j]+"\n");
+                // Se procede a la carga del grafo
+            }
             
         }
     }
