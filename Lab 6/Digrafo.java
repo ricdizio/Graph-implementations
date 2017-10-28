@@ -102,18 +102,24 @@ public class Digrafo implements Grafo
             //Acumulador tiene el nodo
             int nodo = Integer.parseInt(acumulador);
 
-            //Sumamos 1 al id para que sean diferentes en el hashmap
-            id++;
+            //Creamos la varable para el siguiente id
+            int a = id;
+
 
             //Agregamos el nodo al hashmap
-            Vertice z = new Vertice(Integer.toString(id),nodo);
+            Vertice z = new Vertice(Integer.toString(a),nodo);
             agregarVertice(z);
+            this.numeroDeVertices++;
             
             //Agregamos arco con el nodo anterior
-            if(nodoAnterior != -1)
+            if(id != 0)
             {
-                agregarArco(Integer.toString(id),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
+                agregarArco(Integer.toString(a),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
+                this.numeroDeLados++;
             }
+
+            //Sumamos 1 al a para que sean diferentes en el hashmap
+            a++;
 
             // Contamos parentesis abiertos y cerrados
             int numParentesis = 0;
@@ -170,32 +176,33 @@ public class Digrafo implements Grafo
             }
 
             //Convertimos l1 y l2 a k1 y k2 de tipo String array
+            
             String k1[] = new String[l1.size()];
-            //k1 = l1.toArray();
-            for (int i=0;i<l1.size();i++ ) {
-                k1[i] = l1.get(i);
-                
-            }
 
             String k2[] = new String[l2.size()];
-            //k2 = l2.toArray();
-            for (int i=0;i<l2.size();i++ ) {
-                k1[i] = l1.get(i);
-                
+
+            for (int i=0;i<l1.size();i++ ) 
+            {
+                k1[i] = l1.get(i);  
+            }
+
+            for (int i=0;i<l2.size();i++ )
+            {
+                k1[i] = l1.get(i); 
             }
 
             //Si l1 no es vacio, tiene elementos a particionar
             if(l1.size() != 0)
             {
                 //Llamada recursiva
-                cargarGrafo(k1,id,id);
+                cargarGrafo(k1,id,a);
             }
 
             //Si l1 no es vacio, tiene elementos a particionar
             if(l2.size() != 0)
             {
                 //Llamada recursiva
-                cargarGrafo(k2,id,id);
+                cargarGrafo(k2,id,a);
             }
 
         }
@@ -224,7 +231,8 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
 
-    public int numeroDeLados() {
+    public int numeroDeLados() 
+    {
     	return numeroDeLados;
     }
 
@@ -298,9 +306,29 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
 
-    public boolean estaVertice(String id) {
+    public boolean estaVertice(String id) 
+    {
         return MapaDeVertices.containsKey(id);
     }
+
+
+    public boolean estaPeso(Double p) {
+        return MapaDeVertices.containsValue(p);
+    }
+
+    public String ObtIdByPeso(Double p) 
+    {
+        for (Vertice v : MapaDeVertices.values()) 
+        {
+            if(v.getPeso() == p)
+            {
+                return v.getId();
+            }
+        }
+        throw new NoSuchElementException("El vertice con el idenficador: " 
+            +p+ " no se encuentra en el Grafo");
+    }
+
 
     /**  
      * Busca en el HashMap de vertices el id de ambos vertices y verifica 
