@@ -102,6 +102,7 @@ public class Digrafo implements Grafo
             //Acumulador tiene el nodo
             int nodo = Integer.parseInt(acumulador);
 
+            //Creamos la varable para el siguiente id
             int a = id;
 
 
@@ -194,7 +195,7 @@ public class Digrafo implements Grafo
             if(l1.size() != 0)
             {
                 //Llamada recursiva
-                cargarGrafo(k1,id,id);
+                cargarGrafo(k1,id,a);
             }
 
             //Si l1 no es vacio, tiene elementos a particionar
