@@ -12,7 +12,7 @@ public class SumaArboles{
     private String words[];
     //private String line;
   
-  public void main(String [] args) {
+  public static void main(String [] args) {
         this.arregloDeLineas = new ArrayList<String>();
         //this.in = new In(file);
         this.cuentaLineas = 1;
@@ -40,7 +40,7 @@ public class SumaArboles{
         while(in.hasNextLine()){
             line = in.readLine().replaceAll("\\s+","");
             words = line.split("");
-            this.MetodoGrafoVariasLineas(words,in, line);
+            new SumaArboles().MetodoGrafoVariasLineas(words,in, line);
             acumulador = "";
             // Sacamos los enteros de la suma de los caminos
             for(int i=0;i<words.length;i++){

@@ -3,21 +3,10 @@ public class test
 {
 	public static void main(String[] args) 
 	{
-		//Crea un arreglo de string tipo cadena de tamano 3
-	  	cadena x = new cadena(3);
-	  	//Agrega un elemento al arreglo
-	  	x.agregar("r");
-	  	//Agrega un elemento al arreglo
-	  	x.agregar("f");
-	  	//Imprime tamano actual
-	  	System.out.println(x.getTam());
-	  	//Imprime cadena
-	  	x.toStringChain();
-	  	//Borra por posicion
-	  	x.deleteByPos(0);
-	  	//Imprime cadena
-	  	x.toStringChain();
-	  	//Imprime tamano actual
-	  	System.out.println(x.getTam());
+		String s = "(5(4(11(7()())(2()()))())(8(13()())(4()(1()()))))";
+		String t[] = s.split("");
+		
+		Digrafo g = new Digrafo();
+		g.cargarGrafo(t,-1,0);
 	}
 }	 

@@ -56,8 +56,9 @@ public class Digrafo implements Grafo
 
     public boolean cargarGrafo(String[] arbol, int nodoAnterior, int id)
     {
-
+/*
         try{
+        */
 
             //Creamos un objecto de tipo cadena
             cadena c = new cadena(arbol.length);
@@ -69,17 +70,17 @@ public class Digrafo implements Grafo
             }
 
             //Borramos primer y ultimo parentesis
-            c.toString();
+            c.toStringChain();
             c.deleteByPos(0);
             c.deleteByPos(arbol.length-1);
-            c.toString();
+            c.toStringChain();
 
             //Sacamos el nodo a agregar
             int last = 0;
             String acumulador = "";
             for(int i= 0;i<c.getTam();i++)
             {
-                if(c.chain[i] == "(")
+                if(c.chain[i].equals("("))
                 {
                     break;
                 }
@@ -88,128 +89,131 @@ public class Digrafo implements Grafo
                     acumulador = acumulador + c.chain[i];
                 }
                 last = i;
+
             }
 
             //borramos el nodo del objecto cadena
             for(int i=0;i<=last;i++)
             {
-                c.deleteByPos(i);
+                c.deleteByPos(0);
             }
 
             //Imprimimos para ver como quedo la cadena sin el ndo que agregaremos
-            c.toString();
+            c.toStringChain();
 
-            //Acumulador tiene el nodo
-            int nodo = Integer.parseInt(acumulador);
-
-            //Creamos la varable para el siguiente id
-            int a = id;
-
-
-            //Agregamos el nodo al hashmap
-            Vertice z = new Vertice(Integer.toString(a),nodo);
-            agregarVertice(z);
-            this.numeroDeVertices++;
             
-            //Agregamos arco con el nodo anterior
-            if(id != 0)
+            if(acumulador != "")
             {
-                agregarArco(Integer.toString(a),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
-                this.numeroDeLados++;
+                //Acumulador tiene el nodo
+                int nodo = Integer.parseInt(acumulador);
+
+
+                //Agregamos el nodo al hashmap
+                Vertice z = new Vertice(Integer.toString(id),nodo);
+                agregarVertice(z);
+                this.numeroDeVertices++;
+                
+                //Agregamos arco con el nodo anterior
+                if(nodoAnterior != -1)
+                {
+                    agregarArco(Integer.toString(id),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
+                    this.numeroDeLados++;
+                }
+
+
+
+                // Contamos parentesis abiertos y cerrados
+                int numParentesis = 0;
+                int abiertos = 0;
+                int cerrados = 0;
+                int corte = 0;
+                for(int i= 0;i<c.getTam();i++)
+                {
+                    if(c.chain[i].equals("("))
+                    {
+                        abiertos++;
+                    }
+                    if(c.chain[i].equals(")"))
+                    {
+                        cerrados++;
+                    }
+                    if(cerrados==abiertos)
+                    {
+                        //cortar arreglos
+                        System.out.println("corte en : "+i);
+                        corte = i;
+                        break;
+                    }
+
+                }
+
+                //Sacamos la mitad
+
+                //Procedemos a dividir el arbol en 2
+                //Izquierdo c1 , derecho c2
+                int ultima = 0;
+                List<String> l1 = new ArrayList<String>();
+                //ArrayList l1 = new ArrayList();
+
+                for(int i= 0;i<=corte;i++)
+                {
+                    l1.add(c.chain[i]);
+                    ultima = i;
+                }
+
+
+                // Arbol derecho 
+                List<String> l2 = new ArrayList<String>();
+
+                //ArrayList l2 = new ArrayList();
+
+                for(int i = ultima+1;i<c.getTam();i++)
+                {
+                    l2.add(c.chain[i]);
+                }
+
+                //Convertimos l1 y l2 a k1 y k2 de tipo String array
+                
+                String k1[] = new String[l1.size()];
+                System.out.println("size: "+l1.get(1));
+
+                String k2[] = new String[l2.size()];
+
+                for (int i=0;i<l1.size();i++ ) 
+                {
+                    k1[i] = l1.get(i);
+                }
+
+                for (int i=0;i<l2.size();i++ )
+                {
+                    k2[i] = l2.get(i); 
+                }
+
+                //Si l1 no es vacio, tiene elementos a particionar
+                if(!(l1.get(1).equals(")")))
+                {
+                    //Llamada recursiva
+                    cargarGrafo(k1,nodoAnterior+1,id+1);
+                }
+
+                //Si l2 no es vacio, tiene elementos a particionar
+                if(!(l2.get(1).equals(")")))
+                {
+                    //Llamada recursiva
+                    cargarGrafo(k2,nodoAnterior+2,id+2);
+                }
+
             }
-
-            //Sumamos 1 al a para que sean diferentes en el hashmap
-            a++;
-
-            // Contamos parentesis abiertos y cerrados
-            int numParentesis = 0;
-            for(int i= 0;i<c.getTam();i++)
-            {
-                if(c.chain[i] == "(" || c.chain[i] == ")")
-                {
-                    numParentesis++;
-                }
-            }
-
-            //Sacamos la mitad
-            int mitad = numParentesis/2;
-
-            //Procedemos a dividir el arbol en 2
-            //Izquierdo c1 , derecho c2
-            int c1 = 0;
-            int ultima = 0;
-            List<String> l1 = new ArrayList<String>();
-            //ArrayList l1 = new ArrayList();
-
-            for(int i= 0;i<c.getTam();i++)
-            {
-                l1.add(c.chain[i]);
-                if(c.chain[i] == "(" || c.chain[i] == ")")
-                {
-                    c1++;
-                }
-                ultima = i;
-                if(c1 == mitad)
-                {
-                    break;
-                }
-            }
-
-
-            // Arbol derecho c2
-            int c2 = 0;
-            List<String> l2 = new ArrayList<String>();
-
-            //ArrayList l2 = new ArrayList();
-
-            for(int i= ultima;i<c.getTam();i++)
-            {
-                l2.add(c.chain[i]);
-                if(c.chain[i] == "(" || c.chain[i] == ")")
-                {
-                    c1++;
-                }
-                if(c1 == mitad)
-                {
-                    break;
-                }
-            }
-
-            //Convertimos l1 y l2 a k1 y k2 de tipo String array
             
-            String k1[] = new String[l1.size()];
 
-            String k2[] = new String[l2.size()];
-
-            for (int i=0;i<l1.size();i++ ) 
-            {
-                k1[i] = l1.get(i);  
-            }
-
-            for (int i=0;i<l2.size();i++ )
-            {
-                k1[i] = l1.get(i); 
-            }
-
-            //Si l1 no es vacio, tiene elementos a particionar
-            if(l1.size() != 0)
-            {
-                //Llamada recursiva
-                cargarGrafo(k1,id,a);
-            }
-
-            //Si l1 no es vacio, tiene elementos a particionar
-            if(l2.size() != 0)
-            {
-                //Llamada recursiva
-                cargarGrafo(k2,id,a);
-            }
-
+        
+        /*
         }
         catch(Exception e){
             System.out.println("No se pudo cargar el archivo");
             return false;
         }
+        */
         return true;
     }
    /**
