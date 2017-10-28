@@ -112,7 +112,7 @@ public class Digrafo implements Grafo
             this.numeroDeVertices++;
             
             //Agregamos arco con el nodo anterior
-            if(nodoAnterior != 0)
+            if(id != 0)
             {
                 agregarArco(Integer.toString(a),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
                 this.numeroDeLados++;
