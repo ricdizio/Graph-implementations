@@ -53,7 +53,7 @@ public class Digrafo implements Grafo
      * 
      * Tiempo: O(V+E)
      */
-
+    int r = 0;
     public boolean cargarGrafo(String[] arbol, int nodoAnterior, int id)
     {
 /*
@@ -195,14 +195,16 @@ public class Digrafo implements Grafo
                 if(!(l1.get(1).equals(")")))
                 {
                     //Llamada recursiva
-                    cargarGrafo(k1,ObtIdByPeso(nodod),id+1);
+                    System.out.println("nodo anterior: "+id);
+                    cargarGrafo(k1,id,id+1);
                 }
 
                 //Si l2 no es vacio, tiene elementos a particionar
                 if(!(l2.get(1).equals(")")))
                 {
-                    //Llamada recursiva
-                    cargarGrafo(k2,ObtIdByPeso(nodod),id+2);
+                    System.out.println("nodo anterior: "+id);
+                    //Llamada recursiva             
+                    cargarGrafo(k2,id,id+2);
                 }
 
             }
