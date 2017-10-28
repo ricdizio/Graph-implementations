@@ -133,6 +133,8 @@ public class Digrafo implements Grafo
             int c1 = 0;
             int ultima = 0;
             List<String> l1 = new ArrayList<String>();
+            //ArrayList l1 = new ArrayList();
+
             for(int i= 0;i<c.getTam();i++)
             {
                 l1.add(c.chain[i]);
@@ -151,6 +153,9 @@ public class Digrafo implements Grafo
             // Arbol derecho c2
             int c2 = 0;
             List<String> l2 = new ArrayList<String>();
+
+            //ArrayList l2 = new ArrayList();
+
             for(int i= ultima;i<c.getTam();i++)
             {
                 l2.add(c.chain[i]);
@@ -165,12 +170,28 @@ public class Digrafo implements Grafo
             }
 
             //Convertimos l1 y l2 a k1 y k2 de tipo String array
+<<<<<<< HEAD
             
             String k1[] = new String[l1.size()];
             k1 = l1.toArray();
 
             String k2[] = new String[l2.size()];;
             k2 = l2.toArray();
+=======
+            String k1[] = new String[l1.size()];
+            //k1 = l1.toArray();
+            for (int i=0;i<l1.size();i++ ) {
+                k1[i] = l1.get(i);
+                
+            }
+
+            String k2[] = new String[l2.size()];
+            //k2 = l2.toArray();
+            for (int i=0;i<l2.size();i++ ) {
+                k1[i] = l1.get(i);
+                
+            }
+>>>>>>> 572d2ab3f8d4639255e9b28f5a378d70de038d7a
 
             //Si l1 no es vacio, tiene elementos a particionar
             if(l1.size() != 0)
