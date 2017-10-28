@@ -13,11 +13,7 @@ public class SumaArboles{
     //private String line;
   
   public static void main(String [] args) {
-<<<<<<< HEAD
-        this.arregloDeLineas = new ArrayList<String>();
-=======
         List<String>  arregloDeLineas = new ArrayList<String>();
->>>>>>> 461b3663a940d72588627e8cf9df600b5a0c94c5
         //this.in = new In(file);
         String words[];
         int cuentaLineas = 1;
