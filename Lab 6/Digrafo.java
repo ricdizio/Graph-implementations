@@ -106,18 +106,20 @@ public class Digrafo implements Grafo
             {
                 //Acumulador tiene el nodo
                 int nodo = Integer.parseInt(acumulador);
+                Double nodod = Double.parseDouble(acumulador);
 
 
                 //Agregamos el nodo al hashmap
-                Vertice z = new Vertice(Integer.toString(id),nodo);
+                Vertice z = new Vertice(Integer.toString(id),nodod);
                 agregarVertice(z);
                 this.numeroDeVertices++;
-                
+                System.out.println("Se agrego el vertice con id: "+id +" peso: "+nodo);
                 //Agregamos arco con el nodo anterior
                 if(nodoAnterior != -1)
                 {
-                    agregarArco(Integer.toString(id),1.0,Integer.toString(nodoAnterior),Integer.toString(id));
+                    agregarArco(Integer.toString(id),1.0,String.valueOf(nodoAnterior),Integer.toString(id));
                     this.numeroDeLados++;
+                    System.out.println("Se agrego el arco con id: "+id+" y va de v vertice id: "+ nodoAnterior +" a u vertice id: "+id);
                 }
 
 
@@ -175,10 +177,10 @@ public class Digrafo implements Grafo
                 //Convertimos l1 y l2 a k1 y k2 de tipo String array
                 
                 String k1[] = new String[l1.size()];
-                System.out.println("size: "+l1.get(1));
+                System.out.println("size cadena 1: "+l1.size());
 
                 String k2[] = new String[l2.size()];
-
+                System.out.println("size cadena 2: "+l2.size());
                 for (int i=0;i<l1.size();i++ ) 
                 {
                     k1[i] = l1.get(i);
@@ -193,14 +195,14 @@ public class Digrafo implements Grafo
                 if(!(l1.get(1).equals(")")))
                 {
                     //Llamada recursiva
-                    cargarGrafo(k1,nodoAnterior+1,id+1);
+                    cargarGrafo(k1,ObtIdByPeso(nodod),id+1);
                 }
 
                 //Si l2 no es vacio, tiene elementos a particionar
                 if(!(l2.get(1).equals(")")))
                 {
                     //Llamada recursiva
-                    cargarGrafo(k2,nodoAnterior+2,id+2);
+                    cargarGrafo(k2,ObtIdByPeso(nodod),id+2);
                 }
 
             }
@@ -320,13 +322,13 @@ public class Digrafo implements Grafo
         return MapaDeVertices.containsValue(p);
     }
 
-    public String ObtIdByPeso(Double p) 
+    public int ObtIdByPeso(Double p) 
     {
         for (Vertice v : MapaDeVertices.values()) 
         {
             if(v.getPeso() == p)
             {
-                return v.getId();
+                return Integer.parseInt(v.getId());
             }
         }
         throw new NoSuchElementException("El vertice con el idenficador: " 
