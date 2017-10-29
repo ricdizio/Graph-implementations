@@ -56,9 +56,9 @@ public class Digrafo implements Grafo
     int r = 0;
     public boolean cargarGrafo(String[] arbol, int nodoAnterior, int id)
     {
-/*
+
         try{
-        */
+        
 
             //Creamos un objecto de tipo cadena
             cadena c = new cadena(arbol.length);
@@ -209,13 +209,13 @@ public class Digrafo implements Grafo
             
 
         
-        /*
+        
         }
         catch(Exception e){
             System.out.println("No se pudo cargar el archivo");
             return false;
         }
-        */
+        
         return true;
     }
    /**

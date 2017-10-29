@@ -82,7 +82,7 @@ public class SumaArboles{
                 contador1++;
             }
             if (contador == contador1) {
-                if (contador > 1 && contador > 1) {
+                if (contador >= 1 && contador >= 1) {
                     arregloDeLineas.add(builder.toString());
                     contador = 0;
                     contador1 = 0;
@@ -90,12 +90,12 @@ public class SumaArboles{
                 }
             }            
         }
+        Digrafo g;
 
         for (int i=0;i<arregloDeLineas.size();i++) {
             temporal = arregloDeLineas.get(i);
             grafoArray = temporal.split(""); 
             //Cargamos el grafo para cada instancia
-            g.cargarGrafo(grafoArray,-1,0);
             //System.out.println(arregloDeLineas.get(i));
             //for (int j=0;j < grafoArray.length;j++) {
                 // Se procede a la carga del grafo
@@ -104,8 +104,8 @@ public class SumaArboles{
             grafoArray = temporal.split("");
             //System.out.println(arregloDeLineas.get(i));
             System.out.println("\n");
-            System.out.println("DIGRAFO "+ i+"--------------------------------------------------------------------------------------------------");
-            Digrafo g = new Digrafo();
+            System.out.println("DIGRAFO "+ i + "--------------------------------------------------------------------------------------------------");
+            g = new Digrafo();
             
             g.cargarGrafo(grafoArray,-1,0);
             
@@ -123,34 +123,44 @@ public class SumaArboles{
 
                 }
             }
-            DepthFirstSearch dfs = new DepthFirstSearch(g,raiz.get(0));
-            //dfs.dfsPath(raiz.get(0));
-            // Procedemos a hallar los caminos
-            for (Vertice v: hojas) {
-                System.out.println("DIGRAFO "+i);
+            //Caso grafo vacio
+            if(g.numeroDeVertices() == 0)
+            {
+                System.out.println("Grafo Vacio");
+                System.out.println("No");
+            }
+            //Grafo no vacio
+            else
+            {
+                DepthFirstSearch dfs = new DepthFirstSearch(g,raiz.get(0));
                 //dfs.dfsPath(raiz.get(0));
-                camino = dfs.printPath(raiz.get(0),v);
-                for (Double doble:camino) {
-                    suma = suma+doble;
+                // Procedemos a hallar los caminos
+                for (Vertice v: hojas) {
+                    System.out.println("DIGRAFO "+i);
+                    //dfs.dfsPath(raiz.get(0));
+                    camino = dfs.printPath(raiz.get(0),v);
+                    for (Double doble:camino) {
+                        suma = suma+doble;
+                    }
+                    System.out.println("suma de camino = "+ suma);
+                    if (suma == words1.get(i)) {
+                        contador2 = 1;
+                        System.out.println("yes"+"\n");
+                        break;                    
+                    }
+                    contador2 = 0;
+                    suma = 0;
+                    camino.clear();
                 }
-                System.out.println("suma de camino = "+ suma);
-                if (suma == words1.get(i)) {
-                    contador2 = 1;
-                    System.out.println("yes"+"\n");
-                    break;                    
+                if (contador2 == 0) {
+                    System.out.println("no"+"\n");
                 }
-                contador2 = 0;
-                suma = 0;
-                camino.clear();
+                if (g.numeroDeVertices() == 0) {
+                    System.out.println("no"+"\n");                
+                }
+                raiz.clear();
+                hojas.clear();
             }
-            if (contador2 == 0) {
-                System.out.println("no"+"\n");
-            }
-            if (g.numeroDeVertices() == 0) {
-                System.out.println("no"+"\n");                
-            }
-            raiz.clear();
-            hojas.clear();
         }
     }
 }
