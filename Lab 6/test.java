@@ -8,5 +8,6 @@ public class test
 		
 		Digrafo g = new Digrafo();
 		g.cargarGrafo(t,-1,0);
+		System.out.println("Aplicamos DFS:");
 	}
 }	 
