@@ -60,15 +60,16 @@ public class SumaArboles{
     
         In iin = new In(file);
         linee = iin.readAll().replaceAll("\\s+","");
+        //sSystem.out.println("LINE  "+linee);
         words = linee.split("");
         for (int i=0; i < words.length;i++) {
-            if (contador >= 1) {
-                builder.append(words[i]);
-            }
             if (words[i].equals("(")) {
                 builder.append(words[i]);
                 contador++;
             }
+                else if (contador >= 1) {
+                    builder.append(words[i]);
+                }
             if (words[i].equals(")")) {
                 contador1++;
             }
@@ -79,19 +80,16 @@ public class SumaArboles{
                 builder.setLength(0);
             }            
         }
-        //tamano = arregloDeLineas.size();
-        //String[] grafoArray = new String[tamano];
 
         for (int i=0;i<arregloDeLineas.size();i++) {
             temporal = arregloDeLineas.get(i);
             grafoArray = temporal.split(""); 
-            //System.out.println(arregloDeLineas.get(i));
+            //System.out.println(temporal);
             for (int j=0;j < grafoArray.length;j++) {
                 // Se procede a la carga del grafo
                 System.out.println(grafoArray[j]);
             }
         }
-        //
     }
 }
 
