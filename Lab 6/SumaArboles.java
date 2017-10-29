@@ -35,6 +35,7 @@ public class SumaArboles{
         String temporal2; 
         List<Integer> words1 = new ArrayList<Integer>();
         int tamano = 0;
+        String[] grafoArray;
 
         // Extraemos los enteros
         while(in.hasNextLine()){
@@ -78,18 +79,19 @@ public class SumaArboles{
                 builder.setLength(0);
             }            
         }
-        tamano = arregloDeLineas.size();
-        String[] grafoArray = new String[tamano];
+        //tamano = arregloDeLineas.size();
+        //String[] grafoArray = new String[tamano];
 
         for (int i=0;i<arregloDeLineas.size();i++) {
             temporal = arregloDeLineas.get(i);
             grafoArray = temporal.split(""); 
             //System.out.println(arregloDeLineas.get(i));
+            for (int j=0;j < grafoArray.length;j++) {
+                // Se procede a la carga del grafo
+                System.out.println(grafoArray[j]);
+            }
         }
-        for (int j=0;j < grafoArray.length;j++) {
-            System.out.println(grafoArray[j]+"\n");
-            // Se procede a la carga del grafo
-        }
+        //
     }
 }
 
