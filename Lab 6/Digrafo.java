@@ -202,7 +202,7 @@ public class Digrafo implements Grafo
                 {
                     System.out.println("nodo anterior: "+id);
                     //Llamada recursiva             
-                    cargarGrafo(k2,id,id+2);
+                    cargarGrafo(k2,id,this.numeroDeVertices+1);
                 }
 
             }
