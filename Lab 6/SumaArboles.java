@@ -44,8 +44,11 @@ public class SumaArboles{
         List<Integer> words1 = new ArrayList<Integer>();
         int tamano = 0;
         String[] grafoArray;
-        List<Vertice> ids_hojas = new ArrayList<Vertice>();
-        List<Vertice> id_raiz = new ArrayList<Vertice>();
+        List<Vertice> hojas = new ArrayList<Vertice>();
+        List<Vertice> raiz = new ArrayList<Vertice>();
+        List<Double> camino = new ArrayList<Double>();
+        int contador2 = 0; 
+        double suma = 0;
 
         // Extraemos los enteros
         while(in.hasNextLine()){
@@ -95,22 +98,51 @@ public class SumaArboles{
             System.out.println("\n");
             System.out.println("DIGRAFO "+ i+"--------------------------------------------------------------------------------------------------");
             Digrafo g = new Digrafo();
+            
             g.cargarGrafo(grafoArray,-1,0);
+            
             for (Vertice v:g.vertices()) {
                 if (v.getListaDePredecesores().size() == 0) {
-                    id_raiz.add(v);
+                    raiz.add(v);
                     System.out.println("VERTICES RAIZ -------------------------------------------------------------------------");
                     System.out.println(v.getPeso()+ "\n");
 
                 }
                 if (v.getListaDeSucesores().size() == 0){
-                    ids_hojas.add(v);
+                    hojas.add(v);
                     System.out.println("VERTICES HOJAS -------------------------------------------------------------------------");
                     System.out.println(v.getPeso()+ "\n");
 
                 }
             }
-            DepthFirstSearch dfs = new DepthFirstSearch(g,id_raiz.get(0));
+            DepthFirstSearch dfs = new DepthFirstSearch(g,raiz.get(0));
+            //dfs.dfsPath(raiz.get(0));
+            // Procedemos a hallar los caminos
+            for (Vertice v: hojas) {
+                System.out.println("DIGRAFO "+i);
+                //dfs.dfsPath(raiz.get(0));
+                camino = dfs.printPath(raiz.get(0),v);
+                for (Double doble:camino) {
+                    suma = suma+doble;
+                }
+                System.out.println("suma de camino = "+ suma);
+                if (suma == words1.get(i)) {
+                    contador2 = 1;
+                    System.out.println("yes"+"\n");
+                    break;                    
+                }
+                contador2 = 0;
+                suma = 0;
+                camino.clear();
+            }
+            if (contador2 == 0) {
+                System.out.println("no"+"\n");
+            }
+            if (g.numeroDeVertices() == 0) {
+                System.out.println("no"+"\n");                
+            }
+            raiz.clear();
+            hojas.clear();
         }
     }
 }
