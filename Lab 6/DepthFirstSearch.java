@@ -8,6 +8,7 @@ public class DepthFirstSearch {
     private Vertice inicial;
     ArrayList<String> nodos = new ArrayList<String>();
     private int seleccion;
+    private List<Double> caminos = new ArrayList<Double>(); 
 
 
 
@@ -45,61 +46,6 @@ public class DepthFirstSearch {
         return this.count;
     }
 
-    /*public void imprimir(Digrafo G){
-        for(Vertice i : G.MapaDeVertices.values())
-        {
-            if(marked[Integer.parseInt(i.getId())]==true)
-            {
-                for(Vertice j : i.predecesores)
-                {
-                    System.out.print(j.getId()+" ");
-                }
-            }
-        }
-        System.out.print("\n");
-        System.out.print("\n");
-        //Ordinales
-        if(this.seleccion == 1){
-            for(Vertice i : G.MapaDeVertices.values()){
-                if(marked[Integer.parseInt(i.getId())]==true){
-                    System.out.print(i.getId()+": ");
-                    for(Vertice j : i.predecesores){
-                        System.out.print(j.getId());
-                        break;
-                    }
-                    System.out.print("\n");
-                }
-                else{
-                    System.out.println(i.getId()+": -1");
-                }
-            }
-        }
-        //Predecesores
-        if(this.seleccion == 2){
-            for(Vertice i : G.MapaDeVertices.values()){
-                if(marked[Integer.parseInt(i.getId())]==true){
-                    System.out.print(i.getId()+": ");
-                    for(Vertice j : i.predecesores){
-                        System.out.print(j.getId()+" ");
-                        break;
-                    }
-                    System.out.print("\n");
-                }
-                else{
-                    System.out.println(i.getId()+": -1");
-                }
-            }
-        }
-        if(this.seleccion == 0){
-            for(Vertice i : G.MapaDeVertices.values()){
-                if(marked[Integer.parseInt(i.getId())]==true)
-                {
-                   this.printPath(G,this.inicial,i); 
-                }
-            }
-        }
-    }*/
-
     private boolean validateVertex(Digrafo G,Vertice v) {
          if (G.estaVertice(v.getId())) {
             return true;
@@ -109,9 +55,11 @@ public class DepthFirstSearch {
             throw new NoSuchElementException("El vertice con id " +v.getId() + " no se encuentra en el Grafo");
         }
     } 
-    public void printPath(Digrafo G, Vertice s, Vertice v) {
+    //List<Double> caminos = new ArrayList<Double>(); 
+    public List<Double> printPath(Vertice s, Vertice v) {
         if (v == s){
-            System.out.print(Integer.parseInt(s.getId()) + " ");
+            caminos.add(v.getPeso());
+            System.out.print(s.getPeso() + "\n ");
         }
         else if (v.getListaDePredecesores().size() == 0){
             //System.out.println("No hay camino del vertice s al vertice v");
@@ -121,9 +69,47 @@ public class DepthFirstSearch {
             if(!v.getListaDePredecesores().isEmpty())
             {
                 Vertice ultimo = v.getListaDePredecesores().get(0);
-                printPath(G, s, ultimo);
-                System.out.print(Integer.parseInt(v.getId()) + " ");
+                caminos.add(v.getPeso());
+                System.out.print(v.getPeso() + " \n");
+                printPath(s, ultimo);
+                
             }
+        }
+        return caminos;
+    }
+    /*public void printPath(Vertice s, Vertice v) {
+        if (v == s){
+            System.out.print(s.getPeso() + "\n ");
+        }
+        else if (v.getListaDePredecesores().size() == 0){
+            //System.out.println("No hay camino del vertice s al vertice v");
+            System.out.println(" \n");
+        }
+        else {
+            if(!v.getListaDePredecesores().isEmpty())
+            {
+                Vertice ultimo = v.getListaDePredecesores().get(0);
+                printPath(s, ultimo);
+                System.out.print(v.getPeso() + " \n");
+            }
+        }
+    }*/
+    public void dfsPath(Vertice inicial){
+        Vertice nodoActual;
+        Stack<Vertice> pila = new Stack<Vertice>();
+        pila.push(inicial);
+        HashSet<Vertice> visitados = new HashSet<Vertice>();
+        while (!pila.empty()){
+            nodoActual = pila.pop();
+            if (!visitados.contains(nodoActual)) {
+                visitados.add(nodoActual);
+                for (Vertice ver:nodoActual.getListaDeSucesores()) {
+                    System.out.println(ver.getPeso());
+                    pila.push(ver);                    
+                }
+                
+            }
+            
         }
     }
 }
