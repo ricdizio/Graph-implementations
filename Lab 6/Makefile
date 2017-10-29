@@ -44,7 +44,6 @@ CLASSES = \
 	Arco.java \
 	Arista.java \
 	Grafo.java \
-	GrafoNoDirigido.java \
 	Digrafo.java\
 	SumaArboles.java\
 #

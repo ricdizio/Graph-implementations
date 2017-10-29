@@ -11,16 +11,16 @@ public class DepthFirstSearch {
 
 
 
-    public DepthFirstSearch(Digrafo G, Vertice v,int x, int y) {
+    public DepthFirstSearch(Digrafo G, Vertice v) {
         //this.listaDeVertices = G.vertices();
         this.inicial = v;
-        this.seleccion = y;
+        //this.seleccion = y;
         this.listaDeVertices = new LinkedList<Vertice>();
         this.listaDeVertices = G.vertices();
         this.marked = new boolean[G.numeroDeVertices()];
         if(this.validateVertex(G,v)){
             this.dfs(G, v);
-            this.imprimir(G);
+            //this.imprimir(G);
         }
      }
 
@@ -45,7 +45,7 @@ public class DepthFirstSearch {
         return this.count;
     }
 
-    public void imprimir(Digrafo G){
+    /*public void imprimir(Digrafo G){
         for(Vertice i : G.MapaDeVertices.values())
         {
             if(marked[Integer.parseInt(i.getId())]==true)
@@ -98,7 +98,7 @@ public class DepthFirstSearch {
                 }
             }
         }
-    }
+    }*/
 
     private boolean validateVertex(Digrafo G,Vertice v) {
          if (G.estaVertice(v.getId())) {

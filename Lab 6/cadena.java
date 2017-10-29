@@ -15,12 +15,6 @@
  *
  * 
  *************************************************************************************************************/
-/**  
-     * Clase constructora que inicializa al objeto Cadena con atributo x el cual representa 
-     * la logitud de la cadena de strings
-     *
-     */
-
 import java.util.*;
 
 public class cadena
@@ -42,7 +36,7 @@ public class cadena
   	this.chain[this.pointer] = elemento;
     this.pointer++;
    }
-
+   //Recordar preguntarle a Ricardo
   public void deleteByPos(int x)
   {
     for(int i = x; i<this.longitud-1;i++)

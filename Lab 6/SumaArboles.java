@@ -14,17 +14,12 @@ public class SumaArboles{
   
   public static void main(String [] args) {
         List<String>  arregloDeLineas = new ArrayList<String>();
-        //this.in = new In(file);
-        String words[];
-        String grafoArray[];
+        String[] words;
         int cuentaLineas = 1;
         //Cargamos archivo
         String line;
         String linee;
         Digrafo g = new Digrafo();
-        //String line;
-        //String words[];
-        List<String> words1 = new ArrayList<String>();
         String file = args[0];
         In in = new In(file);
         StringBuilder builder = new StringBuilder();
@@ -36,16 +31,25 @@ public class SumaArboles{
         int index1 = 0;
         String tempLine;
         String tempWords[];
-        String[] linea;
         String temporal;
+        String temporal2; 
+        List<Integer> words1 = new ArrayList<Integer>();
+        int tamano = 0;
 
         // Extraemos los enteros
         while(in.hasNextLine()){
             line = in.readLine().replaceAll("\\s+","");
             //words = line.split("");
             index = line.indexOf("(");
-            if (line.substring(0,index) != " ") {
-                words1.add(line.substring(0,index)); 
+            temporal2 = line.substring(0,index).replaceAll("\\s+","").replaceAll("\t","");
+            //words5 = line.split("");
+            //System.out.println(line.substring(0,index)+"/");
+            //if (line.substring(0,index) != "\\s+" || line.substring(0,index) != "\t" || line.substring(0,index) != "\n"){
+            try{
+                words1.add(Integer.parseInt(line.substring(0,index)));
+            }
+            finally{
+                continue;
             }
         }
 
@@ -74,16 +78,17 @@ public class SumaArboles{
                 builder.setLength(0);
             }            
         }
+        tamano = arregloDeLineas.size();
+        String[] grafoArray = new String[tamano];
 
         for (int i=0;i<arregloDeLineas.size();i++) {
             temporal = arregloDeLineas.get(i);
-            grafoArray = temporal.split(""); ;
+            grafoArray = temporal.split(""); 
             //System.out.println(arregloDeLineas.get(i));
-            for (int j=0;j<grafoArray.length;j++) {
-                System.out.println(grafoArray[j]+"\n");
-                // Se procede a la carga del grafo
-            }
-            
+        }
+        for (int j=0;j < grafoArray.length;j++) {
+            System.out.println(grafoArray[j]+"\n");
+            // Se procede a la carga del grafo
         }
     }
 }
