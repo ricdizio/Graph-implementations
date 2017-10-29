@@ -112,13 +112,11 @@ public class Digrafo implements Grafo
                 //Agregamos el nodo al hashmap
                 Vertice z = new Vertice(Integer.toString(id),nodod);
                 agregarVertice(z);
-                this.numeroDeVertices++;
                 System.out.println("Se agrego el vertice con id: "+id +" peso: "+nodo);
                 //Agregamos arco con el nodo anterior
                 if(nodoAnterior != -1)
                 {
                     agregarArco(Integer.toString(id),1.0,String.valueOf(nodoAnterior),Integer.toString(id));
-                    this.numeroDeLados++;
                     System.out.println("Se agrego el arco con id: "+id+" y va de v vertice id: "+ nodoAnterior +" a u vertice id: "+id);
                 }
 
