@@ -44,7 +44,8 @@ public class SumaArboles{
         List<Integer> words1 = new ArrayList<Integer>();
         int tamano = 0;
         String[] grafoArray;
-        List<String> ids_hojas = new ArrayList<String>();
+        List<Vertice> ids_hojas = new ArrayList<Vertice>();
+        List<Vertice> id_raiz = new ArrayList<Vertice>();
 
         // Extraemos los enteros
         while(in.hasNextLine()){
@@ -96,12 +97,20 @@ public class SumaArboles{
             Digrafo g = new Digrafo();
             g.cargarGrafo(grafoArray,-1,0);
             for (Vertice v:g.vertices()) {
+                if (v.getListaDePredecesores().size() == 0) {
+                    id_raiz.add(v);
+                    System.out.println("VERTICES RAIZ -------------------------------------------------------------------------");
+                    System.out.println(v.getPeso()+ "\n");
+
+                }
                 if (v.getListaDeSucesores().size() == 0){
-                    ids_hojas.add(v.getId());
+                    ids_hojas.add(v);
                     System.out.println("VERTICES HOJAS -------------------------------------------------------------------------");
                     System.out.println(v.getPeso()+ "\n");
+
                 }
             }
+            DepthFirstSearch dfs = new DepthFirstSearch(g,id_raiz.get(0));
         }
     }
 }
