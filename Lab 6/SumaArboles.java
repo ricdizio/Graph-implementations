@@ -82,7 +82,7 @@ public class SumaArboles{
                 contador1++;
             }
             if (contador == contador1) {
-                if (contador >= 1 && contador >= 1) {
+                if (contador >= 1 && contador1 >= 1) {
                     arregloDeLineas.add(builder.toString());
                     contador = 0;
                     contador1 = 0;
@@ -127,7 +127,7 @@ public class SumaArboles{
             if(g.numeroDeVertices() == 0)
             {
                 System.out.println("Grafo Vacio");
-                System.out.println("No");
+                System.out.println("no");
             }
             //Grafo no vacio
             else
