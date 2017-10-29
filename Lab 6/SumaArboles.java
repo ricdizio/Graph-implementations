@@ -62,11 +62,12 @@ public class SumaArboles{
                 continue;
             }
         }
+        /*
 
         for (int i=0;i<words1.size();i++) {
             System.out.println(words1.get(i));
         }
-    
+        */
         In iin = new In(file);
         linee = iin.readAll().replaceAll("\\s+","");
         words = linee.split("");
@@ -103,8 +104,8 @@ public class SumaArboles{
             //}
             grafoArray = temporal.split("");
             //System.out.println(arregloDeLineas.get(i));
-            System.out.println("\n");
-            System.out.println("DIGRAFO "+ i + "--------------------------------------------------------------------------------------------------");
+            //System.out.println("\n");
+            //System.out.println("DIGRAFO "+ i + "--------------------------------------------------------------------------------------------------");
             g = new Digrafo();
             
             g.cargarGrafo(grafoArray,-1,0);
@@ -112,21 +113,21 @@ public class SumaArboles{
             for (Vertice v:g.vertices()) {
                 if (v.getListaDePredecesores().size() == 0) {
                     raiz.add(v);
-                    System.out.println("VERTICES RAIZ -------------------------------------------------------------------------");
-                    System.out.println(v.getPeso()+ "\n");
+                    //System.out.println("VERTICES RAIZ -------------------------------------------------------------------------");
+                    //System.out.println(v.getPeso()+ "\n");
 
                 }
                 if (v.getListaDeSucesores().size() == 0){
                     hojas.add(v);
-                    System.out.println("VERTICES HOJAS -------------------------------------------------------------------------");
-                    System.out.println(v.getPeso()+ "\n");
+                    //System.out.println("VERTICES HOJAS -------------------------------------------------------------------------");
+                    //System.out.println(v.getPeso()+ "\n");
 
                 }
             }
             //Caso grafo vacio
             if(g.numeroDeVertices() == 0)
             {
-                System.out.println("Grafo Vacio");
+                //System.out.println("Grafo Vacio");
                 System.out.println("no");
             }
             //Grafo no vacio
@@ -136,16 +137,16 @@ public class SumaArboles{
                 //dfs.dfsPath(raiz.get(0));
                 // Procedemos a hallar los caminos
                 for (Vertice v: hojas) {
-                    System.out.println("DIGRAFO "+i);
+                    //System.out.println("DIGRAFO "+i);
                     //dfs.dfsPath(raiz.get(0));
                     camino = dfs.printPath(raiz.get(0),v);
                     for (Double doble:camino) {
                         suma = suma+doble;
                     }
-                    System.out.println("suma de camino = "+ suma);
+                    //System.out.println("suma de camino = "+ suma);
                     if (suma == words1.get(i)) {
                         contador2 = 1;
-                        System.out.println("yes"+"\n");
+                        System.out.println("yes");
                         break;                    
                     }
                     contador2 = 0;
@@ -153,10 +154,10 @@ public class SumaArboles{
                     camino.clear();
                 }
                 if (contador2 == 0) {
-                    System.out.println("no"+"\n");
+                    System.out.println("no");
                 }
                 if (g.numeroDeVertices() == 0) {
-                    System.out.println("no"+"\n");                
+                    System.out.println("no");                
                 }
                 raiz.clear();
                 hojas.clear();

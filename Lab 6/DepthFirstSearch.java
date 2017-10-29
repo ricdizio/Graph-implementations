@@ -59,18 +59,18 @@ public class DepthFirstSearch {
     public List<Double> printPath(Vertice s, Vertice v) {
         if (v == s){
             caminos.add(v.getPeso());
-            System.out.print(s.getPeso() + "\n ");
+            //System.out.print(s.getPeso() + "\n ");
         }
         else if (v.getListaDePredecesores().size() == 0){
             //System.out.println("No hay camino del vertice s al vertice v");
-            System.out.println(" \n");
+            //System.out.println(" \n");
         }
         else {
             if(!v.getListaDePredecesores().isEmpty())
             {
                 Vertice ultimo = v.getListaDePredecesores().get(0);
                 caminos.add(v.getPeso());
-                System.out.print(v.getPeso() + " \n");
+                //System.out.print(v.getPeso() + " \n");
                 printPath(s, ultimo);
                 
             }

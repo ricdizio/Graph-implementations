@@ -70,10 +70,10 @@ public class Digrafo implements Grafo
             }
 
             //Borramos primer y ultimo parentesis
-            c.toStringChain();
+            //c.toStringChain();
             c.deleteByPos(0);
             c.deleteByPos(arbol.length-1);
-            c.toStringChain();
+            //c.toStringChain();
 
             //Sacamos el nodo a agregar
             int last = 0;
@@ -99,7 +99,7 @@ public class Digrafo implements Grafo
             }
 
             //Imprimimos para ver como quedo la cadena sin el ndo que agregaremos
-            c.toStringChain();
+            //c.toStringChain();
 
             
             if(acumulador != "")
@@ -112,12 +112,12 @@ public class Digrafo implements Grafo
                 //Agregamos el nodo al hashmap
                 Vertice z = new Vertice(Integer.toString(id),nodod);
                 agregarVertice(z);
-                System.out.println("Se agrego el vertice con id: "+id +" peso: "+nodo);
+                //System.out.println("Se agrego el vertice con id: "+id +" peso: "+nodo);
                 //Agregamos arco con el nodo anterior
                 if(nodoAnterior != -1)
                 {
                     agregarArco(Integer.toString(id),1.0,String.valueOf(nodoAnterior),Integer.toString(id));
-                    System.out.println("Se agrego el arco con id: "+id+" y va de v vertice id: "+ nodoAnterior +" a u vertice id: "+id);
+                    //System.out.println("Se agrego el arco con id: "+id+" y va de v vertice id: "+ nodoAnterior +" a u vertice id: "+id);
                 }
 
 
@@ -140,7 +140,7 @@ public class Digrafo implements Grafo
                     if(cerrados==abiertos)
                     {
                         //cortar arreglos
-                        System.out.println("corte en : "+i);
+                        //System.out.println("corte en : "+i);
                         corte = i;
                         break;
                     }
@@ -175,10 +175,10 @@ public class Digrafo implements Grafo
                 //Convertimos l1 y l2 a k1 y k2 de tipo String array
                 
                 String k1[] = new String[l1.size()];
-                System.out.println("size cadena 1: "+l1.size());
+                //System.out.println("size cadena 1: "+l1.size());
 
                 String k2[] = new String[l2.size()];
-                System.out.println("size cadena 2: "+l2.size());
+                //System.out.println("size cadena 2: "+l2.size());
                 for (int i=0;i<l1.size();i++ ) 
                 {
                     k1[i] = l1.get(i);
@@ -193,14 +193,14 @@ public class Digrafo implements Grafo
                 if(!(l1.get(1).equals(")")))
                 {
                     //Llamada recursiva
-                    System.out.println("nodo anterior: "+id);
+                    //System.out.println("nodo anterior: "+id);
                     cargarGrafo(k1,id,id+1);
                 }
 
                 //Si l2 no es vacio, tiene elementos a particionar
                 if(!(l2.get(1).equals(")")))
                 {
-                    System.out.println("nodo anterior: "+id);
+                    //System.out.println("nodo anterior: "+id);
                     //Llamada recursiva             
                     cargarGrafo(k2,id,this.numeroDeVertices);
                 }
