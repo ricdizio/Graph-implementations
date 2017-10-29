@@ -85,11 +85,13 @@ public class SumaArboles{
         for (int i=0;i<arregloDeLineas.size();i++) {
             temporal = arregloDeLineas.get(i);
             grafoArray = temporal.split(""); 
+            //Cargamos el grafo para cada instancia
+            g.cargarGrafo(grafoArray,-1,0);
             //System.out.println(arregloDeLineas.get(i));
-            for (int j=0;j < grafoArray.length;j++) {
+            //for (int j=0;j < grafoArray.length;j++) {
                 // Se procede a la carga del grafo
-                System.out.println(grafoArray[j]);
-            }
+                //System.out.println(grafoArray[j]);
+            //}
         }
         //
     }
