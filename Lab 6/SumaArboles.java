@@ -1,7 +1,16 @@
-/**
- *lab4
- */
-
+/**********************************************************************************************************
+ *    Compilacion:  javac SumaArboles.java
+ *    Ejecucion:    java  SumaArboles NombreArchivo.txt
+ *    Dependencias In.java,vertice.java,Lado.java, Arista.java, Grafo.java, Digrafo.java
+ *    
+ *
+ *    @author  Ricardo Di Zio 11-11274
+ *    @author  Fabio Suarez   12-10578
+ *    @version 1.0
+ *    @since   2017-27-10
+ *
+ *
+ *************************************************************************************************************/
 import java.util.*;
 import java.io.*;
 
@@ -19,7 +28,6 @@ public class SumaArboles{
         //Cargamos archivo
         String line;
         String linee;
-        Digrafo g = new Digrafo();
         String file = args[0];
         In in = new In(file);
         StringBuilder builder = new StringBuilder();
@@ -36,16 +44,13 @@ public class SumaArboles{
         List<Integer> words1 = new ArrayList<Integer>();
         int tamano = 0;
         String[] grafoArray;
+        List<String> ids_hojas = new ArrayList<String>();
 
         // Extraemos los enteros
         while(in.hasNextLine()){
             line = in.readLine().replaceAll("\\s+","");
-            //words = line.split("");
             index = line.indexOf("(");
             temporal2 = line.substring(0,index).replaceAll("\\s+","").replaceAll("\t","");
-            //words5 = line.split("");
-            //System.out.println(line.substring(0,index)+"/");
-            //if (line.substring(0,index) != "\\s+" || line.substring(0,index) != "\t" || line.substring(0,index) != "\n"){
             try{
                 words1.add(Integer.parseInt(line.substring(0,index)));
             }
@@ -60,34 +65,42 @@ public class SumaArboles{
     
         In iin = new In(file);
         linee = iin.readAll().replaceAll("\\s+","");
-        //sSystem.out.println("LINE  "+linee);
         words = linee.split("");
         for (int i=0; i < words.length;i++) {
             if (words[i].equals("(")) {
                 builder.append(words[i]);
                 contador++;
             }
-                else if (contador >= 1) {
-                    builder.append(words[i]);
-                }
+            else if (contador >= 1) {
+                builder.append(words[i]);
+            }
             if (words[i].equals(")")) {
                 contador1++;
             }
             if (contador == contador1) {
-                arregloDeLineas.add(builder.toString());
-                contador = 0;
-                contador1 = 0;
-                builder.setLength(0);
+                if (contador > 1 && contador > 1) {
+                    arregloDeLineas.add(builder.toString());
+                    contador = 0;
+                    contador1 = 0;
+                    builder.setLength(0);
+                }
             }            
         }
 
         for (int i=0;i<arregloDeLineas.size();i++) {
             temporal = arregloDeLineas.get(i);
-            grafoArray = temporal.split(""); 
-            //System.out.println(temporal);
-            for (int j=0;j < grafoArray.length;j++) {
-                // Se procede a la carga del grafo
-                System.out.println(grafoArray[j]);
+            grafoArray = temporal.split("");
+            //System.out.println(arregloDeLineas.get(i));
+            System.out.println("\n");
+            System.out.println("DIGRAFO "+ i+"--------------------------------------------------------------------------------------------------");
+            Digrafo g = new Digrafo();
+            g.cargarGrafo(grafoArray,-1,0);
+            for (Vertice v:g.vertices()) {
+                if (v.getListaDeSucesores().size() == 0){
+                    ids_hojas.add(v.getId());
+                    System.out.println("VERTICES HOJAS -------------------------------------------------------------------------");
+                    System.out.println(v.getPeso()+ "\n");
+                }
             }
         }
     }
