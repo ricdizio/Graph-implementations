@@ -55,7 +55,6 @@ public class DepthFirstSearch {
             throw new NoSuchElementException("El vertice con id " +v.getId() + " no se encuentra en el Grafo");
         }
     } 
-    //List<Double> caminos = new ArrayList<Double>(); 
     public List<Double> printPath(Vertice s, Vertice v) {
         if (v == s){
             caminos.add(v.getPeso());
@@ -77,23 +76,6 @@ public class DepthFirstSearch {
         }
         return caminos;
     }
-    /*public void printPath(Vertice s, Vertice v) {
-        if (v == s){
-            System.out.print(s.getPeso() + "\n ");
-        }
-        else if (v.getListaDePredecesores().size() == 0){
-            //System.out.println("No hay camino del vertice s al vertice v");
-            System.out.println(" \n");
-        }
-        else {
-            if(!v.getListaDePredecesores().isEmpty())
-            {
-                Vertice ultimo = v.getListaDePredecesores().get(0);
-                printPath(s, ultimo);
-                System.out.print(v.getPeso() + " \n");
-            }
-        }
-    }*/
     public void dfsPath(Vertice inicial){
         Vertice nodoActual;
         Stack<Vertice> pila = new Stack<Vertice>();
