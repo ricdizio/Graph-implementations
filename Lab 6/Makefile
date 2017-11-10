@@ -39,6 +39,7 @@ CLASSES = \
 	In.java \
 	StdIn.java \
         StdOut.java \
+	cadena.java\
 	Vertice.java \
 	Lado.java \
 	Arco.java \
