@@ -5,8 +5,6 @@ public class Mesero{
 		int numeroDeNodos = 0;
 		int numeroDeLados = 0;
 		int nodoInicial = 0;
-		int numeroDeLados = 0;
-		int nodoInicial = 0;
 		int nodoFinal = 0;
 		In in = new In(args[0]);
 		String idTemp;
@@ -30,7 +28,7 @@ public class Mesero{
 		for(int i = 0; i < numeroDeLados;i++ ) {
 			nodo1 = in.readString();
 			nodo2 = in.readString();
-			GND.agregarLado(String.valueOf(i), nodo1,nodo2);
+			GND.agregarArista(String.valueOf(i), 0.0,nodo1,nodo2);
 		}
 	}
 }
