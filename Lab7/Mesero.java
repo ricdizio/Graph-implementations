@@ -7,6 +7,8 @@ public class Mesero{
 		int nodoInicial = 0;
 		int nodoFinal = 0;
 		In in = new In(args[0]);
+		// Vertice de partida con id cocina
+		String cocina = new String (args[1]); 
 		String idTemp;
 		String nodo1;
 		String nodo2;
