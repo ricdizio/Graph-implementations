@@ -7,7 +7,7 @@ public class Dijkstra{
 		Int inf = Integer.MAX_VALUE;
 
 		public Dijkstra(GrafoNoDirigido G, Vertice s){
-			PriorityQueue < String >  p_queue = new PriorityQueue < String > ()
+			PriorityQueue <Vertice>  colaP = new PriorityQueue <Vertice> ()
 			List<Vertice> listadeVertices = new LinkedList<Vertice>();
 			List<Integer> costos = new LinkedList<Integer>();
 			List<String> caminos = new LinkedList<String>();
@@ -15,10 +15,18 @@ public class Dijkstra{
 			for (Vertice v: listadeVertices) {
 				costos.add(listadeVertices.getIndex(v), inf);
 				caminos.add(listadeVertices.getIndex(v), null);
+				colaP.add(v);
 			}
 			costos.add(listadeVertices.getIndex(s), 0);
 
 			// usamos la cola
+
+			while (colaP.size() > 0){
+				
+								
+			}
+
+
 
 
 		}
