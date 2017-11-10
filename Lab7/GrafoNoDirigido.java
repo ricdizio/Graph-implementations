@@ -41,7 +41,8 @@ public class GrafoNoDirigido implements Grafo
      */
 
 
-    public GrafoNoDirigido(){
+    public GrafoNoDirigido()
+    {
         numeroDeVertices = 0;
         numeroDeLados = 0;
         MapaDeAristas = new HashMap <String,Arista>();
@@ -57,32 +58,37 @@ public class GrafoNoDirigido implements Grafo
 
     public boolean cargarGrafo(String dirArchivo) {
         try{
-            
+
             In in = new In(dirArchivo);
-            int cantidad_de_nodos = in.readInt();
-            int cantidad_de_aristas = in.readInt();
+            int nodoInicial;
+            int nodoFinal;
 
-            if( cantidad_de_nodos >= 0  && cantidad_de_aristas >= 0 ){
+            int nodos = in.readInt();
+            System.out.println(numeroDeVertices);
+            for(int i = 0; i < nodos; i++) 
+            {
+                nodoInicial = in.readInt();
+                nodoFinal = in.readInt();
+                Vertice  vertice = new Vertice(String.valueOf(i), 0.0);
+                vertice.ejeX = nodoInicial;
+                vertice.ejeY = nodoFinal;
+                this.agregarVertice(vertice);
+            }
 
-                for (int i=0;i<cantidad_de_nodos;i++) {
-                    String id_del_vertice = in.readString();
-                    double peso_del_vertice = in.readDouble();
-                    
-                    agregarVertice(id_del_vertice, peso_del_vertice);
-                }
+            int lados = in.readInt();          
+       
+            String nodo1;
+            String nodo2;
 
-                for (int i=0;i<cantidad_de_aristas;i++) {
-                    String id_de_arista = in.readString();
-                    String id_vertice_de_Salida = in.readString();
-                    String id_vertice_de_Llegada = in.readString();
-                    double peso_de_arista = in.readDouble();
-                    
-                    agregarArista(id_de_arista, peso_de_arista,id_vertice_de_Salida, id_vertice_de_Llegada);
-                    
-                }
+            for(int i = 0; i < lados;i++ )
+            {
+                nodo1 = in.readString();
+                nodo2 = in.readString();
+                this.agregarArista(String.valueOf(i),0.0,nodo1,nodo2);
             }
         }
-        catch(Exception e){
+        catch(Exception e)
+        {
             System.out.println("No se pudo cargar el archivo");
             return false;
         }
