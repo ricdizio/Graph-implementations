@@ -10,7 +10,7 @@ public class Mesero{
 		GrafoNoDirigido gnd = new GrafoNoDirigido();
 
 		gnd.cargarGrafo(input_txt);
-
+		//Print
 		String x = gnd.toString();
 		System.out.println(x);
 	}
