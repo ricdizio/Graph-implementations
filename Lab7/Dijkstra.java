@@ -22,7 +22,10 @@ public class Dijkstra{
 		this.costos = new Double[G.numeroDeVertices()];
 		this.caminos = new String[G.numeroDeVertices()];
 		this.lados = new int[G.numeroDeVertices()]; 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8e422efb3fa6016f1858a6eaab094a8919e1fbe4
 
 		listadeVertices = G.vertices();
 			
@@ -49,11 +52,21 @@ public class Dijkstra{
 			Collections.sort(cola,comp);
 			x = cola.remove(0);
 
+<<<<<<< HEAD
 			for (Vertice v1: x.getListaDeAdyacencias()) 
 			{
 
 				if (this.costos[doubleToInt(v1)] > (this.costos[doubleToInt(x)] + this.costo(x, v1))) 
 				{
+=======
+			//System.out.println(x);
+			for (Vertice v1: x.getListaDeAdyacencias()) {
+				/*System.out.println(this.costos[doubleToInt(v1)]);
+				System.out.println(this.costos[doubleToInt(x)]);
+				System.out.println(this.costo(x, v1));
+				System.out.println("");*/
+				if (this.costos[doubleToInt(v1)] > (this.costos[doubleToInt(x)] + this.costo(x, v1))) {
+>>>>>>> 8e422efb3fa6016f1858a6eaab094a8919e1fbe4
 					this.costos[doubleToInt(v1)] = this.costos[doubleToInt(x)] + this.costo(x, v1);
 					this.lados[doubleToInt(v1)] = this.lados[doubleToInt(x)] + 1;
 					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(x)] + "->" + x.getId();											
