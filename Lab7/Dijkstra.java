@@ -8,10 +8,10 @@ public class Dijkstra{
 	public Dijkstra(GrafoNoDirigido G, Vertice s){
 			//PriorityQueue <Vertice>  colaP = new PriorityQueue <Vertice> ()
 		// ARRAYsLIST METODO SORTING
-		int inf = Integer.MAX_VALUE;
+		Double inf = Double.MAX_VALUE;
 		Vertice x;
 		List<Vertice>  cola = new ArrayList<Vertice> (); 
-		int costos[] = new int[G.numeroDeVertices()];
+		Double costos[] = new Double[G.numeroDeVertices()];
 		String caminos[] = new String[G.numeroDeVertices()]; 
 
 		listadeVertices = G.vertices();
@@ -21,7 +21,7 @@ public class Dijkstra{
 			caminos[doubleToInt(v)] = "";
 			cola.add(v);
 		}
-		costos[doubleToInt(s)] = 0;
+		costos[doubleToInt(s)] = 0.0;
 
 		while (cola.size() > 0){
 			x = cola.remove(0);
@@ -42,13 +42,13 @@ public class Dijkstra{
 		return i;
 	}
 
-	public int costo(Vertice x, Vertice y){
-		int sumX = 0;
-		int sumY = 0;
-		int distEuclid = 0;
-		sumX = (int)Math.pow((x.ejeX - y.ejeX),2);
-		sumY = (int)Math.pow((x.ejeY - y.ejeY),2);
-		distEuclid = (int)Math.sqrt(sumX + sumY);
+	public Double costo(Vertice x, Vertice y){
+		Double sumX = 0.0;
+		Double sumY = 0.0;
+		Double distEuclid = 0.0;
+		sumX = Math.pow((x.ejeX - y.ejeX),2);
+		sumY = Math.pow((x.ejeY - y.ejeY),2);
+		distEuclid = Math.sqrt(sumX + sumY);
 		return distEuclid;
 
 	}
