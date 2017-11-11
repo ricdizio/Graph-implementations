@@ -29,11 +29,18 @@ public class Dijkstra{
 				costos[doubleToInt(ver)] = 0.0;				
 			}
 		}
-		
+		// Ordenamos el array list (cola de prionidad)
+		Comparator<Vertice> comp = (Vertice a, Vertice b) -> {
+    		return costos[doubleToInt(a)].compareTo(costos[doubleToInt(b)]);
+		};
+
+		Collections.sort(cola,comp);
 
 		while (cola.size() > 0){
+			Collections.sort(cola,comp);
 			x = cola.remove(0);
-			//System.out.println(doubleToInt(x));
+
+			System.out.println(x);
 			for (Vertice v1: x.getListaDeAdyacencias()) {
 				//costos.get(getIndexx(v1);
 				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + this.costo(x, v1))) {
