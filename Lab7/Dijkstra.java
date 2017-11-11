@@ -4,11 +4,11 @@ import java.text.DecimalFormat;
 
 public class Dijkstra{
 	
-	public List<Vertice> listadeVertices;
-	public String caminos[];
-	public int lados[];
-	public Double costos[];
-	public DecimalFormat df;
+	private List<Vertice> listadeVertices;
+	private String caminos[];
+	private int lados[];
+	private Double costos[];
+	private DecimalFormat df;
 
 	public Dijkstra(GrafoNoDirigido G, String s)
 	{
