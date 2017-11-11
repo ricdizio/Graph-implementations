@@ -88,7 +88,7 @@ public class Dijkstra{
 	{
 		for(int i = 0; i < g.numeroDeVertices(); i++)
 		{	
-			System.out.println("Nodo " + i + ": " + this.caminos[i]+" " + lados[i] + " lados" + " (costo "+ df.format(this.costos[i])+ ")");
+			System.out.println("Nodo " + i + ": " + this.caminos[i]+"\t \t" + lados[i] + " lados" + " (costo "+ df.format(this.costos[i])+ ")");
 		}
 	}
 }
