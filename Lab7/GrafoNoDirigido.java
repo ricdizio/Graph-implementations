@@ -62,6 +62,7 @@ public class GrafoNoDirigido implements Grafo
             In in = new In(dirArchivo);
             int nodoInicial;
             int nodoFinal;
+            Double doble = 0.0;
 
             int nodos = in.readInt();
             System.out.println(numeroDeVertices);
@@ -69,7 +70,8 @@ public class GrafoNoDirigido implements Grafo
             {
                 nodoInicial = in.readInt();
                 nodoFinal = in.readInt();
-                Vertice  vertice = new Vertice(String.valueOf(i), 1.0);
+                Vertice  vertice = new Vertice(String.valueOf(i), doble);
+                doble = doble + 1.0;
                 vertice.ejeX = nodoInicial;
                 vertice.ejeY = nodoFinal;
                 this.agregarVertice(vertice);
