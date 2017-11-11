@@ -69,7 +69,7 @@ public class GrafoNoDirigido implements Grafo
             {
                 nodoInicial = in.readInt();
                 nodoFinal = in.readInt();
-                Vertice  vertice = new Vertice(String.valueOf(i), 0.0);
+                Vertice  vertice = new Vertice(String.valueOf(i), 1.0);
                 vertice.ejeX = nodoInicial;
                 vertice.ejeY = nodoFinal;
                 this.agregarVertice(vertice);
@@ -84,7 +84,7 @@ public class GrafoNoDirigido implements Grafo
             {
                 nodo1 = in.readString();
                 nodo2 = in.readString();
-                this.agregarArista(String.valueOf(i),0.0,nodo1,nodo2);
+                this.agregarArista(String.valueOf(i),1.0,nodo1,nodo2);
             }
         }
         catch(Exception e)
