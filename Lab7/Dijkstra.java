@@ -22,10 +22,11 @@ public class Dijkstra{
 			caminos[doubleToInt(v)] = "";
 			cola.add(v);
 			if (v.getId() == s) {
-				ver = v;				
+				ver = v;
+				costos[doubleToInt(ver)] = 0.0;				
 			}
 		}
-		costos[doubleToInt(ver)] = 0.0;
+		
 
 		while (cola.size() > 0){
 			x = cola.remove(0);
