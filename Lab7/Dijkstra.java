@@ -31,7 +31,7 @@ public class Dijkstra{
 				//costos.get(getIndexx(v1);
 				if ((costos.get(getIndexx(v1))) > (costos.get(getIndexx(x))) + costo(v1, x)) {
 					costos.get(getIndexx(v1)) = costos.get(getIndexx(x)) + costo(v1, x);
-					caminos.add(getIndexx(v1), caminos.get(getIndexx(v1)) +" "+v1.getId());											
+					caminos.add(getIndexx(v1), caminos.get(getIndexx(v1)) +" "+x.getId());											
 				}					
 			}
 		}
