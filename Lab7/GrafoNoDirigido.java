@@ -60,23 +60,17 @@ public class GrafoNoDirigido implements Grafo
         try{
 
             In in = new In(dirArchivo);
-
             double nodoInicial;
             double nodoFinal;
-
-            Double doble = 0.0;
+            double peso_nodo = 0.0;
 
             int nodos = in.readInt();
             for(int i = 0; i < nodos; i++) 
             {
-
                 nodoInicial = in.readDouble();
                 nodoFinal = in.readDouble();
-                Vertice  vertice = new Vertice(String.valueOf(i), 0.0);
-                nodoInicial = in.readDouble();
-                nodoFinal = in.readDouble;
-                Vertice  vertice = new Vertice(String.valueOf(i), doble);
-                doble = doble + 1.0;
+                Vertice  vertice = new Vertice(String.valueOf(i), peso_nodo);
+                peso_nodo = peso_nodo + 1.0;
                 vertice.ejeX = nodoInicial;
                 vertice.ejeY = nodoFinal;
                 this.agregarVertice(vertice);
@@ -91,7 +85,7 @@ public class GrafoNoDirigido implements Grafo
             {
                 nodo1 = in.readString();
                 nodo2 = in.readString();
-                this.agregarArista(String.valueOf(i),1.0,nodo1,nodo2);
+                this.agregarArista(String.valueOf(i),0.0,nodo1,nodo2);
             }
         }
         catch(Exception e)
