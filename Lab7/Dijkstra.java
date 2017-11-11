@@ -12,33 +12,38 @@ public class Dijkstra{
 		Vertice x;
 		List<Vertice>  cola = new ArrayList<Vertice> ();
 		//List<Vertice> 
-		int costo[] = new int[G.numeroDeVertices()];
+		int costos[] = new int[G.numeroDeVertices()];
 		String caminos[] = new String[G.numeroDeVertices()]; 
 
 		listadeVertices = G.vertices();
 			
 		for (Vertice v: listadeVertices) {
-			costos[v.getPeso().intValue()] = inf;
-			caminos[v.getPeso().intValue()] = "";
+			costos[doubleToInt(v)] = inf;
+			caminos[doubleToInt(v)] = "";
 			cola.add(v);
 		}
 		//costos.add(listadeVertices.indexOf(s), 0);
-		costos[s.getPeso().intValue()] = 0;
+		costos[doubleToInt(s)] = 0;
 
 		while (cola.size() > 0){
 			x = cola.remove(0);
 
 			for (Vertice v1: x.getListaDeAdyacencias()) {
 				//costos.get(getIndexx(v1);
-				if (costos[v1.getPeso().intValue()] > (costos[x.getPeso().intValue()] + costo(x, v1)) {
+				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + costo(x, v1))) {
 					
-					costos[v1.getPeso().intValue()] = costos[x.getPeso().intValue()] + costo(x, v1);
-					caminos[v1.getPeso().intValue()] = caminos[v1.getPeso().intValue()] + "->" + x.getId();
+					costos[doubleToInt(v1)] = costos[doubleToInt(x)] + costo(x, v1);
+					caminos[doubleToInt(v1)] = caminos[doubleToInt(v1)] + "->" + x.getId();
 
 					//caminos.add(getIndexx(v1), caminos.get(getIndexx(v1)) +" "+x.getId());											
 				}					
 			}
 		}
+	}
+
+	public int doubleToInt(Vertice v){
+		int i = (int)v.getPeso();
+		return i;
 	}
 
 	public int costo(Vertice x, Vertice y){
