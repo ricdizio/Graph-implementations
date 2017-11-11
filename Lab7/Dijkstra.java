@@ -5,11 +5,12 @@ public class Dijkstra{
 	
 	public List<Vertice> listadeVertices;
 
-	public Dijkstra(GrafoNoDirigido G, Vertice s){
+	public Dijkstra(GrafoNoDirigido G, String s){
 			//PriorityQueue <Vertice>  colaP = new PriorityQueue <Vertice> ()
 		// ARRAYsLIST METODO SORTING
 		Double inf = Double.MAX_VALUE;
 		Vertice x;
+		Vertice ver;
 		List<Vertice>  cola = new ArrayList<Vertice> (); 
 		Double costos[] = new Double[G.numeroDeVertices()];
 		String caminos[] = new String[G.numeroDeVertices()]; 
@@ -20,8 +21,11 @@ public class Dijkstra{
 			costos[doubleToInt(v)] = inf;
 			caminos[doubleToInt(v)] = "";
 			cola.add(v);
+			if (v.getId() == s) {
+				ver = v;				
+			}
 		}
-		costos[doubleToInt(s)] = 0.0;
+		costos[doubleToInt(ver)] = 0.0;
 
 		while (cola.size() > 0){
 			x = cola.remove(0);
