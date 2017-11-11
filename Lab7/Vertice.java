@@ -32,8 +32,8 @@ public class Vertice
   public List<Vertice> sucesores;
   public List<Vertice> predecesores;
   public List<Lado> incidencias;
-  public Integer ejeX;
-  public Integer ejeY;
+  public Double ejeX;
+  public Double ejeY;
 
 
   /**  
@@ -49,8 +49,8 @@ public class Vertice
     this.sucesores = new LinkedList<Vertice>();
     this.predecesores = new LinkedList<Vertice>();
     this.incidencias = new LinkedList<Lado>();
-    this.ejeX = 0;
-    this.ejeY = 0;
+    this.ejeX = 0.0;
+    this.ejeY = 0.0;
 
     List<Vertice> adyacencias = new LinkedList<Vertice>();
     List<Vertice> sucesores = new LinkedList<Vertice>();

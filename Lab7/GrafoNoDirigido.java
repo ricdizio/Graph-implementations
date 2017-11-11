@@ -60,15 +60,14 @@ public class GrafoNoDirigido implements Grafo
         try{
 
             In in = new In(dirArchivo);
-            int nodoInicial;
-            int nodoFinal;
+            double nodoInicial;
+            double nodoFinal;
 
             int nodos = in.readInt();
-            System.out.println(numeroDeVertices);
             for(int i = 0; i < nodos; i++) 
             {
-                nodoInicial = in.readInt();
-                nodoFinal = in.readInt();
+                nodoInicial = in.readDouble();
+                nodoFinal = in.readDouble();
                 Vertice  vertice = new Vertice(String.valueOf(i), 0.0);
                 vertice.ejeX = nodoInicial;
                 vertice.ejeY = nodoFinal;

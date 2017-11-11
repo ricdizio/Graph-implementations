@@ -3,7 +3,8 @@ import java.util.*;
 
 public class Dijkstra{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		Int inf = Integer.MAX_VALUE;
 
 		public Dijkstra(GrafoNoDirigido G, Vertice s){
@@ -31,7 +32,8 @@ public class Dijkstra{
 
 		}
 
-		public int costo(Vertice x, Vertice y){
+		public int costo(Vertice x, Vertice y)
+		{
 			int sumX = 0;
 			int sumY = 0;
 			int distEuclid = 0;
@@ -41,6 +43,5 @@ public class Dijkstra{
 			return distEuclid;
 
 		}
-		
 	}
 }
