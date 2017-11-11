@@ -43,6 +43,7 @@ CLASSES = \
 	Arista.java \
 	Grafo.java \
 	GrafoNoDirigido.java \
+	Dijkstra.java \
 	Mesero.java
 
 #
