@@ -40,9 +40,12 @@ public class Dijkstra{
 			Collections.sort(cola,comp);
 			x = cola.remove(0);
 
-			System.out.println(x);
+			//System.out.println(x);
 			for (Vertice v1: x.getListaDeAdyacencias()) {
-				//costos.get(getIndexx(v1);
+				System.out.println(costos[doubleToInt(v1)]);
+				System.out.println(costos[doubleToInt(x)]);
+				System.out.println(this.costo(x, v1));
+				System.out.println("");
 				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + this.costo(x, v1))) {
 					costos[doubleToInt(v1)] = costos[doubleToInt(x)] + this.costo(x, v1);
 					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(v1)] + "->" + x.getId();											
