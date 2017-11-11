@@ -1,6 +1,6 @@
 import java.lang.*;
 import java.util.*;
-// Guardando los pesos de 0 a n-1 de cada vertice al crear el grafo
+
 public class Dijkstra{
 	
 	public List<Vertice> listadeVertices;
@@ -10,8 +10,7 @@ public class Dijkstra{
 		// ARRAYsLIST METODO SORTING
 		int inf = Integer.MAX_VALUE;
 		Vertice x;
-		List<Vertice>  cola = new ArrayList<Vertice> ();
-		//List<Vertice> 
+		List<Vertice>  cola = new ArrayList<Vertice> (); 
 		int costos[] = new int[G.numeroDeVertices()];
 		String caminos[] = new String[G.numeroDeVertices()]; 
 
@@ -22,7 +21,6 @@ public class Dijkstra{
 			caminos[doubleToInt(v)] = "";
 			cola.add(v);
 		}
-		//costos.add(listadeVertices.indexOf(s), 0);
 		costos[doubleToInt(s)] = 0;
 
 		while (cola.size() > 0){
@@ -33,9 +31,7 @@ public class Dijkstra{
 				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + costo(x, v1))) {
 					
 					costos[doubleToInt(v1)] = costos[doubleToInt(x)] + costo(x, v1);
-					caminos[doubleToInt(v1)] = caminos[doubleToInt(v1)] + "->" + x.getId();
-
-					//caminos.add(getIndexx(v1), caminos.get(getIndexx(v1)) +" "+x.getId());											
+					caminos[doubleToInt(v1)] = caminos[doubleToInt(v1)] + "->" + x.getId();											
 				}					
 			}
 		}
