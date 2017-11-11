@@ -4,8 +4,10 @@ import java.util.*;
 public class Dijkstra{
 	
 	public List<Vertice> listadeVertices;
+	public String caminos[];
 
-	public Dijkstra(GrafoNoDirigido G, String s){
+	public Dijkstra(GrafoNoDirigido G, String s)
+	{
 			//PriorityQueue <Vertice>  colaP = new PriorityQueue <Vertice> ()
 		// ARRAYsLIST METODO SORTING
 		Double inf = Double.MAX_VALUE;
@@ -13,15 +15,16 @@ public class Dijkstra{
 		Vertice ver;
 		List<Vertice>  cola = new ArrayList<Vertice> (); 
 		Double costos[] = new Double[G.numeroDeVertices()];
-		String caminos[] = new String[G.numeroDeVertices()]; 
+		this.caminos = new String[G.numeroDeVertices()]; 
 
 		listadeVertices = G.vertices();
 			
-		for (Vertice v: listadeVertices) {
+		for (Vertice v: listadeVertices)
+		{
 			costos[doubleToInt(v)] = inf;
-			caminos[doubleToInt(v)] = "";
+			this.caminos[doubleToInt(v)] = "";
 			cola.add(v);
-			if (v.getId() == s) {
+			if ( s.equals(v.getId())) {
 				ver = v;
 				costos[doubleToInt(ver)] = 0.0;				
 			}
@@ -30,20 +33,21 @@ public class Dijkstra{
 
 		while (cola.size() > 0){
 			x = cola.remove(0);
-
+			//System.out.println(doubleToInt(x));
 			for (Vertice v1: x.getListaDeAdyacencias()) {
 				//costos.get(getIndexx(v1);
-				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + costo(x, v1))) {
-					
-					costos[doubleToInt(v1)] = costos[doubleToInt(x)] + costo(x, v1);
-					caminos[doubleToInt(v1)] = caminos[doubleToInt(v1)] + "->" + x.getId();											
+				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + this.costo(x, v1))) {
+					costos[doubleToInt(v1)] = costos[doubleToInt(x)] + this.costo(x, v1);
+					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(v1)] + "->" + x.getId();											
 				}					
 			}
 		}
 	}
 
-	public int doubleToInt(Vertice v){
-		int i = (int)v.getPeso();
+	public int doubleToInt(Vertice v)
+	{
+		Double x = v.getPeso();
+		int i = x.intValue();
 		return i;
 	}
 
@@ -55,6 +59,13 @@ public class Dijkstra{
 		sumY = Math.pow((x.ejeY - y.ejeY),2);
 		distEuclid = Math.sqrt(sumX + sumY);
 		return distEuclid;
+	}
 
+	public void toString(GrafoNoDirigido g)
+	{
+		for(int i = 0; i < g.numeroDeVertices(); i++)
+		{
+			System.out.println("Nodo " + i + ": " + this.caminos[i]);
+		}
 	}
 }

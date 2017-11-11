@@ -8,11 +8,12 @@ public class Mesero{
 		String cocina = new String (args[1]);
 		int numeroDeNodos = 0;
 		GrafoNoDirigido gnd = new GrafoNoDirigido();
-		
+
 		gnd.cargarGrafo(input_txt);
 
-		String x = gnd.toString();
+		Dijkstra d = new Dijkstra(gnd,cocina);
 
-		System.out.println(x);
+		d.toString(gnd);
+
 	}
 }
