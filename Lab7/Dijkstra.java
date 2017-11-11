@@ -48,7 +48,7 @@ public class Dijkstra{
 				System.out.println("");
 				if (costos[doubleToInt(v1)] > (costos[doubleToInt(x)] + this.costo(x, v1))) {
 					costos[doubleToInt(v1)] = costos[doubleToInt(x)] + this.costo(x, v1);
-					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(v1)] + "->" + x.getId();											
+					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(x)] + "->" + x.getId();											
 				}					
 			}
 		}
