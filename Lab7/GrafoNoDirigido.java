@@ -63,6 +63,7 @@ public class GrafoNoDirigido implements Grafo
             double nodoInicial;
             double nodoFinal;
             double peso_nodo = 0.0;
+            boolean agregar = true;
 
             int nodos = in.readInt();
             for(int i = 0; i < nodos; i++) 
@@ -70,10 +71,14 @@ public class GrafoNoDirigido implements Grafo
                 nodoInicial = in.readDouble();
                 nodoFinal = in.readDouble();
                 Vertice  vertice = new Vertice(String.valueOf(i), peso_nodo);
-                peso_nodo = peso_nodo + 1.0;
+                
                 vertice.ejeX = nodoInicial;
                 vertice.ejeY = nodoFinal;
-                this.agregarVertice(vertice);
+                agregar = this.agregarVertice(vertice);
+                if(agregar)
+                {
+                    peso_nodo = peso_nodo + 1.0;
+                }
             }
 
             int lados = in.readInt();          
