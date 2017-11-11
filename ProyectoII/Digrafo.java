@@ -5,13 +5,13 @@
  *    
  *    Clase Grafo Dirigido que se utiliza en ClienteGrafo.java 
  *    
- *    En este archivo se implementa la estructura de datos grafo 
+ *    En este archivo se implementa la estructura de datos grafo dirigido
  *    con el uso de otras estructuras de datos como HashMap y listas enlazadas
  *
  *
  *     Notacion para el tiempo de ejecucion: 
- *                                           V : Cardinalidad de vertices en el grafo 
- *                                           E : Cardinalidad de arcos en el grafo 
+ *                                           V : Cardinalidad de vertices en el grafo dirigido
+ *                                           E : Cardinalidad de arcos en el grafo dirigido
  *
  *    @author  Ricardo Di Zio 11-11274
  *    @author  Fabio Suarez   12-10578
