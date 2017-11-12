@@ -120,18 +120,18 @@ public class Digrafo implements Grafo
                     {
                         Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
                         Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
-                        if(element1.getPeso < element2.getPeso)
+                        if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
                             counter++;
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                         }
-                        else if(element1.getPeso == element2.getPeso)
+                        else if(element1.getPeso() == element2.getPeso())
                         {
                             //agremamos arco sentido element 2 -> element 1
                             //agremamos arco sentido element 2 <- element 1
@@ -139,7 +139,7 @@ public class Digrafo implements Grafo
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                             agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
@@ -154,18 +154,18 @@ public class Digrafo implements Grafo
                     {
                         Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
                         Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
-                        if(element1.getPeso < element2.getPeso)
+                        if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
                             counter++;
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                         }
-                        else if(element1.getPeso == element2.getPeso)
+                        else if(element1.getPeso() == element2.getPeso())
                         {
                             //agremamos arco sentido element 2 -> element 1
                             //agremamos arco sentido element 2 <- element 1
@@ -173,7 +173,7 @@ public class Digrafo implements Grafo
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                             agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
@@ -188,18 +188,18 @@ public class Digrafo implements Grafo
                     {
                         Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
                         Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
-                        if(element1.getPeso < element2.getPeso)
+                        if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
                             counter++;
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                         }
-                        else if(element1.getPeso == element2.getPeso)
+                        else if(element1.getPeso() == element2.getPeso())
                         {
                             //agremamos arco sentido element 2 -> element 1
                             //agremamos arco sentido element 2 <- element 1
@@ -207,7 +207,7 @@ public class Digrafo implements Grafo
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                             agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
@@ -222,19 +222,19 @@ public class Digrafo implements Grafo
                     {
                         Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
                         Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
-                        if(element1.getPeso < element2.getPeso)
+                        if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
                             counter++;
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
 
                         }
-                        else if(element1.getPeso == element2.getPeso)
+                        else if(element1.getPeso() == element2.getPeso())
                         {
                             //agremamos arco sentido element 2 -> element 1
                             //agremamos arco sentido element 2 <- element 1
@@ -242,7 +242,7 @@ public class Digrafo implements Grafo
                             String idArco = String.valueOf(counter);
                             String idVerticeSalida = element2.getId();
                             String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter.doubleValue();
+                            double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
                             agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
                             agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
