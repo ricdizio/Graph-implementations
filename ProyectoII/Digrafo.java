@@ -216,7 +216,7 @@ public class Digrafo implements Grafo
 
                     //Verificamos nodo a izquierda
                     nodoX = i;
-                    nodoY = j + 1;
+                    nodoY = j - 1;
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
