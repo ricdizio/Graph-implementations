@@ -30,6 +30,9 @@ public class Digrafo implements Grafo
     private int numeroDeLados;
     private HashMap<String, Arco> MapaDeArcos;
     private HashMap<String, Vertice> MapaDeVertices;
+    //Matriz
+    private int filas;
+    private int columnas;
 
     /**  
      * @param No posee parametro de entrada
@@ -39,12 +42,32 @@ public class Digrafo implements Grafo
      * @return Inicializa MapaDeArcos  un HashMap de objetos de tipo arco
      */
 
-    public Digrafo() {
+    public Digrafo() 
+    {
         numeroDeVertices = 0;
         numeroDeLados = 0;
         MapaDeArcos = new HashMap <String,Arco>();
         MapaDeVertices = new HashMap <String,Vertice>();
       
+    }
+
+    /**  
+     * @param Entrada int x , int y. Integer a vericar si estan dentro de la matriz
+     * @return true si se encuentran dentro del rango. False caso contrario
+     * 
+     * Tiempo: O(1)
+     */
+
+    public boolean checkBounds(int x, int y)
+    {
+        if ((x >= this.filas) || (y >= this.columnas) || (x < 0) || (y < 0)) 
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
     }
 
     /**  
@@ -59,27 +82,173 @@ public class Digrafo implements Grafo
         //In in = new In(args[0]);
         try{
             In in = new In(dirArchivo);
-            int cantidad_de_nodos = in.readInt();
-            int cantidad_de_arcos = in.readInt();
+            this.filas = in.readInt();
+            this.columnas = in.readInt();
+            int cantidadDeNodos = filas * columnas;
+            //int cantidad_de_arcos = in.readInt();
 
-            for (int i=0;i<cantidad_de_nodos;i++) {
-                String id_del_vertice = in.readString();
-                double peso_del_vertice = in.readDouble();
-                // se proceden a crear y verificar si ya fueron agregados los vertices
+            double pesoDelVertice;
+            String idDelVertice;
 
-                agregarVertice(id_del_vertice,peso_del_vertice);
+            //Procedemos a agregar los nodos de la matriz 
 
+            for (int i=0 ; i<filas ; i++) 
+            {
+                for (int j=0 ; j<columnas ; j++ ) 
+                {
+                    // Cada id es de la forma "ij" = M[(int)i,(int)j]
+                    idDelVertice = String.valueOf(i) + String.valueOf(j);
+                    pesoDelVertice = in.readDouble();
+                    agregarVertice(idDelVertice,pesoDelVertice);
+                }
             }
 
-            for (int i=0;i<cantidad_de_arcos;i++) {
-                String id_de_arco = in.readString();
-                String id_vertice_de_Salida = in.readString();
-                String id_vertice_de_Llegada = in.readString();
-                double peso_del_arco = in.readDouble();
-                // se proceden a crear y verificar si ya fueron agregados los arcos
+            // Nodo lateral
+            int nodoX = 0;
+            int nodoY = 0;
+            int counter = -1;
 
-                agregarArco(id_de_arco,peso_del_arco,id_vertice_de_Salida,id_vertice_de_Llegada);
+            for (int i=0 ; i<filas ; i++) 
+            {
+                for (int j=0 ; j<columnas ; j++ ) 
+                {
+                    //Verificamos nodo superior
+                    nodoX = i - 1;
+                    nodoY = j;
+                    //Vericamos si nodo a buscar esta dentro de la matriz
+                    if(checkBounds(nodoX,nodoY))
+                    {
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        if(element1.getPeso < element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2-> element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                        }
+                        else if(element1.getPeso == element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2 -> element 1
+                            //agremamos arco sentido element 2 <- element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                        }
+                    }
 
+                    //Verificamos nodo inferior
+                    nodoX = i + 1;
+                    nodoY = j;
+                    //Vericamos si nodo a buscar esta dentro de la matriz
+                    if(checkBounds(nodoX,nodoY))
+                    {
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        if(element1.getPeso < element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2-> element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                        }
+                        else if(element1.getPeso == element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2 -> element 1
+                            //agremamos arco sentido element 2 <- element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                        }
+                    }
+
+                    //Verificamos nodo a derecha
+                    nodoX = i;
+                    nodoY = j + 1;
+                    //Vericamos si nodo a buscar esta dentro de la matriz
+                    if(checkBounds(nodoX,nodoY))
+                    {
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        if(element1.getPeso < element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2-> element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                        }
+                        else if(element1.getPeso == element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2 -> element 1
+                            //agremamos arco sentido element 2 <- element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                        }
+                    }
+
+                    //Verificamos nodo a izquierda
+                    nodoX = i;
+                    nodoY = j + 1;
+                    //Vericamos si nodo a buscar esta dentro de la matriz
+                    if(checkBounds(nodoX,nodoY))
+                    {
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        if(element1.getPeso < element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2-> element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+
+                        }
+                        else if(element1.getPeso == element2.getPeso)
+                        {
+                            //agremamos arco sentido element 2 -> element 1
+                            //agremamos arco sentido element 2 <- element 1
+                            counter++;
+                            String idArco = String.valueOf(counter);
+                            String idVerticeSalida = element2.getId();
+                            String idVerticeLlegada = element1.getId();
+                            double pesoArco = counter.doubleValue();
+                            // se proceden a crear y verificar si ya fueron agregados los arcos
+                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                        }
+                    }
+                }
             }
         }
         catch(Exception e){
