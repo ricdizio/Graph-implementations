@@ -1044,4 +1044,13 @@ public class Digrafo implements Grafo
             escritura.print("\n");
         }
     }
+
+    public int getNumeroDeFilas() 
+    {
+        return this.filas;
+    }  
+    public int getNumeroDeColumnas() 
+    {
+        return this.columnas;
+    } 
 }

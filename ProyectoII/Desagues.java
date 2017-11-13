@@ -56,10 +56,38 @@ public class Desagues{
    				}
 			}
 		}
-		System.out.println("------------------------------------------");
+
+
+		//Armamos matriz de charcos
+		String[][] matriz = new String[gd.getNumeroDeFilas()][gd.getNumeroDeColumnas()];
+		for (int i = 0; i < gd.getNumeroDeFilas() ; i++ ) 
+		{
+			for (int j = 0; j < gd.getNumeroDeColumnas() ;j++ ) 
+			{
+				matriz[i][j] = "0";
+			}
+		}
+
 		while(!charco.empty())	
 		{
-			System.out.println("Nodo charco: " + charco.pop());
+			//System.out.println("Nodo charco: " + charco.pop());
+			Vertice q = charco.pop();
+			String id = q.getId();
+			String[] result = id.split("-");
+			int coordX = Integer.valueOf(result[0]);
+			int coordY = Integer.valueOf(result[1]);
+			matriz[coordX][coordY] = "x";
+			//System.out.println("x: " + coordX + coordY);
+		}
+
+		//Printeamos matriz
+		for (int i = 0; i < gd.getNumeroDeFilas() ; i++ ) 
+		{
+			for (int j = 0; j < gd.getNumeroDeColumnas() ;j++ ) 
+			{
+				System.out.print(matriz[i][j] + " ");
+			}
+			System.out.println();
 		}
 	}
 }
