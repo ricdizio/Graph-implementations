@@ -4,6 +4,8 @@ import java.util.Stack;
 import java.util.HashSet;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Set;
+
 
 public class tarjan
 {
@@ -67,7 +69,7 @@ public class tarjan
             }while(w != c);
 
             //Agregamos el conjunto
-            componentesConexas.add(conjunto);
+            this.componentesConexas.add(conjunto);
 
         }
     }
