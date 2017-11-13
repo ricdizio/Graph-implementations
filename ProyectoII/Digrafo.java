@@ -265,7 +265,7 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
     public int numeroDeVertices() {
-    	return numeroDeVertices;
+    	return this.numeroDeVertices;
     }
 
     /**  
@@ -277,7 +277,7 @@ public class Digrafo implements Grafo
      */
 
     public int numeroDeLados() {
-    	return numeroDeLados;
+    	return this.numeroDeLados;
     }
 
     /**  
@@ -510,11 +510,13 @@ public class Digrafo implements Grafo
      * Tiempo: O(V)
      */
 
-    public List<Vertice> vertices() {
+    public List<Vertice> vertices() 
+    {
 
         List<Vertice> return_list_vertices = new LinkedList<Vertice>();
 
-        for (Vertice v : MapaDeVertices.values()) {
+        for (Vertice v : MapaDeVertices.values()) 
+        {
             return_list_vertices.add(v);
         }
 

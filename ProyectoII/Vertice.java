@@ -33,6 +33,11 @@ public class Vertice
   public List<Vertice> predecesores;
   public List<Lado> incidencias;
 
+  //Atributos targan
+  public int index;
+  public int lowLink;
+  public boolean onStack;
+
 
   /**  
      * @param tipo string el cual representa la identificacion del vertice
@@ -40,7 +45,10 @@ public class Vertice
      *
      */
   
-  public Vertice(String id, double peso) {
+  public Vertice(String id, double peso) 
+  {
+    this.index = -1;
+    this.onStack = false;
     this.id = id;
     this.peso = peso;
     this.adyacencias = new LinkedList<Vertice>();
