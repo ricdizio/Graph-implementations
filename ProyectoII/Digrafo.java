@@ -828,7 +828,7 @@ public class Digrafo implements Grafo
         int temp = numeroDeLados;
         if((MapaDeArcos.containsKey(a.getId()))) {
 
-            System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
+            //System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
             return false;
         }
 
