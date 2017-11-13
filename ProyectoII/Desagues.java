@@ -14,45 +14,31 @@ public class Desagues{
 
 		gd.cargarGrafo(input_txt);
 		System.out.println("------------------------------------------");
-		System.out.println(gd.toString());
+		//System.out.println(gd.toString());
 
 		tarjan x = new tarjan(gd);
-		List<HashSet> conjunto;
+		List<List<Vertice>> conjunto;
 		conjunto = x.getComponentes();
 		Stack<Vertice> charco = new Stack<Vertice>();
 
-		for(HashSet element : conjunto)
+		for(List<Vertice> element : conjunto)
 		{
 			System.out.println("Componente:");
-			System.out.println(element.getClass().getName());
-
- 			// Creamos iterador
-   			//Iterator iterator = element.iterator(); 
-      
-   			// Sacamos los vertices
-   			Vertice n;
-   			Object[] array = element.toArray();
-
-   			for (int i = 0; i<array.length ; i++) 
-   			{
-   				//System.out.println(array[i].getListaSucesores());
-   				
-   				//System.out.println(array[i].getClass().getName());
-   				//n = array[i]; 
+			//System.out.println(element.getClass().getName());
+			for(Vertice s : element)
+			{
    				//Si el vertice pertece a un borde descartamos la componente conexa 
-   				/*
-   				if(array[i].esquina == true) break;
+   				if(s.esquina == true) break;
    				//Caso contrario
    				else
    				{
-   					if(array[i].getListaSucesores().size() == 0)
+   					if(s.getListaDeSucesores().size() == 0)
    					{
    						//Nodo es un charco
-   						charco.push(array[i]);
+   						charco.push(s);
    					}
    				}
-   				*/
-   			}
+			}
 		}
 	}
 }

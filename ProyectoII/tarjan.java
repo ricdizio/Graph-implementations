@@ -2,14 +2,14 @@ import java.util.Stack;
 import java.util.HashSet;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.Set;
+import java.util.ArrayList;
 
 
 public class tarjan
 {
     private int index;
     private Stack<Vertice> s;
-    private List<HashSet> componentesConexas;
+    private List<List<Vertice>> componentesConexas;
 
     public tarjan(Digrafo G) 
     {
@@ -17,7 +17,7 @@ public class tarjan
         this.index = 0;
 
         //Cojunto de conjuntos
-        this.componentesConexas = new LinkedList<HashSet>();
+        this.componentesConexas = new ArrayList<List<Vertice>>();
 
         //Pila
         s = new Stack<Vertice>();
@@ -55,7 +55,8 @@ public class tarjan
 
         // Sacamos la componete conexa del stack
         Vertice c;
-        HashSet<Vertice> conjunto = new HashSet<Vertice>();
+        //List<List<Vertice>> conjunto = new ArrayList<List<String>>();
+        List<Vertice> conjunto = new ArrayList<Vertice>();
         if(w.lowLink == w.index)
         {
             do
@@ -68,12 +69,10 @@ public class tarjan
 
             //Agregamos el conjunto
             this.componentesConexas.add(conjunto);
-            conjunto = new HashSet<Vertice>();
-
         }
     }
 
-    public List<HashSet> getComponentes()
+    public List<List<Vertice>> getComponentes()
     {
         return this.componentesConexas;
     }
