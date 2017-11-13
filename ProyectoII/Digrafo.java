@@ -66,6 +66,13 @@ public class Digrafo implements Grafo
         }
         else 
         {
+            //Colocamos esquina = true
+            if( (x == this.filas-1) || (y == this.columnas-1) || (x == 0) || (y == 0) )
+            {
+                Vertice s = MapaDeVertices.get(String.valueOf(x) + "-" + String.valueOf(y));
+                s.esquina = true;
+            }
+           
             return true;
         }
     }
@@ -92,16 +99,19 @@ public class Digrafo implements Grafo
 
             //Procedemos a agregar los nodos de la matriz 
 
+
+
             for (int i=0 ; i<filas ; i++) 
             {
                 for (int j=0 ; j<columnas ; j++ ) 
                 {
                     // Cada id es de la forma "ij" = M[(int)i,(int)j]
-                    idDelVertice = String.valueOf(i) + String.valueOf(j);
+                    idDelVertice = String.valueOf(i) + "-" + String.valueOf(j);
                     pesoDelVertice = in.readDouble();
                     agregarVertice(idDelVertice,pesoDelVertice);
                 }
             }
+
 
             // Nodo lateral
             int nodoX = 0;
@@ -118,8 +128,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -152,8 +162,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -186,8 +196,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -220,8 +230,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -608,7 +618,8 @@ public class Digrafo implements Grafo
      */
 
 
-    public Object clone() {
+    public Object clone()
+    {
         Digrafo cloneGD = new Digrafo();
         HashMap<String, Vertice> hashMap_vertices_clone = new HashMap<String, Vertice>();
         HashMap<String, Arco> hashMap_arcos_clone = new HashMap<String, Arco>();

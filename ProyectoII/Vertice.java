@@ -37,6 +37,7 @@ public class Vertice
   public int index;
   public int lowLink;
   public boolean onStack;
+  public boolean esquina;
 
 
   /**  
@@ -47,6 +48,7 @@ public class Vertice
   
   public Vertice(String id, double peso) 
   {
+    this.esquina = false;
     this.index = -1;
     this.onStack = false;
     this.id = id;
