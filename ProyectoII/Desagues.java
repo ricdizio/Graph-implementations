@@ -12,7 +12,8 @@ public class Desagues{
 		Digrafo gd = new Digrafo();
 
 		gd.cargarGrafo(input_txt);
-		gd.toString();
+		System.out.println("------------------------------------------");
+		System.out.println(gd.toString());
 
 		tarjan x = new tarjan(gd);
 		List<HashSet> conjunto;

@@ -12,6 +12,8 @@ public class Dijkstra{
 
 	public Dijkstra(GrafoNoDirigido G, String s)
 	{
+			//PriorityQueue <Vertice>  colaP = new PriorityQueue <Vertice> ()
+		// ARRAYsLIST METODO SORTING
 		df = new DecimalFormat("0.0#");
 		Double inf = Double.MAX_VALUE;
 		Vertice x;
