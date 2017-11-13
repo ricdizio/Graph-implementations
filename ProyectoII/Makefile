@@ -42,7 +42,8 @@ CLASSES = \
 	Lado.java\
 	Arco.java \
 	Grafo.java \
-	Digrafo.java
+	Digrafo.java\
+	Desagues.java
 
 #
 # the default make target entry
