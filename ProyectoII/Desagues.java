@@ -24,21 +24,42 @@ public class Desagues{
 		for(List<Vertice> element : conjunto)
 		{
 			System.out.println("Componente:");
-			//System.out.println(element.getClass().getName());
+			System.out.println(element);
 			for(Vertice s : element)
 			{
    				//Si el vertice pertece a un borde descartamos la componente conexa 
-   				if(s.esquina == true) break;
+   				if(s.esquina == true) 
+   				{
+   					System.out.println("Nodo esquina: " + s);
+   					break;
+   				}
    				//Caso contrario
    				else
    				{
-   					if(s.getListaDeSucesores().size() == 0)
+
+   					System.out.println("Nodo size: " + s.getListaDeSucesores().size());
+   					boolean candidato = true;
+   					for(Vertice d : s.getListaDeSucesores())
+   					{
+   						if(d.getPeso() < s.getPeso())
+   						{
+   							candidato = false;
+   							break;
+   						}
+   					}
+   					if(candidato)
    					{
    						//Nodo es un charco
+   						System.out.println("Nodo charco: " + s);
    						charco.push(s);
    					}
    				}
 			}
+		}
+		System.out.println("------------------------------------------");
+		while(!charco.empty())	
+		{
+			System.out.println("Nodo charco: " + charco.pop());
 		}
 	}
 }
