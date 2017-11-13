@@ -40,6 +40,7 @@ public class Desagues{
    				//System.out.println(array[i].getClass().getName());
    				//n = array[i]; 
    				//Si el vertice pertece a un borde descartamos la componente conexa 
+   				/*
    				if(array[i].esquina == true) break;
    				//Caso contrario
    				else
@@ -50,6 +51,7 @@ public class Desagues{
    						charco.push(array[i]);
    					}
    				}
+   				*/
    			}
 		}
 	}
