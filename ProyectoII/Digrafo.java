@@ -66,7 +66,7 @@ public class Digrafo implements Grafo
         }
         else 
         {
-            //Colocamos esquina = true
+            //Colocamos vertice.esquina = true
             if( (x == this.filas-1) || (y == this.columnas-1) || (x == 0) || (y == 0) )
             {
                 Vertice s = MapaDeVertices.get(String.valueOf(x) + "-" + String.valueOf(y));
@@ -139,7 +139,11 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            
                         }
                         else if(element1.getPeso() == element2.getPeso())
                         {
@@ -151,8 +155,17 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
+                            
                         }
                     }
 
@@ -173,7 +186,10 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
                         }
                         else if(element1.getPeso() == element2.getPeso())
                         {
@@ -185,8 +201,16 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
                         }
                     }
 
@@ -207,7 +231,10 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
                         }
                         else if(element1.getPeso() == element2.getPeso())
                         {
@@ -219,8 +246,17 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
+    
                         }
                     }
 
@@ -241,7 +277,10 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
 
                         }
                         else if(element1.getPeso() == element2.getPeso())
@@ -254,8 +293,16 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
                         }
                     }
                 }
@@ -393,7 +440,6 @@ public class Digrafo implements Grafo
             }
         }
         return false;
-              
     }
 
     /**  

@@ -68,6 +68,7 @@ public class tarjan
 
             //Agregamos el conjunto
             this.componentesConexas.add(conjunto);
+            conjunto = new HashSet<Vertice>();
 
         }
     }
