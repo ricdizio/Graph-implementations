@@ -57,17 +57,6 @@ public class Charcos
    			}
 		}
 
-
-		//Armamos matriz de charcos
-		String[][] matriz = new String[gd.getNumeroDeFilas()][gd.getNumeroDeColumnas()];
-		for (int i = 0; i < gd.getNumeroDeFilas() ; i++ ) 
-		{
-			for (int j = 0; j < gd.getNumeroDeColumnas() ;j++ ) 
-			{
-				matriz[i][j] = "0";
-			}
-		}
-
 		while(!charco.empty())	
 		{
 			//System.out.println("Nodo charco: " + charco.pop());
@@ -75,11 +64,6 @@ public class Charcos
 			for(Vertice i : u)
 			{
 				i.charco = true;
-				String id = i.getId();
-				String[] result = id.split("-");
-				int coordX = Integer.valueOf(result[0]);
-				int coordY = Integer.valueOf(result[1]);
-				matriz[coordX][coordY] = "x";
 				returnList.add(i);
 			}
 		}
@@ -136,6 +120,13 @@ public class Charcos
 		    }
 		    //System.out.println(gd);
 		}
+		//Reseteamos Vertices para el tarjan
+		for (Vertice e : gd.vertices())
+		{
+			e.reset();
+		}
+		System.out.println("Nuevo conjunto de charcos");
+		System.out.println(this.calcCharcos(gd));
 		//this.calcCharcosRec(gd,cantidad);
 		return cantidad;
 	}

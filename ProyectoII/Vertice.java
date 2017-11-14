@@ -135,4 +135,12 @@ public class Vertice
   public List<Vertice> getListaDeSucesores(){
     return this.sucesores;
   }
+
+  public void reset()
+  {
+    this.esquina = false;
+    this.charco = false;
+    this.index = -1;
+    this.onStack = false;
+  }
 }
