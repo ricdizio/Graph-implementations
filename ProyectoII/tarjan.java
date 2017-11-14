@@ -68,7 +68,7 @@ public class Tarjan
             }while(w != c);
 
             //Agregamos el conjunto de vertices que represta una componete conexa
-            this.componentesConexas.add(conjunto);]
+            this.componentesConexas.add(conjunto);
             //componetesConexas es una lista de lista de vertices
         }
     }
