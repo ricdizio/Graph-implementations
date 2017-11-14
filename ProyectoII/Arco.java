@@ -18,7 +18,9 @@
  * 
  *************************************************************************************************************/
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**  
      * Clase constructora que inicializa al objeto arco con atributo id el cual representa 
