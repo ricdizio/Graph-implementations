@@ -104,30 +104,39 @@ public class Charcos
 	public int calcCharcosRec(Digrafo gd, int cantidad)
 	{
 		LinkedList<Vertice> lista = this.calcCharcos(gd);
-		System.out.println(lista);
+		System.out.println("Componente: " + lista);
 		for(Vertice s : lista)
 		{
+			System.out.println("------------------");
+			System.out.println("Vertice: " + s);
+
+
+			//System.out.println("------------------");
+			//System.out.println("Prede de s: " + s.getListaDePredecesores());
+
 			boolean sumar = true;
 			for(Vertice p : s.getListaDePredecesores())
 			{
-				if(p.getPeso() <= s.getPeso())
+				if(p.getPeso() <= s.getPeso() && !s.getListaDePredecesores().contains(p))
 				{
 					sumar = false;
 				}
 				else if(p.esquina == true && p.getPeso() == s.getPeso())
 				{
-					return cantidad;
+					//return cantidad;
 				}			
 		    }
 		    if(sumar)
 		    {
-		    	System.out.println(s.getId());
+		    	System.out.println("------------------");
+		    	System.out.println("Vertice a sumar: " + s);
 		    	s.peso = s.peso + 1;
+		    	System.out.println("Vertice sumado: " + s);
 		    	cantidad++;
 		    }
+		    //System.out.println(gd);
 		}
-		this.calcCharcosRec(gd,cantidad);
-
+		//this.calcCharcosRec(gd,cantidad);
 		return cantidad;
 	}
 }
