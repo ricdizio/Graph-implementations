@@ -124,9 +124,10 @@ public class Charcos
 				{
 					Vertice y = iteradorV.next();
 					//System.out.println(y.getClass().getName());
-					if(s.getPeso() == y.getPeso())
+					if(s.getPeso() == y.getPeso() && !(lista.contains(s) && lista.contains(y)))
 		    		{
 		    			//Agregamos arco sentido sig --> s
+		    			System.out.println(s.getId() + y.getId());
 		    			int numero = Integer.valueOf((gd.numeroDeLados()));
 		    			numero++;
 		    			gd.agregarArco(String.valueOf(numero),0.0,s.getId(),y.getId());
