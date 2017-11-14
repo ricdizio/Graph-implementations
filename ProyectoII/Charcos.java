@@ -117,6 +117,14 @@ public class Charcos
 		    	s.peso = s.peso + 1;
 		    	System.out.println("Vertice sumado: " + s);
 		    	cantidad++;
+		    	for(Vertice sig : s.getListaDeSucesores())
+		    	{
+		    		if(s.getPeso() == sig.getPeso())
+		    		{
+		    			//Agregamos arco sentido sig --> s
+		    			agregarArco(gd.numeroDeLados()+1,0.0,sig.getId(),s.getId());
+		    		}
+		    	}
 		    }
 		    //System.out.println(gd);
 		}
