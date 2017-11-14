@@ -6,9 +6,10 @@ import java.util.Iterator;
 
 public class Charcos
 {
-//
+	public int len;
 	public LinkedList<Vertice> calcCharcos(Digrafo gd)
 	{
+		this.len = 0;
 		Tarjan x = new Tarjan(gd);
 		LinkedList<Vertice> returnList = new LinkedList<Vertice>();
 		List<List<Vertice>> conjunto;
@@ -65,36 +66,24 @@ public class Charcos
 			{
 				i.charco = true;
 				returnList.add(i);
+				this.len++;
 			}
 		}
 		return returnList;
 	}
 
-	public static void main(String [] args) 
-	{
-		String input_txt = args[0];
-
-		Digrafo gd = new Digrafo();
-
-		gd.cargarGrafo(input_txt);
-		//System.out.println(gd.toString());
-
-		Charcos r = new Charcos();
-		int cantidad = r.calcCharcosRec(gd,0);
-		System.out.println(cantidad);
-
-	}
-
 	public int calcCharcosRec(Digrafo gd, int cantidad)
 	{
+		LinkedList<Vertice> lista;
+		lista = this.calcCharcos(gd);
 		do
 		{
-			LinkedList<Vertice> lista = this.calcCharcos(gd);
-			System.out.println("Componente: " + lista);
+			//LinkedList<Vertice> lista = this.calcCharcos(gd);
+			//System.out.println("Componente: " + lista);
 			for(Vertice s : lista)
 			{
-				System.out.println("------------------");
-				System.out.println("Vertice: " + s);
+				//System.out.println("------------------");
+				//System.out.println("Vertice: " + s);
 
 
 				//System.out.println("------------------");
@@ -114,10 +103,10 @@ public class Charcos
 			    }
 			    if(sumar)
 			    {
-			    	System.out.println("------------------");
-			    	System.out.println("Vertice a sumar: " + s);
+			    	//System.out.println("------------------");
+			    	//System.out.println("Vertice a sumar: " + s);
 			    	s.peso = s.peso + 1;
-			    	System.out.println("Vertice sumado: " + s);
+			    	//System.out.println("Vertice sumado: " + s);
 			    	cantidad++;
 
 			    	Iterator<Vertice> iteradorV = s.getListaDePredecesores().iterator();
@@ -129,7 +118,7 @@ public class Charcos
 						if(s.getPeso() == y.getPeso() && !(lista.contains(s) && lista.contains(y)))
 			    		{
 			    			//Agregamos arco sentido sig --> s
-			    			System.out.println(s.getId() + y.getId());
+			    			//System.out.println(s.getId() + y.getId());
 			    			int numero = Integer.valueOf((gd.numeroDeLados()));
 			    			numero++;
 			    			gd.agregarArco(String.valueOf(numero),0.0,s.getId(),y.getId());
@@ -143,12 +132,27 @@ public class Charcos
 			{
 				e.reset();
 			}
-			System.out.println("Nuevo conjunto de charcos");
-			System.out.println(this.calcCharcos(gd));
-			System.out.println("size: "+ this.calcCharcos(gd).size());
+			//System.out.println("Nuevo conjunto de charcos");
+			lista = this.calcCharcos(gd);
+			//System.out.println("size: "+ lista.size() + " len: " + this.len);
 			//this.calcCharcosRec(gd,cantidad);
 			
-		}while(this.calcCharcos(gd).size() != 0);
+		}while(lista.size() != 0);
 		return cantidad;
+	}
+
+	public static void main(String [] args) 
+	{
+		String input_txt = args[0];
+
+		Digrafo gd = new Digrafo();
+
+		gd.cargarGrafo(input_txt);
+		//System.out.println(gd.toString());
+
+		Charcos r = new Charcos();
+		int cantidad = r.calcCharcosRec(gd,0);
+		System.out.println("Volumen es igual a " + cantidad + " metros cubicos");
+
 	}
 }
