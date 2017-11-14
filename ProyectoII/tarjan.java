@@ -63,12 +63,13 @@ public class Tarjan
             {
                 c = s.pop();
                 c.onStack = false;
-                //Agregamos c a la componente conexa
+                //Agregamos Vertice c a la componente conexa
                 conjunto.add(c);
             }while(w != c);
 
-            //Agregamos el conjunto
-            this.componentesConexas.add(conjunto);
+            //Agregamos el conjunto de vertices que represta una componete conexa
+            this.componentesConexas.add(conjunto);]
+            //componetesConexas es una lista de lista de vertices
         }
     }
 

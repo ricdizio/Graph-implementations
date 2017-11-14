@@ -104,7 +104,7 @@ public class Charcos
 	public int calcCharcosRec(Digrafo gd, int cantidad)
 	{
 		LinkedList<Vertice> lista = this.calcCharcos(gd);
-
+		System.out.println(lista);
 		for(Vertice s : lista)
 		{
 			boolean sumar = true;
@@ -121,11 +121,12 @@ public class Charcos
 		    }
 		    if(sumar)
 		    {
+		    	System.out.println(s.getId());
 		    	s.peso = s.peso + 1;
 		    	cantidad++;
 		    }
-		    this.calcCharcosRec(gd,cantidad);
 		}
+		this.calcCharcosRec(gd,cantidad);
 
 		return cantidad;
 	}
