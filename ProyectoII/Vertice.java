@@ -27,7 +27,7 @@ import java.util.*;
 public class Vertice
 {
   private String id;
-  private double peso;
+  public double peso;
   public List<Vertice> adyacencias;
   public List<Vertice> sucesores;
   public List<Vertice> predecesores;

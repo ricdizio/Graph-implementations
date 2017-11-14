@@ -4,19 +4,12 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-public class Desagues{
-
-	public static void main(String [] args) 
+public class charcos
+{
+	public LinkedList<Vertice> calcCharcos(Digrafo gd)
 	{
-		String input_txt = args[0];
-
-		Digrafo gd = new Digrafo();
-
-		gd.cargarGrafo(input_txt);
-		System.out.println("------------------------------------------");
-		//System.out.println(gd.toString());
-
 		tarjan x = new tarjan(gd);
+		LinkedList<Vertice> returnList = new LinkedList<Vertice>();
 		List<List<Vertice>> conjunto;
 		conjunto = x.getComponentes();
 		Stack<List<Vertice>> charco = new Stack<List<Vertice>>();
@@ -86,17 +79,53 @@ public class Desagues{
 				int coordX = Integer.valueOf(result[0]);
 				int coordY = Integer.valueOf(result[1]);
 				matriz[coordX][coordY] = "x";
+				returnList.add(i);
 			}
+		}
+		return returnList;
+	}
+
+	public static void main(String [] args) 
+	{
+		String input_txt = args[0];
+
+		Digrafo gd = new Digrafo();
+
+		gd.cargarGrafo(input_txt);
+		//System.out.println(gd.toString());
+
+		charcos r = new charcos();
+		int cantidad = r.calcCharcosRec(gd,r,0);
+		System.out.println(cantidad);
+
+	}
+
+	public int calcCharcosRec(Digrafo gd, charcos r,int cantidad)
+	{
+		LinkedList<Vertice> lista = r.calcCharcos(gd);
+
+		for(Vertice s : lista)
+		{
+			boolean sumar = true;
+			for(Vertice p : s.getListaDePredecesores())
+			{
+				if(p.getPeso() <= s.getPeso())
+				{
+					sumar = false;
+				}
+				else if(p.esquina == true && p.getPeso() == s.getPeso())
+				{
+					return cantidad;
+				}			
+		    }
+		    if(sumar)
+		    {
+		    	s.peso = s.peso + 1;
+		    	cantidad++;
+		    }
+		    r.calcCharcosRec(gd,r,cantidad);
 		}
 
-		//Printeamos matriz
-		for (int i = 0; i < gd.getNumeroDeFilas() ; i++ ) 
-		{
-			for (int j = 0; j < gd.getNumeroDeColumnas() ;j++ ) 
-			{
-				System.out.print(matriz[i][j] + " ");
-			}
-			System.out.println();
-		}
+		return cantidad;
 	}
 }
