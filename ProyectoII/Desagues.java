@@ -19,24 +19,27 @@ public class Desagues{
 		tarjan x = new tarjan(gd);
 		List<List<Vertice>> conjunto;
 		conjunto = x.getComponentes();
-		Stack<Vertice> charco = new Stack<Vertice>();
+		Stack<List<Vertice>> charco = new Stack<List<Vertice>>();
 
 		for(List<Vertice> element : conjunto)
 		{
+			// Element es un conjunto de vertices las cuales representan una componete conexa
+
 			System.out.println("Componente:");
 			System.out.println(element);
+			boolean candidatoComponente = true; //element es candidato a charco?
 			for(Vertice s : element)
 			{
    				//Si el vertice pertece a un borde descartamos la componente conexa 
    				if(s.esquina == true) 
    				{
+   					candidatoComponente = false;
    					System.out.println("Nodo esquina: " + s);
    					break;
    				}
    				//Caso contrario
    				else
    				{
-
    					System.out.println("Nodo size: " + s.getListaDeSucesores().size());
    					boolean candidato = true;
    					for(Vertice d : s.getListaDeSucesores())
@@ -47,14 +50,17 @@ public class Desagues{
    							break;
    						}
    					}
-   					if(candidato)
+   					if(!candidato)
    					{
-   						//Nodo es un charco
-   						System.out.println("Nodo charco: " + s);
-   						charco.push(s);
+   						candidatoComponente = false;
+   						break;
    					}
    				}
-			}
+   			}
+			if(candidatoComponente)
+   			{
+   				charco.push(element);
+   			}
 		}
 
 
@@ -71,6 +77,17 @@ public class Desagues{
 		while(!charco.empty())	
 		{
 			//System.out.println("Nodo charco: " + charco.pop());
+			List<Vertice> u = charco.pop();
+			for(Vertice i : u)
+			{
+				i.charco = true;
+				String id = i.getId();
+				String[] result = id.split("-");
+				int coordX = Integer.valueOf(result[0]);
+				int coordY = Integer.valueOf(result[1]);
+				matriz[coordX][coordY] = "x";
+			}
+			/*
 			Vertice q = charco.pop();
 			String id = q.getId();
 			String[] result = id.split("-");
@@ -78,6 +95,7 @@ public class Desagues{
 			int coordY = Integer.valueOf(result[1]);
 			matriz[coordX][coordY] = "x";
 			//System.out.println("x: " + coordX + coordY);
+			*/
 		}
 
 		//Printeamos matriz
