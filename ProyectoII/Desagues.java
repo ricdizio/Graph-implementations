@@ -25,8 +25,8 @@ public class Desagues{
 		{
 			// Element es un conjunto de vertices las cuales representan una componete conexa
 
-			System.out.println("Componente:");
-			System.out.println(element);
+			//System.out.println("Componente:");
+			//System.out.println(element);
 			boolean candidatoComponente = true; //element es candidato a charco?
 			for(Vertice s : element)
 			{
@@ -34,13 +34,13 @@ public class Desagues{
    				if(s.esquina == true) 
    				{
    					candidatoComponente = false;
-   					System.out.println("Nodo esquina: " + s);
+   					//System.out.println("Nodo esquina: " + s);
    					break;
    				}
    				//Caso contrario
    				else
    				{
-   					System.out.println("Nodo size: " + s.getListaDeSucesores().size());
+   					//System.out.println("Nodo size: " + s.getListaDeSucesores().size());
    					boolean candidato = true;
    					for(Vertice d : s.getListaDeSucesores())
    					{
