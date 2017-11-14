@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 
-public class tarjan
+public class Tarjan
 {
     private int index;
     private Stack<Vertice> s;

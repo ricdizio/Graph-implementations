@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-public class charcos
+public class Charcos
 {
+//
 	public LinkedList<Vertice> calcCharcos(Digrafo gd)
 	{
 		tarjan x = new tarjan(gd);
