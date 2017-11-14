@@ -9,7 +9,7 @@ public class Charcos
 //
 	public LinkedList<Vertice> calcCharcos(Digrafo gd)
 	{
-		tarjan x = new tarjan(gd);
+		Tarjan x = new Tarjan(gd);
 		LinkedList<Vertice> returnList = new LinkedList<Vertice>();
 		List<List<Vertice>> conjunto;
 		conjunto = x.getComponentes();
@@ -95,7 +95,7 @@ public class Charcos
 		gd.cargarGrafo(input_txt);
 		//System.out.println(gd.toString());
 
-		charcos r = new charcos();
+		Charcos r = new Charcos();
 		int cantidad = r.calcCharcosRec(gd,0);
 		System.out.println(cantidad);
 

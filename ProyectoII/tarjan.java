@@ -11,7 +11,7 @@ public class Tarjan
     private Stack<Vertice> s;
     private List<List<Vertice>> componentesConexas;
 
-    public tarjan(Digrafo G) 
+    public Tarjan(Digrafo G) 
     {
         //Index
         this.index = 0;

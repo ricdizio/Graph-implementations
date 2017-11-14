@@ -15,7 +15,7 @@ public class Desagues{
       gd.cargarGrafo(input_txt);
       //System.out.println(gd.toString());
 
-      tarjan x = new tarjan(gd);
+      Tarjan x = new Tarjan(gd);
       List<List<Vertice>> conjunto;
       conjunto = x.getComponentes();
       Stack<List<Vertice>> charco = new Stack<List<Vertice>>();
