@@ -138,7 +138,7 @@ public class Vertice
 
   public void reset()
   {
-    this.esquina = false;
+    //this.esquina = false;
     this.charco = false;
     this.index = -1;
     this.onStack = false;
