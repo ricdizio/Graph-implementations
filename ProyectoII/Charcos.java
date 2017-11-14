@@ -105,10 +105,12 @@ public class Charcos
 					if(p.getPeso() <= s.getPeso() && !s.getListaDePredecesores().contains(p))
 					{
 						sumar = false;
+						break;
 					}
 					else if(p.esquina == true && p.getPeso() == s.getPeso())
 					{
-						//return cantidad;
+						sumar = false;
+						break;
 					}			
 			    }
 			    if(sumar)
