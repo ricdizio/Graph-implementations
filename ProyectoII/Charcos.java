@@ -117,6 +117,22 @@ public class Charcos
 		    	s.peso = s.peso + 1;
 		    	System.out.println("Vertice sumado: " + s);
 		    	cantidad++;
+
+		    	Iterator<Vertice> iteradorV = s.getListaDePredecesores().iterator();
+
+				while(iteradorV.hasNext())
+				{
+					Vertice y = iteradorV.next();
+					//System.out.println(y.getClass().getName());
+					if(s.getPeso() == y.getPeso())
+		    		{
+		    			//Agregamos arco sentido sig --> s
+		    			int numero = Integer.valueOf((gd.numeroDeLados()));
+		    			numero++;
+		    			gd.agregarArco(String.valueOf(numero),0.0,s.getId(),y.getId());
+		    		}
+				}
+				/*
 		    	List<Vertice> vieja = new LinkedList<Vertice>();
 		    	vieja =  s.getListaDePredecesores();
 		    	for(Vertice sig : vieja)
@@ -126,9 +142,10 @@ public class Charcos
 		    			//Agregamos arco sentido sig --> s
 		    			int numero = Integer.valueOf((gd.numeroDeLados()));
 		    			numero++;
-		    			//gd.agregarArco(String.valueOf(numero),0.0,sig.getId(),s.getId());
+		    			gd.agregarArco(String.valueOf(numero),0.0,sig.getId(),s.getId());
 		    		}
 		    	}
+		    	*/
 		    }
 		    //System.out.println(gd);
 		}
