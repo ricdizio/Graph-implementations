@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 public class Desagues{
-//
+
    public static void main(String [] args) 
    {
       String input_txt = args[0];
@@ -62,24 +62,6 @@ public class Desagues{
                charco.push(element);
             }
       }
-
-
-<<<<<<< Updated upstream
-		while(!charco.empty())	
-		{
-			//System.out.println("Nodo charco: " + charco.pop());
-			List<Vertice> u = charco.pop();
-			for(Vertice i : u)
-			{
-				i.charco = true;
-				String id = i.getId();
-				String[] result = id.split("-");
-				int coordX = Integer.valueOf(result[0]);
-				int coordY = Integer.valueOf(result[1]);
-				matriz[coordX][coordY] = "x";
-			}
-		}
-=======
       //Armamos matriz de charcos
       String[][] matriz = new String[gd.getNumeroDeFilas()][gd.getNumeroDeColumnas()];
       for (int i = 0; i < gd.getNumeroDeFilas() ; i++ ) 
@@ -89,7 +71,7 @@ public class Desagues{
             matriz[i][j] = "0";
          }
       }
->>>>>>> Stashed changes
+
 
       while(!charco.empty())  
       {
@@ -104,15 +86,7 @@ public class Desagues{
             int coordY = Integer.valueOf(result[1]);
             matriz[coordX][coordY] = "x";
          }
-         /*
-         Vertice q = charco.pop();
-         String id = q.getId();
-         String[] result = id.split("-");
-         int coordX = Integer.valueOf(result[0]);
-         int coordY = Integer.valueOf(result[1]);
-         matriz[coordX][coordY] = "x";
-         //System.out.println("x: " + coordX + coordY);
-         */
+
       }
 
       //Printeamos matriz
