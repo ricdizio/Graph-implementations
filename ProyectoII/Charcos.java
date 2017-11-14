@@ -1,3 +1,19 @@
+/**********************************************************************************************************
+ *    Compilacion:  javac Charcos.java
+ *    Ejecucion:    java  Charcos
+ *    Dependencias In.java, Out.java,Lado.java, Arco.java, Grafo.java, Digrafo.java, Tarjan.java
+ *    
+ *    El makefile compila todo el proyecto siguiendo el orden de dependencias
+ *    
+ *    ProyectoII
+ *
+ *    @author  Ricardo Di Zio 11-11274
+ *    @author  Fabio Suarez   12-10578
+ *    @version 1.0
+ *    @since   2017-14-11
+ *
+ * 
+ *************************************************************************************************************/
 import java.util.Stack;
 import java.util.HashSet;
 import java.util.List;
@@ -16,12 +32,10 @@ public class Charcos
 		conjunto = x.getComponentes();
 		Stack<List<Vertice>> charco = new Stack<List<Vertice>>();
 
+
 		for(List<Vertice> element : conjunto)
 		{
 			// Element es un conjunto de vertices las cuales representan una componete conexa
-
-			//System.out.println("Componente:");
-			//System.out.println(element);
 			boolean candidatoComponente = true; //element es candidato a charco?
 			for(Vertice s : element)
 			{
@@ -29,13 +43,11 @@ public class Charcos
    				if(s.esquina == true) 
    				{
    					candidatoComponente = false;
-   					//System.out.println("Nodo esquina: " + s);
    					break;
    				}
    				//Caso contrario
    				else
    				{
-   					//System.out.println("Nodo size: " + s.getListaDeSucesores().size());
    					boolean candidato = true;
    					for(Vertice d : s.getListaDeSucesores())
    					{
@@ -60,7 +72,6 @@ public class Charcos
 
 		while(!charco.empty())	
 		{
-			//System.out.println("Nodo charco: " + charco.pop());
 			List<Vertice> u = charco.pop();
 			for(Vertice i : u)
 			{
@@ -71,23 +82,22 @@ public class Charcos
 		}
 		return returnList;
 	}
-
+	/**  
+     * @param Entrada un digrafo
+     * @param Entrada int cantidad, el cual representa la suma hasta ese momento de los calculos
+   	 * de los metros cubicos
+     * @return retorna la cantidad de la suma actualizada para la siguiente llamada recursiva
+     * 
+     * Tiempo: O(V al cubo +E)
+     */
 	public int calcCharcosRec(Digrafo gd, int cantidad)
 	{
 		LinkedList<Vertice> lista;
 		lista = this.calcCharcos(gd);
 		do
 		{
-			//LinkedList<Vertice> lista = this.calcCharcos(gd);
-			//System.out.println("Componente: " + lista);
 			for(Vertice s : lista)
 			{
-				//System.out.println("------------------");
-				//System.out.println("Vertice: " + s);
-
-
-				//System.out.println("------------------");
-				//System.out.println("Prede de s: " + s.getListaDePredecesores());
 
 				boolean sumar = true;
 				for(Vertice p : s.getListaDePredecesores())
@@ -103,10 +113,7 @@ public class Charcos
 			    }
 			    if(sumar)
 			    {
-			    	//System.out.println("------------------");
-			    	//System.out.println("Vertice a sumar: " + s);
 			    	s.peso = s.peso + 1;
-			    	//System.out.println("Vertice sumado: " + s);
 			    	cantidad++;
 
 			    	Iterator<Vertice> iteradorV = s.getListaDePredecesores().iterator();
@@ -114,28 +121,21 @@ public class Charcos
 					while(iteradorV.hasNext())
 					{
 						Vertice y = iteradorV.next();
-						//System.out.println(y.getClass().getName());
 						if(s.getPeso() == y.getPeso() && !(lista.contains(s) && lista.contains(y)))
 			    		{
-			    			//Agregamos arco sentido sig --> s
-			    			//System.out.println(s.getId() + y.getId());
 			    			int numero = Integer.valueOf((gd.numeroDeLados()));
 			    			numero++;
 			    			gd.agregarArco(String.valueOf(numero),0.0,s.getId(),y.getId());
 			    		}
 					}
 			    }
-			    //System.out.println(gd);
 			}
 			//Reseteamos Vertices para el tarjan
 			for (Vertice e : gd.vertices())
 			{
 				e.reset();
 			}
-			//System.out.println("Nuevo conjunto de charcos");
 			lista = this.calcCharcos(gd);
-			//System.out.println("size: "+ lista.size() + " len: " + this.len);
-			//this.calcCharcosRec(gd,cantidad);
 			
 		}while(lista.size() != 0);
 		return cantidad;
@@ -148,11 +148,10 @@ public class Charcos
 		Digrafo gd = new Digrafo();
 
 		gd.cargarGrafo(input_txt);
-		//System.out.println(gd.toString());
 
 		Charcos r = new Charcos();
 		int cantidad = r.calcCharcosRec(gd,0);
-		System.out.println("Volumen es igual a " + cantidad + " metros cubicos");
+		System.out.println("El volumen es igual a " + cantidad + " metros cubicos"+"\n");
 
 	}
 }

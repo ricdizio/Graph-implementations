@@ -1,3 +1,19 @@
+/**********************************************************************************************************
+ *    Compilacion:  javac Desagues.java
+ *    Ejecucion:    java  Desagues
+ *    Dependencias In.java, Out.java,Lado.java, Arco.java, Grafo.java, Digrafo.java, Tarjan.java
+ *    
+ *    El makefile compila todo el proyecto siguiendo el orden de dependencias
+ *    
+ *    ProyectoII
+ *
+ *    @author  Ricardo Di Zio 11-11274
+ *    @author  Fabio Suarez   12-10578
+ *    @version 1.0
+ *    @since   2017-14-11
+ *
+ * 
+ *************************************************************************************************************/
 import java.util.Stack;
 import java.util.HashSet;
 import java.util.List;
@@ -6,6 +22,13 @@ import java.util.Iterator;
 
 public class Desagues{
 
+   /**  
+     * @param Entrada un digrafo Leido del txt pasado por consola
+     * @return retorna la matriz con x en los sitios donde hay que poner desagues
+     * 
+     * Tiempo: O(V al cubo +E)
+     */
+
    public static void main(String [] args) 
    {
       String input_txt = args[0];
@@ -13,7 +36,6 @@ public class Desagues{
       Digrafo gd = new Digrafo();
 
       gd.cargarGrafo(input_txt);
-      //System.out.println(gd.toString());
 
       Tarjan x = new Tarjan(gd);
       List<List<Vertice>> conjunto;
@@ -25,8 +47,6 @@ public class Desagues{
       {
          // Element es un conjunto de vertices las cuales representan una componete conexa
 
-         //System.out.println("Componente:");
-         //System.out.println(element);
          boolean candidatoComponente = true; //element es candidato a charco?
          for(Vertice s : element)
          {
@@ -34,13 +54,11 @@ public class Desagues{
                if(s.esquina == true) 
                {
                   candidatoComponente = false;
-                  //System.out.println("Nodo esquina: " + s);
                   break;
                }
                //Caso contrario
                else
                {
-                  //System.out.println("Nodo size: " + s.getListaDeSucesores().size());
                   boolean candidato = true;
                   for(Vertice d : s.getListaDeSucesores())
                   {
@@ -75,7 +93,6 @@ public class Desagues{
 
       while(!charco.empty())  
       {
-         //System.out.println("Nodo charco: " + charco.pop());
          List<Vertice> u = charco.pop();
          for(Vertice i : u)
          {
