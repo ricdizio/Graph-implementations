@@ -95,14 +95,14 @@ public class charcos
 		//System.out.println(gd.toString());
 
 		charcos r = new charcos();
-		int cantidad = r.calcCharcosRec(gd,r,0);
+		int cantidad = r.calcCharcosRec(gd,0);
 		System.out.println(cantidad);
 
 	}
 
-	public int calcCharcosRec(Digrafo gd, charcos r,int cantidad)
+	public int calcCharcosRec(Digrafo gd, int cantidad)
 	{
-		LinkedList<Vertice> lista = r.calcCharcos(gd);
+		LinkedList<Vertice> lista = this.calcCharcos(gd);
 
 		for(Vertice s : lista)
 		{
@@ -123,7 +123,7 @@ public class charcos
 		    	s.peso = s.peso + 1;
 		    	cantidad++;
 		    }
-		    r.calcCharcosRec(gd,r,cantidad);
+		    this.calcCharcosRec(gd,cantidad);
 		}
 
 		return cantidad;
