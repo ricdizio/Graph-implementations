@@ -87,77 +87,68 @@ public class Charcos
 
 	public int calcCharcosRec(Digrafo gd, int cantidad)
 	{
-		LinkedList<Vertice> lista = this.calcCharcos(gd);
-		System.out.println("Componente: " + lista);
-		for(Vertice s : lista)
+		do
 		{
-			System.out.println("------------------");
-			System.out.println("Vertice: " + s);
-
-
-			//System.out.println("------------------");
-			//System.out.println("Prede de s: " + s.getListaDePredecesores());
-
-			boolean sumar = true;
-			for(Vertice p : s.getListaDePredecesores())
+			LinkedList<Vertice> lista = this.calcCharcos(gd);
+			System.out.println("Componente: " + lista);
+			for(Vertice s : lista)
 			{
-				if(p.getPeso() <= s.getPeso() && !s.getListaDePredecesores().contains(p))
-				{
-					sumar = false;
-				}
-				else if(p.esquina == true && p.getPeso() == s.getPeso())
-				{
-					//return cantidad;
-				}			
-		    }
-		    if(sumar)
-		    {
-		    	System.out.println("------------------");
-		    	System.out.println("Vertice a sumar: " + s);
-		    	s.peso = s.peso + 1;
-		    	System.out.println("Vertice sumado: " + s);
-		    	cantidad++;
+				System.out.println("------------------");
+				System.out.println("Vertice: " + s);
 
-		    	Iterator<Vertice> iteradorV = s.getListaDePredecesores().iterator();
 
-				while(iteradorV.hasNext())
+				//System.out.println("------------------");
+				//System.out.println("Prede de s: " + s.getListaDePredecesores());
+
+				boolean sumar = true;
+				for(Vertice p : s.getListaDePredecesores())
 				{
-					Vertice y = iteradorV.next();
-					//System.out.println(y.getClass().getName());
-					if(s.getPeso() == y.getPeso() && !(lista.contains(s) && lista.contains(y)))
-		    		{
-		    			//Agregamos arco sentido sig --> s
-		    			System.out.println(s.getId() + y.getId());
-		    			int numero = Integer.valueOf((gd.numeroDeLados()));
-		    			numero++;
-		    			gd.agregarArco(String.valueOf(numero),0.0,s.getId(),y.getId());
-		    		}
-				}
-				/*
-		    	List<Vertice> vieja = new LinkedList<Vertice>();
-		    	vieja =  s.getListaDePredecesores();
-		    	for(Vertice sig : vieja)
-		    	{
-		    		if(s.getPeso() == sig.getPeso())
-		    		{
-		    			//Agregamos arco sentido sig --> s
-		    			int numero = Integer.valueOf((gd.numeroDeLados()));
-		    			numero++;
-		    			gd.agregarArco(String.valueOf(numero),0.0,sig.getId(),s.getId());
-		    		}
-		    	}
-		    	*/
-		    }
-		    //System.out.println(gd);
-		}
-		//Reseteamos Vertices para el tarjan
-		for (Vertice e : gd.vertices())
-		{
-			e.reset();
-		}
-		System.out.println("Nuevo conjunto de charcos");
-		System.out.println(this.calcCharcos(gd));
-		//this.calcCharcosRec(gd,cantidad);
+					if(p.getPeso() <= s.getPeso() && !s.getListaDePredecesores().contains(p))
+					{
+						sumar = false;
+					}
+					else if(p.esquina == true && p.getPeso() == s.getPeso())
+					{
+						//return cantidad;
+					}			
+			    }
+			    if(sumar)
+			    {
+			    	System.out.println("------------------");
+			    	System.out.println("Vertice a sumar: " + s);
+			    	s.peso = s.peso + 1;
+			    	System.out.println("Vertice sumado: " + s);
+			    	cantidad++;
+
+			    	Iterator<Vertice> iteradorV = s.getListaDePredecesores().iterator();
+
+					while(iteradorV.hasNext())
+					{
+						Vertice y = iteradorV.next();
+						//System.out.println(y.getClass().getName());
+						if(s.getPeso() == y.getPeso() && !(lista.contains(s) && lista.contains(y)))
+			    		{
+			    			//Agregamos arco sentido sig --> s
+			    			System.out.println(s.getId() + y.getId());
+			    			int numero = Integer.valueOf((gd.numeroDeLados()));
+			    			numero++;
+			    			gd.agregarArco(String.valueOf(numero),0.0,s.getId(),y.getId());
+			    		}
+					}
+			    }
+			    //System.out.println(gd);
+			}
+			//Reseteamos Vertices para el tarjan
+			for (Vertice e : gd.vertices())
+			{
+				e.reset();
+			}
+			System.out.println("Nuevo conjunto de charcos");
+			System.out.println(this.calcCharcos(gd));
+			System.out.println("size: "+ this.calcCharcos(gd).size());
+			//this.calcCharcosRec(gd,cantidad);
+			
+		}while(this.calcCharcos(gd).size() != 0);
 		return cantidad;
 	}
 }
