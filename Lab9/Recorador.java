@@ -1,4 +1,5 @@
-public class Recorador{
+public class Recorador
+{
 
 	public static void main(String [] args) {
 		
