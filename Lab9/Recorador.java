@@ -1,4 +1,4 @@
-public class Mesero{
+public class Recorador{
 
 	public static void main(String [] args) {
 		
