@@ -9,9 +9,16 @@ public class AEstrella{
 	private int lados[];
 	private Double costos[];
 	private DecimalFormat df;
-	private Set<Vertice> closedSet = new HashSet<Vertice>();
-	private Set<Vertice> openSet = new HashSet<Vertice>();
+	//private Set<Vertice> closedSet = new HashSet<Vertice>();
+	//private Set<Vertice> openSet = new HashSet<Vertice>();
+	private List<Vertice> openSet;
+	private  List<Vertice> closedSet;
+	private  List<Vertice> total_path;
 	private Double fScore[];
+	private Double gScore[];
+	private Vertice cameFrom[];
+	private Vertice goal;
+	private Vertice ver;
 	// s start vertice y g goal vertice
 	// Falta hacer el conteo de los lados y probar si funciona la implementacion
 	public AEstrella(GrafoNoDirigido G, String s, String g)
@@ -21,9 +28,9 @@ public class AEstrella{
 		Double tentative_gScore = 0.0;
 		Vertice x;
 		Vertice goal;
-		Vertice ver;
-		// cola creo que deberia ser fScore
-		//List<Vertice>  cola = new ArrayList<Vertice> ();
+		Vertice ver; // vertice de inicio
+		// openSet creo que deberia ser fScore
+		//List<Vertice>  openSet = new ArrayList<Vertice> ();
 		this.closedSet = new ArrayList<Vertice> ();
 		this.openSet = new ArrayList<Vertice> ();
 		this.gScore = new Double[G.numeroDeVertices()];
@@ -40,20 +47,23 @@ public class AEstrella{
 		{
 			this.fScore[doubleToInt(v)] = inf;
 			this.gScore[doubleToInt(v)] = inf;
-			this.cameFrom[doubleToInt(v)] = "";
+			//this.cameFrom[doubleToInt(v)] = "";
+			//this.cameFrom = "";
 			this.lados[doubleToInt(v)] = 0;
-			cola.add(v);
-			this.fScore[doubleToInt(v)] = costo(s, v);
+			//openSet.add(v);
 			if ( s.equals(v.getId())) {
 				ver = v;
-				this.gScore[doubleToInt(ver)] = 0;				
+				this.gScore[doubleToInt(ver)] = 0.0;
+				openSet.add(ver);				
 			}
 
 			if ( g.equals(v.getId())) {
 				goal = v;								
 			}
 		}
-		// Ordenamos el array list (cola de prioridad)
+		this.fScore[doubleToInt(ver)] = costo(ver, goal);
+
+		// Ordenamos el array list (openSet de prioridad)
 		Comparator<Vertice> comp = (Vertice a, Vertice b) -> {
     		return this.fScore[doubleToInt(a)].compareTo(this.fScore[doubleToInt(b)]);
 		};
@@ -65,11 +75,10 @@ public class AEstrella{
 		{
 			Collections.sort(openSet,comp);
 			x = openSet.remove(0);
+			closedSet.add(x);
 			if (x.getId().equals(g)) {
-				return reconstructPath(camefrom,current);
-			}
-			openSet.remove(current);
-			closedSet.add(current);
+				return reconstructPath(this.cameFrom,x);
+			}			
 
 			for (Vertice v1: x.getListaDeAdyacencias()) 
 			{
@@ -81,7 +90,7 @@ public class AEstrella{
 					openSet.add(v1);
 				}
 
-				tentative_gScore := gScore[doubleToInt(x)] + dist_between(x, v1);
+				tentative_gScore = gScore[doubleToInt(x)] + costo(x, v1);
             	if (tentative_gScore >= gScore[doubleToInt(v1)]){
             		continue;
             	}
@@ -92,16 +101,17 @@ public class AEstrella{
 					this.lados[doubleToInt(v1)] = this.lados[doubleToInt(x)] + 1;
 					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(x)] + "->" + x.getId();											
 				}	*/	
-				cameFrom[doubleToInt(v1)] = x.getPeso();
+				//cameFrom[doubleToInt(v1)] = x.getPeso();
+				cameFrom[doubleToInt(v1)] = x;
 				gScore[doubleToInt(v1)] = tentative_gScore;
 				fScore[doubleToInt(v1)] = gScore[doubleToInt(v1)] + costo(v1,goal);			
 			}
 		}
-		for(int i = 0; i < G.numeroDeVertices(); i++)
+		/*for(int i = 0; i < G.numeroDeVertices(); i++)
 		{
 			this.caminos[i] = this.caminos[i] + "->" + i;
 			this.caminos[i] = this.caminos[i].substring(2, this.caminos[i].length());
-		}
+		}*/
 	}
 
 	public int doubleToInt(Vertice v)
@@ -121,11 +131,12 @@ public class AEstrella{
 		return distEuclid;
 	}
 
-	public void toString(GrafoNoDirigido g)
-	{
-		for(int i = 0; i < g.numeroDeVertices(); i++)
-		{	
-			System.out.println("Nodo " + i + ": " + this.caminos[i]+"\t \t" + lados[i] + " lados" + " (costo "+ df.format(this.costos[i])+ ")");
-		}
-	}
+	public reconstruct_path(Vertice[] cameFrom,Vertice current){
+    	total_path.add(current);
+    	while current in cameFrom.Keys{
+        	current = cameFrom[doubleToInt(current)];
+        	total_path.add(current);
+    		return total_path;
+    	}
+    }
 }
