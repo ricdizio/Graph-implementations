@@ -13,6 +13,7 @@ public class Recorador
 
 		gnd.cargarGrafo(input_txt);
 
+<<<<<<< Updated upstream:Lab9/Recorador.java
 		AEstrella costo;
 
 		for( Vertice c :gnd.vertices())
@@ -23,5 +24,11 @@ public class Recorador
 				costo = new AEstrella(gnd,cocina,c);
 			}
 		}
+=======
+		//Dijkstra d = new Dijkstra(gnd,cocina);
+		AStar a = new AStar(gnd,cocina);
+
+		a.toString(gnd);
+>>>>>>> Stashed changes:Lab9/Mesero.java
 	}
 }

@@ -45,15 +45,15 @@ public class AEstrella{
 			
 		for (Vertice v: listadeVertices)
 		{
-			this.fScore[doubleToInt(v)] = inf;
-			this.gScore[doubleToInt(v)] = inf;
-			//this.cameFrom[doubleToInt(v)] = "";
+			this.fScore[stringToInt(v)] = inf;
+			this.gScore[stringToInt(v)] = inf;
+			//this.cameFrom[stringToInt(v)] = "";
 			//this.cameFrom = "";
-			this.lados[doubleToInt(v)] = 0;
+			this.lados[stringToInt(v)] = 0;
 			//openSet.add(v);
 			if ( s.equals(v.getId())) {
 				ver = v;
-				this.gScore[doubleToInt(ver)] = 0.0;
+				this.gScore[stringToInt(ver)] = 0.0;
 				openSet.add(ver);				
 			}
 
@@ -61,11 +61,11 @@ public class AEstrella{
 				goal = v;								
 			}
 		}
-		this.fScore[doubleToInt(ver)] = costo(ver, goal);
+		this.fScore[stringToInt(ver)] = costo(ver, goal);
 
 		// Ordenamos el array list (openSet de prioridad)
 		Comparator<Vertice> comp = (Vertice a, Vertice b) -> {
-    		return this.fScore[doubleToInt(a)].compareTo(this.fScore[doubleToInt(b)]);
+    		return this.fScore[stringToInt(a)].compareTo(this.fScore[stringToInt(b)]);
 		};
 
 		//Collections.sort(openSet,comp);
@@ -90,21 +90,21 @@ public class AEstrella{
 					openSet.add(v1);
 				}
 
-				tentative_gScore = gScore[doubleToInt(x)] + costo(x, v1);
-            	if (tentative_gScore >= gScore[doubleToInt(v1)]){
+				tentative_gScore = gScore[stringToInt(x)] + costo(x, v1);
+            	if (tentative_gScore >= gScore[stringToInt(v1)]){
             		continue;
             	}
 
-				/*if (this.costos[doubleToInt(v1)] > (this.costos[doubleToInt(x)] + this.costo(x, v1))) 
+				/*if (this.costos[stringToInt(v1)] > (this.costos[stringToInt(x)] + this.costo(x, v1))) 
 				{
-					this.costos[doubleToInt(v1)] = this.costos[doubleToInt(x)] + this.costo(x, v1);
-					this.lados[doubleToInt(v1)] = this.lados[doubleToInt(x)] + 1;
-					this.caminos[doubleToInt(v1)] = this.caminos[doubleToInt(x)] + "->" + x.getId();											
+					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] + this.costo(x, v1);
+					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
+					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + x.getId();											
 				}	*/	
-				//cameFrom[doubleToInt(v1)] = x.getPeso();
-				cameFrom[doubleToInt(v1)] = x;
-				gScore[doubleToInt(v1)] = tentative_gScore;
-				fScore[doubleToInt(v1)] = gScore[doubleToInt(v1)] + costo(v1,goal);			
+				//cameFrom[stringToInt(v1)] = x.getPeso();
+				cameFrom[stringToInt(v1)] = x;
+				gScore[stringToInt(v1)] = tentative_gScore;
+				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);			
 			}
 		}
 		/*for(int i = 0; i < G.numeroDeVertices(); i++)
@@ -114,11 +114,11 @@ public class AEstrella{
 		}*/
 	}
 
-	public int doubleToInt(Vertice v)
+	public int stringToInt(Vertice v)
 	{
-		Double x = v.getPeso();
-		int i = x.intValue();
-		return i;
+		String str = v.getId();
+		Integer pos = Integer.valueOf(str);
+		return pos;
 	}
 
 	public Double costo(Vertice x, Vertice y){
@@ -134,7 +134,7 @@ public class AEstrella{
 	public reconstruct_path(Vertice[] cameFrom,Vertice current){
     	total_path.add(current);
     	while current in cameFrom.Keys{
-        	current = cameFrom[doubleToInt(current)];
+        	current = cameFrom[stringToInt(current)];
         	total_path.add(current);
     		return total_path;
     	}
