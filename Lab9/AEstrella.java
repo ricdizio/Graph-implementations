@@ -9,7 +9,8 @@ import java.text.DecimalFormat;
 public class AEstrella{
 	
 	private List<Vertice> listadeVertices;
-	private String caminos[];
+	//private String caminos[];
+	public LinkedList<Stack<Vertice>> caminos;
 	private int lados[];
 	private Double costos[];
 	private DecimalFormat df;
@@ -17,7 +18,7 @@ public class AEstrella{
 	//private Set<Vertice> openSet = new HashSet<Vertice>();
 	private List<Vertice> openSet;
 	private  List<Vertice> closedSet;
-	public  List<Vertice> total_path;
+	public  Stack<Vertice> total_path;
 	private Double fScore[];
 	private Double gScore[];
 	private Vertice cameFrom[];
@@ -30,11 +31,12 @@ public class AEstrella{
 		df = new DecimalFormat("0.0#");
 		Double inf = Double.MAX_VALUE;
 		Double tentative_gScore = 0.0;
+		this.caminos = new LinkedList<Stack<Vertice>>();
 		this.closedSet = new ArrayList<Vertice> ();
 		this.openSet = new ArrayList<Vertice> ();
 		this.gScore = new Double[G.numeroDeVertices()];
 		this.costos = new Double[G.numeroDeVertices()];
-		this.caminos = new String[G.numeroDeVertices()];
+		//this.caminos = new String[G.numeroDeVertices()];
 		this.lados = new int[G.numeroDeVertices()]; 
 		this.cameFrom = new Vertice[G.numeroDeVertices()];
 		this.fScore = new Double[G.numeroDeVertices()];
@@ -128,8 +130,8 @@ public class AEstrella{
 	}
 
 	public void reconstructPath(Vertice[] cameFrom,Vertice current){
-		total_path = new LinkedList<Vertice>();
-		this.total_path.add(current);
+		total_path = new Stack<Vertice>();
+		this.total_path.push(current);
 		System.out.println(current.getId() + " -> ");
 		System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
     	while(cameFrom[Integer.valueOf(current.getId())] != null)
@@ -137,8 +139,11 @@ public class AEstrella{
         	current = cameFrom[Integer.valueOf(current.getId())];
         	System.out.println(current.getId() + " -> ");
         	System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
-        	this.total_path.add(current);
+        	this.total_path.push(current);
 
     	}
+    	System.out.println("se agrego un camino");
+    	this.caminos.add(total_path);
+
     }
 }

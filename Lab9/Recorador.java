@@ -1,3 +1,7 @@
+import java.lang.*;
+import java.util.*;
+
+
 public class Recorador
 {
 	public static void main(String [] args) {
@@ -11,7 +15,7 @@ public class Recorador
 
 		gnd.cargarGrafo(input_txt);
 
-		AEstrella costo;
+		AEstrella costo = new AEstrella(gnd,cocina,"0");
 
 		for( Vertice c :gnd.vertices())
 		{
@@ -24,6 +28,18 @@ public class Recorador
 				//costo.printPath();
 				System.out.println(costo);
 			}
+		}
+
+
+		for(Stack<Vertice> c : costo.caminos)
+		{
+			System.out.println("Camino: ");
+			while(!c.isEmpty())
+			{
+				
+				System.out.print(c.pop().getId() + " " );
+			}
+			System.out.println();
 		}
 	}
 }
