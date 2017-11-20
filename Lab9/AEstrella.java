@@ -36,7 +36,7 @@ public class AEstrella{
 		this.costos = new Double[G.numeroDeVertices()];
 		this.caminos = new String[G.numeroDeVertices()];
 		this.lados = new int[G.numeroDeVertices()]; 
-		//this.cameFrom = new Double[G.numeroDeVertices()];
+		this.cameFrom = new Vertice[G.numeroDeVertices()];
 		this.fScore = new Double[G.numeroDeVertices()];
 
 
@@ -45,13 +45,15 @@ public class AEstrella{
 		this.goal = G.MapaDeVertices.get(g);
 		for (Vertice v: listadeVertices)
 		{
+			System.out.println(v +" "+ cameFrom[4]);
+			Vertice nulo = new Vertice("null",0.0);
 			this.fScore[Integer.valueOf(v.getId())] = inf;
 			this.gScore[Integer.valueOf(v.getId())] = inf;
 			this.cameFrom[Integer.valueOf(v.getId())] = null;
 			this.lados[Integer.valueOf(v.getId())] = 0;
 			//openSet.add(v);
-			if ( s.equals(v.getId())) {
-			
+			if ( s.equals(v.getId()))
+			{
 				this.gScore[Integer.valueOf(this.ver.getId())] = 0.0;
 				openSet.add(this.ver);				
 			}
@@ -116,11 +118,11 @@ public class AEstrella{
 	}
 
 	public void reconstructPath(Vertice[] cameFrom,Vertice current){
-    	total_path.add(current);
+    	this.total_path.add(current);
     	while(cameFrom[Integer.valueOf(current.getId())] != null)
     	{
         	current = cameFrom[Integer.valueOf(current.getId())];
-        	total_path.add(current);
+        	this.total_path.add(current);
     	}
     }
 }
