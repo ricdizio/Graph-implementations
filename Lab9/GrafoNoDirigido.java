@@ -30,7 +30,7 @@ public class GrafoNoDirigido implements Grafo
     private int numeroDeVertices;
     private int numeroDeLados;
     private HashMap<String, Arista> MapaDeAristas;
-    private HashMap<String, Vertice> MapaDeVertices;
+    public HashMap<String, Vertice> MapaDeVertices;
 
     /**  
      * @param No posee parametro de entrada

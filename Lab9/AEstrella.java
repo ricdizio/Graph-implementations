@@ -30,8 +30,6 @@ public class AEstrella{
 		df = new DecimalFormat("0.0#");
 		Double inf = Double.MAX_VALUE;
 		Double tentative_gScore = 0.0;
-		Vertice x;
-		Vertice goal;
 		Vertice ver; // vertice de inicio
 		this.closedSet = new ArrayList<Vertice> ();
 		this.openSet = new ArrayList<Vertice> ();
@@ -44,7 +42,8 @@ public class AEstrella{
 
 
 		listadeVertices = G.vertices();
-			
+		this.ver = G.MapaDeVertices.get(s);
+		this.goal = G.MapaDeVertices.get(g);
 		for (Vertice v: listadeVertices)
 		{
 			this.fScore[Integer.valueOf(v.getId())] = inf;
@@ -53,16 +52,13 @@ public class AEstrella{
 			this.lados[Integer.valueOf(v.getId())] = 0;
 			//openSet.add(v);
 			if ( s.equals(v.getId())) {
-				ver = v;
-				this.gScore[Integer.valueOf(ver.getId())] = 0.0;
-				openSet.add(ver);				
+			
+				this.gScore[Integer.valueOf(this.ver.getId())] = 0.0;
+				openSet.add(this.ver);				
 			}
 
-			if ( g.equals(v.getId())) {
-				goal = v;								
-			}
 		}
-		this.fScore[Integer.valueOf(ver.getId())] = costo(ver, goal);
+		this.fScore[Integer.valueOf(this.ver.getId())] = costo(this.ver, this.goal);
 
 		// Ordenamos el array list (openSet de prioridad)
 		Comparator<Vertice> comp = (Vertice a, Vertice b) -> {
@@ -71,7 +67,7 @@ public class AEstrella{
 
 		//Collections.sort(openSet,comp);
 
-
+		Vertice x;
 		while (openSet.size() > 0)
 		{
 			Collections.sort(openSet,comp);
