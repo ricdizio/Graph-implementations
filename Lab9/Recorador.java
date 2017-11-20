@@ -16,7 +16,7 @@ public class Recorador
 		for( Vertice c :gnd.vertices())
 		{
 
-			if(cocina != c.getId())
+			if(!cocina.equals(c.getId()))
 			{
 				costo = new AEstrella(gnd,cocina,c.getId());
 			}

@@ -30,7 +30,6 @@ public class AEstrella{
 		df = new DecimalFormat("0.0#");
 		Double inf = Double.MAX_VALUE;
 		Double tentative_gScore = 0.0;
-		Vertice ver; // vertice de inicio
 		this.closedSet = new ArrayList<Vertice> ();
 		this.openSet = new ArrayList<Vertice> ();
 		this.gScore = new Double[G.numeroDeVertices()];
