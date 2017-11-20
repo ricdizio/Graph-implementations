@@ -18,7 +18,7 @@ public class Recorador
 
 			if(cocina != c.getId())
 			{
-				costo = new AEstrella(gnd,cocina,c);
+				costo = new AEstrella(gnd,cocina,c.getId());
 			}
 		}
 	}

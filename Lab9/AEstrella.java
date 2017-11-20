@@ -20,7 +20,7 @@ public class AEstrella{
 	public  List<Vertice> total_path;
 	private Double fScore[];
 	private Double gScore[];
-	private String cameFrom[];
+	private Vertice cameFrom[];
 	private Vertice goal;
 	private Vertice ver;
 	// s start vertice y g goal vertice
@@ -47,14 +47,14 @@ public class AEstrella{
 			
 		for (Vertice v: listadeVertices)
 		{
-			this.fScore[stringToInt(v)] = inf;
-			this.gScore[stringToInt(v)] = inf;
-			this.cameFrom[stringToInt(v)] = null;
-			this.lados[stringToInt(v)] = 0;
+			this.fScore[Integer.valueOf(v.getId())] = inf;
+			this.gScore[Integer.valueOf(v.getId())] = inf;
+			this.cameFrom[Integer.valueOf(v.getId())] = null;
+			this.lados[Integer.valueOf(v.getId())] = 0;
 			//openSet.add(v);
 			if ( s.equals(v.getId())) {
 				ver = v;
-				this.gScore[stringToInt(ver)] = 0.0;
+				this.gScore[Integer.valueOf(ver.getId())] = 0.0;
 				openSet.add(ver);				
 			}
 
@@ -62,11 +62,11 @@ public class AEstrella{
 				goal = v;								
 			}
 		}
-		this.fScore[stringToInt(ver)] = costo(ver, goal);
+		this.fScore[Integer.valueOf(ver.getId())] = costo(ver, goal);
 
 		// Ordenamos el array list (openSet de prioridad)
 		Comparator<Vertice> comp = (Vertice a, Vertice b) -> {
-    		return this.fScore[stringToInt(a)].compareTo(this.fScore[stringToInt(b)]);
+    		return this.fScore[Integer.valueOf(a.getId())].compareTo(this.fScore[Integer.valueOf(b.getId())]);
 		};
 
 		//Collections.sort(openSet,comp);
@@ -78,7 +78,7 @@ public class AEstrella{
 			x = openSet.remove(0);
 			closedSet.add(x);
 			if (x.getId().equals(g)) {
-				return reconstructPath(this.cameFrom,x);
+				this.reconstructPath(this.cameFrom,x);
 			}			
 
 			for (Vertice v1: x.getListaDeAdyacencias()) 
@@ -96,7 +96,7 @@ public class AEstrella{
             		continue;
             	}
 
-				cameFrom[stringToInt(v1)] = x.getId();
+				cameFrom[stringToInt(v1)] = x;
 				gScore[stringToInt(v1)] = tentative_gScore;
 				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);			
 			}
@@ -120,10 +120,11 @@ public class AEstrella{
 		return distEuclid;
 	}
 
-	public reconstruct_path(Vertice[] cameFrom,Vertice current){
+	public void reconstructPath(Vertice[] cameFrom,Vertice current){
     	total_path.add(current);
-    	while(cameFrom[stringToInt(current)] != null]){
-        	current = cameFrom[stringToInt(current)];
+    	while(cameFrom[Integer.valueOf(current.getId())] != null)
+    	{
+        	current = cameFrom[Integer.valueOf(current.getId())];
         	total_path.add(current);
     	}
     }
