@@ -17,10 +17,10 @@ public class AEstrella{
 	//private Set<Vertice> openSet = new HashSet<Vertice>();
 	private List<Vertice> openSet;
 	private  List<Vertice> closedSet;
-	private  List<Vertice> total_path;
+	public  List<Vertice> total_path;
 	private Double fScore[];
 	private Double gScore[];
-	private Vertice cameFrom[];
+	private String cameFrom[];
 	private Vertice goal;
 	private Vertice ver;
 	// s start vertice y g goal vertice
@@ -33,15 +33,13 @@ public class AEstrella{
 		Vertice x;
 		Vertice goal;
 		Vertice ver; // vertice de inicio
-		// openSet creo que deberia ser fScore
-		//List<Vertice>  openSet = new ArrayList<Vertice> ();
 		this.closedSet = new ArrayList<Vertice> ();
 		this.openSet = new ArrayList<Vertice> ();
 		this.gScore = new Double[G.numeroDeVertices()];
 		this.costos = new Double[G.numeroDeVertices()];
 		this.caminos = new String[G.numeroDeVertices()];
 		this.lados = new int[G.numeroDeVertices()]; 
-		this.cameFrom = new Double[G.numeroDeVertices()];
+		//this.cameFrom = new Double[G.numeroDeVertices()];
 		this.fScore = new Double[G.numeroDeVertices()];
 
 
@@ -51,8 +49,7 @@ public class AEstrella{
 		{
 			this.fScore[stringToInt(v)] = inf;
 			this.gScore[stringToInt(v)] = inf;
-			//this.cameFrom[stringToInt(v)] = "";
-			//this.cameFrom = "";
+			this.cameFrom[stringToInt(v)] = null;
 			this.lados[stringToInt(v)] = 0;
 			//openSet.add(v);
 			if ( s.equals(v.getId())) {
@@ -99,23 +96,11 @@ public class AEstrella{
             		continue;
             	}
 
-				/*if (this.costos[stringToInt(v1)] > (this.costos[stringToInt(x)] + this.costo(x, v1))) 
-				{
-					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] + this.costo(x, v1);
-					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
-					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + x.getId();											
-				}	*/	
-				//cameFrom[stringToInt(v1)] = x.getPeso();
-				cameFrom[stringToInt(v1)] = x;
+				cameFrom[stringToInt(v1)] = x.getId();
 				gScore[stringToInt(v1)] = tentative_gScore;
 				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);			
 			}
 		}
-		/*for(int i = 0; i < G.numeroDeVertices(); i++)
-		{
-			this.caminos[i] = this.caminos[i] + "->" + i;
-			this.caminos[i] = this.caminos[i].substring(2, this.caminos[i].length());
-		}*/
 	}
 
 	public int stringToInt(Vertice v)
@@ -137,10 +122,9 @@ public class AEstrella{
 
 	public reconstruct_path(Vertice[] cameFrom,Vertice current){
     	total_path.add(current);
-    	while current in cameFrom.Keys{
+    	while(cameFrom[stringToInt(current)] != null]){
         	current = cameFrom[stringToInt(current)];
         	total_path.add(current);
-    		return total_path;
     	}
     }
 }
