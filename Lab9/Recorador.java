@@ -19,7 +19,10 @@ public class Recorador
 
 			if(!cocina.equals(c.getId()))
 			{
+				System.out.println("Nodo "+ c.getId() + " \n");
 				costo = new AEstrella(gnd,cocina,c.getId());
+				//costo.printPath();
+				System.out.println(costo);
 			}
 		}
 	}

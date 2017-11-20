@@ -72,11 +72,15 @@ public class AEstrella{
 		while (openSet.size() > 0)
 		{
 			Collections.sort(openSet,comp);
-			x = openSet.remove(0);
+			x = openSet.get(0);
+			//System.out.println(" SACAMOS DE LA COLA \n");
+			//System.out.println(x.getId());
+
 			//System.out.println(" x "+ x);
 			if (x.getId().equals(g)) {
 				this.reconstructPath(this.cameFrom,x);
 			}
+			openSet.remove(0);
 			closedSet.add(x);
 
 			for (Vertice v1: x.getListaDeAdyacencias()) 
@@ -88,7 +92,7 @@ public class AEstrella{
 				if (!openSet.contains(v1)) {
 					openSet.add(v1);
 				}
-				System.out.println("GSCORE++++");
+				//System.out.println("GSCORE++++");
 				tentative_gScore = gScore[stringToInt(x)] + costo(x, v1);
             	if (tentative_gScore >= gScore[stringToInt(v1)]){
             		continue;
@@ -96,12 +100,14 @@ public class AEstrella{
 
 				cameFrom[stringToInt(v1)] = x;
 				gScore[stringToInt(v1)] = tentative_gScore;
-				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);
-				System.out.println("cocina a  "+ v1.getId());
-				System.out.println("FScore "+fScore[stringToInt(v1)]);
-				System.out.println("Abiertos "+ openSet.size());		
+				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);		
 			}
 		}
+
+		/*for (int i = 0; i < G.numeroDeVertices(); i++ ) {
+			System.out.println(" VERTICE " + i+" " );
+			System.out.println("Fscore " + fScore[i] +" \n");			
+		}*/
 	}
 
 	public int stringToInt(Vertice v)
@@ -124,10 +130,15 @@ public class AEstrella{
 	public void reconstructPath(Vertice[] cameFrom,Vertice current){
 		total_path = new LinkedList<Vertice>();
 		this.total_path.add(current);
+		System.out.println(current.getId() + " -> ");
+		System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
     	while(cameFrom[Integer.valueOf(current.getId())] != null)
     	{
         	current = cameFrom[Integer.valueOf(current.getId())];
+        	System.out.println(current.getId() + " -> ");
+        	System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
         	this.total_path.add(current);
+
     	}
     }
 }

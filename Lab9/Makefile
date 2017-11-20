@@ -44,7 +44,8 @@ CLASSES = \
 	Grafo.java \
 	GrafoNoDirigido.java \
 	Dijkstra.java \
-	Mesero.java
+	AEstrella.java\
+	Recorador.java
 
 #
 # the default make target entry
