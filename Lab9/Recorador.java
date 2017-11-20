@@ -15,6 +15,7 @@ public class Recorador
 
 		for( Vertice c :gnd.vertices())
 		{
+			if(c.getId().equals("3")) {System.out.println("llegada igual a 3 ");}
 
 			if(!cocina.equals(c.getId()))
 			{

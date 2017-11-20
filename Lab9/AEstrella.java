@@ -45,7 +45,7 @@ public class AEstrella{
 		this.goal = G.MapaDeVertices.get(g);
 		for (Vertice v: listadeVertices)
 		{
-			System.out.println(v +" "+ cameFrom[4]);
+			//System.out.println(v +" "+ cameFrom[4]);
 			Vertice nulo = new Vertice("null",0.0);
 			this.fScore[Integer.valueOf(v.getId())] = inf;
 			this.gScore[Integer.valueOf(v.getId())] = inf;
@@ -73,10 +73,11 @@ public class AEstrella{
 		{
 			Collections.sort(openSet,comp);
 			x = openSet.remove(0);
-			closedSet.add(x);
+			//System.out.println(" x "+ x);
 			if (x.getId().equals(g)) {
 				this.reconstructPath(this.cameFrom,x);
-			}			
+			}
+			closedSet.add(x);
 
 			for (Vertice v1: x.getListaDeAdyacencias()) 
 			{
@@ -87,7 +88,7 @@ public class AEstrella{
 				if (!openSet.contains(v1)) {
 					openSet.add(v1);
 				}
-
+				System.out.println("GSCORE++++");
 				tentative_gScore = gScore[stringToInt(x)] + costo(x, v1);
             	if (tentative_gScore >= gScore[stringToInt(v1)]){
             		continue;
@@ -95,7 +96,10 @@ public class AEstrella{
 
 				cameFrom[stringToInt(v1)] = x;
 				gScore[stringToInt(v1)] = tentative_gScore;
-				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);			
+				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);
+				System.out.println("cocina a  "+ v1.getId());
+				System.out.println("FScore "+fScore[stringToInt(v1)]);
+				System.out.println("Abiertos "+ openSet.size());		
 			}
 		}
 	}
@@ -118,7 +122,8 @@ public class AEstrella{
 	}
 
 	public void reconstructPath(Vertice[] cameFrom,Vertice current){
-    	this.total_path.add(current);
+		total_path = new LinkedList<Vertice>();
+		this.total_path.add(current);
     	while(cameFrom[Integer.valueOf(current.getId())] != null)
     	{
         	current = cameFrom[Integer.valueOf(current.getId())];
