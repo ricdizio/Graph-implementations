@@ -21,7 +21,7 @@ public class Recorador
 		{
 			Long timeStart = System.currentTimeMillis();
 
-			System.out.println(" \n"+"Llegada al nodo "+ c.getId() + " \n");
+			System.out.println(" \n"+"De cocina a la mesa "+ c.getId() + " \n");
 			costo = new AEstrella(gnd,cocina,c.getId());
 				//costo.printPath();
 			System.out.println(costo.cantidadAbiertos);
