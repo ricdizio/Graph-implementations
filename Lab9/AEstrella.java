@@ -88,6 +88,7 @@ public class AEstrella{
 			//System.out.println(" x "+ x);
 			if (x.getId().equals(g)) {
 				this.reconstructPath(this.cameFrom,x);
+				break;
 			}
 			openSet.remove(0);
 			closedSet.add(x);
