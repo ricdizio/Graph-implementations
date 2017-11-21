@@ -13,13 +13,10 @@ public class AEstrella{
 	public int cantidadNoVisitados;
 	public int cantidadAbiertos;
 	public int cantidadCerrados;
-	//private String caminos[];
 	public LinkedList<Stack<Vertice>> caminos;
 	private int lados[];
 	private Double costos[];
 	private DecimalFormat df;
-	//private Set<Vertice> closedSet = new HashSet<Vertice>();
-	//private Set<Vertice> openSet = new HashSet<Vertice>();
 	private List<Vertice> openSet;
 	private  List<Vertice> closedSet;
 	public  Stack<Vertice> total_path;
@@ -55,13 +52,11 @@ public class AEstrella{
 		this.goal = G.MapaDeVertices.get(g);
 		for (Vertice v: listadeVertices)
 		{
-			//System.out.println(v +" "+ cameFrom[4]);
 			Vertice nulo = new Vertice("null",0.0);
 			this.fScore[Integer.valueOf(v.getId())] = inf;
 			this.gScore[Integer.valueOf(v.getId())] = inf;
 			this.cameFrom[Integer.valueOf(v.getId())] = null;
 			this.lados[Integer.valueOf(v.getId())] = 0;
-			//openSet.add(v);
 			if ( s.equals(v.getId()))
 			{
 				this.gScore[Integer.valueOf(this.ver.getId())] = 0.0;
@@ -76,18 +71,12 @@ public class AEstrella{
 		Comparator<Vertice> comp = (Vertice a, Vertice b) -> {
     		return this.fScore[Integer.valueOf(a.getId())].compareTo(this.fScore[Integer.valueOf(b.getId())]);
 		};
-
-		//Collections.sort(openSet,comp);
-
 		Vertice x;
 		while (openSet.size() > 0)
 		{
 			Collections.sort(openSet,comp);
 			x = openSet.get(0);
-			//System.out.println(" SACAMOS DE LA COLA \n");
-			//System.out.println(x.getId());
 
-			//System.out.println(" x "+ x);
 			if (x.getId().equals(g)) {
 				this.reconstructPath(this.cameFrom,x);
 				break;
@@ -108,7 +97,7 @@ public class AEstrella{
 					visitados.add(v1);
 					this.cantidadAbiertos = this.cantidadAbiertos + 1;
 				}
-				//System.out.println("GSCORE++++");
+
 				tentative_gScore = gScore[stringToInt(x)] + costo(x, v1);
             	if (tentative_gScore >= gScore[stringToInt(v1)]){
             		continue;
@@ -144,13 +133,9 @@ public class AEstrella{
 	public void reconstructPath(Vertice[] cameFrom,Vertice current){
 		total_path = new Stack<Vertice>();
 		this.total_path.push(current);
-		//System.out.println(current.getId() + " -> ");
-		//System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
     	while(cameFrom[Integer.valueOf(current.getId())] != null)
     	{
         	current = cameFrom[Integer.valueOf(current.getId())];
-        	//System.out.println(current.getId() + " -> ");
-        	//System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
         	this.total_path.push(current);
 
     	}
