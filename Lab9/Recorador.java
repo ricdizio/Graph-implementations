@@ -19,23 +19,7 @@ public class Recorador
 
 		for( Vertice c :gnd.vertices())
 		{
-			/*if(!cocina.equals(c.getId()))
-			{
-				System.out.println(" \n"+"Llegada al nodo "+ c.getId() + " \n");
-				costo = new AEstrella(gnd,cocina,c.getId());
-				//costo.printPath();
-				System.out.println(costo.cantidadAbiertos);
-				System.out.println(costo.cantidadCerrados);
-				for(Stack<Vertice> u : costo.caminos)
-				{	
-					//System.out.println("Camino: ");
-					while(!u.isEmpty())
-					{	
-						System.out.print(u.pop().getId() + " " );
-					}
-					System.out.println();
-				}
-			}*/
+			Long timeStart = System.currentTimeMillis();
 
 			System.out.println(" \n"+"Llegada al nodo "+ c.getId() + " \n");
 			costo = new AEstrella(gnd,cocina,c.getId());
@@ -52,7 +36,9 @@ public class Recorador
 				}
 				System.out.println();
 			}
-				
+			Long timeEnd = System.currentTimeMillis();
+			Long time = (timeEnd - timeStart)/1000;
+			System.out.println("Tiempo de corrida: " + time + " seg");	
 		}
 	}
 }
