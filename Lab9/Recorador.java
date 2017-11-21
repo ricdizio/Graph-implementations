@@ -6,6 +6,10 @@ public class Recorador
 {
 	public static void main(String [] args) 
 	{
+		Long timeStart;
+		Long timeEnd;
+		Long time;
+
 		String input_txt = args[0];
 
 		// Vertice de partida con id cocina
@@ -19,7 +23,7 @@ public class Recorador
 
 		for( Vertice c :gnd.vertices())
 		{
-			Long timeStart = System.currentTimeMillis();
+			timeStart = System.currentTimeMillis();
 
 			System.out.println(" \n"+"De cocina a la mesa "+ c.getId() + " \n");
 			costo = new AEstrella(gnd,cocina,c.getId());
@@ -36,8 +40,8 @@ public class Recorador
 				}
 				System.out.println();
 			}
-			Long timeEnd = System.currentTimeMillis();
-			Long time = (timeEnd - timeStart)/1000;
+			timeEnd = System.currentTimeMillis();
+			time = (timeEnd - timeStart)/1000;
 			System.out.println("Tiempo de corrida: " + time + " seg");	
 		}
 	}
