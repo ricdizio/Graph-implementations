@@ -42,6 +42,7 @@ public class Recorador
 				//costo.printPath();
 			System.out.println(costo.cantidadAbiertos);
 			System.out.println(costo.cantidadCerrados);
+			System.out.println(costo.cantidadNoVisitados);
 			for(Stack<Vertice> u : costo.caminos)
 			{	
 				//System.out.println("Camino: ");
