@@ -43,7 +43,8 @@ CLASSES = \
 	Arco.java \
 	Grafo.java \
 	Digrafo.java\
-	Desagues.java
+	Desagues.java\
+	Charcos.java
 
 #
 # the default make target entry

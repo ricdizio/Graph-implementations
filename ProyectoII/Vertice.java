@@ -27,7 +27,7 @@ import java.util.*;
 public class Vertice
 {
   private String id;
-  private double peso;
+  public double peso;
   public List<Vertice> adyacencias;
   public List<Vertice> sucesores;
   public List<Vertice> predecesores;
@@ -37,6 +37,8 @@ public class Vertice
   public int index;
   public int lowLink;
   public boolean onStack;
+  public boolean esquina;
+  public boolean charco;
 
 
   /**  
@@ -47,6 +49,8 @@ public class Vertice
   
   public Vertice(String id, double peso) 
   {
+    this.esquina = false;
+    this.charco = false;
     this.index = -1;
     this.onStack = false;
     this.id = id;
@@ -130,5 +134,13 @@ public class Vertice
 
   public List<Vertice> getListaDeSucesores(){
     return this.sucesores;
+  }
+
+  public void reset()
+  {
+    //this.esquina = false;
+    this.charco = false;
+    this.index = -1;
+    this.onStack = false;
   }
 }

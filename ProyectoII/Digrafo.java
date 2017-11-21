@@ -21,8 +21,17 @@
  * 
  *************************************************************************************************************/
 
-import java.util.*;
-import java.io.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Digrafo implements Grafo
 {
@@ -66,6 +75,13 @@ public class Digrafo implements Grafo
         }
         else 
         {
+            //Colocamos vertice.esquina = true
+            if( (x == this.filas-1) || (y == this.columnas-1) || (x == 0) || (y == 0) )
+            {
+                Vertice s = MapaDeVertices.get(String.valueOf(x) + "-" + String.valueOf(y));
+                s.esquina = true;
+            }
+           
             return true;
         }
     }
@@ -92,16 +108,19 @@ public class Digrafo implements Grafo
 
             //Procedemos a agregar los nodos de la matriz 
 
+
+
             for (int i=0 ; i<filas ; i++) 
             {
                 for (int j=0 ; j<columnas ; j++ ) 
                 {
                     // Cada id es de la forma "ij" = M[(int)i,(int)j]
-                    idDelVertice = String.valueOf(i) + String.valueOf(j);
+                    idDelVertice = String.valueOf(i) + "-" + String.valueOf(j);
                     pesoDelVertice = in.readDouble();
                     agregarVertice(idDelVertice,pesoDelVertice);
                 }
             }
+
 
             // Nodo lateral
             int nodoX = 0;
@@ -118,8 +137,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -129,7 +148,11 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            
                         }
                         else if(element1.getPeso() == element2.getPeso())
                         {
@@ -141,8 +164,17 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
+                            
                         }
                     }
 
@@ -152,8 +184,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -163,7 +195,10 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
                         }
                         else if(element1.getPeso() == element2.getPeso())
                         {
@@ -175,8 +210,16 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
                         }
                     }
 
@@ -186,8 +229,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -197,7 +240,10 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
                         }
                         else if(element1.getPeso() == element2.getPeso())
                         {
@@ -209,8 +255,17 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
+    
                         }
                     }
 
@@ -220,8 +275,8 @@ public class Digrafo implements Grafo
                     //Vericamos si nodo a buscar esta dentro de la matriz
                     if(checkBounds(nodoX,nodoY))
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + String.valueOf(nodoY));
+                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
+                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
                         if(element1.getPeso() < element2.getPeso())
                         {
                             //agremamos arco sentido element 2-> element 1
@@ -231,7 +286,10 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
 
                         }
                         else if(element1.getPeso() == element2.getPeso())
@@ -244,8 +302,16 @@ public class Digrafo implements Grafo
                             String idVerticeLlegada = element1.getId();
                             double pesoArco = counter;
                             // se proceden a crear y verificar si ya fueron agregados los arcos
-                            agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
+                            {
+                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
+                            }
+                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
+                            {
+                                counter++;
+                                idArco = String.valueOf(counter);
+                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
+                            }
                         }
                     }
                 }
@@ -383,7 +449,6 @@ public class Digrafo implements Grafo
             }
         }
         return false;
-              
     }
 
     /**  
@@ -608,7 +673,8 @@ public class Digrafo implements Grafo
      */
 
 
-    public Object clone() {
+    public Object clone()
+    {
         Digrafo cloneGD = new Digrafo();
         HashMap<String, Vertice> hashMap_vertices_clone = new HashMap<String, Vertice>();
         HashMap<String, Arco> hashMap_arcos_clone = new HashMap<String, Arco>();
@@ -771,7 +837,7 @@ public class Digrafo implements Grafo
         int temp = numeroDeLados;
         if((MapaDeArcos.containsKey(a.getId()))) {
 
-            System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
+            //System.out.println("El arco con el identificador '"+a.getId()+"' ya se encuentra en el grafo.");
             return false;
         }
 
@@ -987,4 +1053,13 @@ public class Digrafo implements Grafo
             escritura.print("\n");
         }
     }
+
+    public int getNumeroDeFilas() 
+    {
+        return this.filas;
+    }  
+    public int getNumeroDeColumnas() 
+    {
+        return this.columnas;
+    } 
 }
