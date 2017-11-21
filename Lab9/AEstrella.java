@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 public class AEstrella{
 	
 	private List<Vertice> listadeVertices;
+	public Set<Vertice> visitados = new HashSet<Vertice>();
 	public int cantidadNoVisitados;
 	public int cantidadAbiertos;
 	public int cantidadCerrados;
@@ -64,7 +65,8 @@ public class AEstrella{
 			if ( s.equals(v.getId()))
 			{
 				this.gScore[Integer.valueOf(this.ver.getId())] = 0.0;
-				openSet.add(this.ver);				
+				openSet.add(this.ver);
+				visitados.add(ver);				
 			}
 
 		}
@@ -92,6 +94,7 @@ public class AEstrella{
 			}
 			openSet.remove(0);
 			closedSet.add(x);
+			visitados.add(x);
 			this.cantidadCerrados = this.cantidadCerrados + 1;
 
 			for (Vertice v1: x.getListaDeAdyacencias()) 
@@ -102,6 +105,7 @@ public class AEstrella{
 
 				if (!openSet.contains(v1)) {
 					openSet.add(v1);
+					visitados.add(v1);
 					this.cantidadAbiertos = this.cantidadAbiertos + 1;
 				}
 				//System.out.println("GSCORE++++");
@@ -115,11 +119,9 @@ public class AEstrella{
 				fScore[stringToInt(v1)] = gScore[stringToInt(v1)] + costo(v1,goal);		
 			}
 		}
-
-		/*for (int i = 0; i < G.numeroDeVertices(); i++ ) {
-			System.out.println(" VERTICE " + i+" " );
-			System.out.println("Fscore " + fScore[i] +" \n");			
-		}*/
+		//System.out.println("VISITADOS--------------------");
+		//System.out.println(visitados.size());
+		cantidadNoVisitados = G.numeroDeVertices() - visitados.size();		
 	}
 
 	public int stringToInt(Vertice v)
