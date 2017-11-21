@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Recorador
 {
-	public static void main(String [] args) {
-		
+	public static void main(String [] args) 
+	{
 		String input_txt = args[0];
 
 		// Vertice de partida con id cocina
@@ -26,20 +26,16 @@ public class Recorador
 				System.out.println("Nodo "+ c.getId() + " \n");
 				costo = new AEstrella(gnd,cocina,c.getId());
 				//costo.printPath();
-				System.out.println(costo);
+				for(Stack<Vertice> u : costo.caminos)
+				{
+					System.out.println("Camino: ");
+					while(!u.isEmpty())
+					{
+						System.out.print(u.pop().getId() + " " );
+					}
+					System.out.println();
+				}
 			}
-		}
-
-
-		for(Stack<Vertice> c : costo.caminos)
-		{
-			System.out.println("Camino: ");
-			while(!c.isEmpty())
-			{
-				
-				System.out.print(c.pop().getId() + " " );
-			}
-			System.out.println();
 		}
 	}
 }
