@@ -9,6 +9,9 @@ import java.text.DecimalFormat;
 public class AEstrella{
 	
 	private List<Vertice> listadeVertices;
+	public int cantidadNoVisitados;
+	public int cantidadAbiertos;
+	public int cantidadCerrados;
 	//private String caminos[];
 	public LinkedList<Stack<Vertice>> caminos;
 	private int lados[];
@@ -31,6 +34,10 @@ public class AEstrella{
 		df = new DecimalFormat("0.0#");
 		Double inf = Double.MAX_VALUE;
 		Double tentative_gScore = 0.0;
+
+		this.cantidadNoVisitados = 0;
+		this.cantidadAbiertos = 1;
+		this.cantidadCerrados = 0;
 		this.caminos = new LinkedList<Stack<Vertice>>();
 		this.closedSet = new ArrayList<Vertice> ();
 		this.openSet = new ArrayList<Vertice> ();
@@ -84,6 +91,7 @@ public class AEstrella{
 			}
 			openSet.remove(0);
 			closedSet.add(x);
+			this.cantidadCerrados = this.cantidadCerrados + 1;
 
 			for (Vertice v1: x.getListaDeAdyacencias()) 
 			{
@@ -93,6 +101,7 @@ public class AEstrella{
 
 				if (!openSet.contains(v1)) {
 					openSet.add(v1);
+					this.cantidadAbiertos = this.cantidadAbiertos + 1;
 				}
 				//System.out.println("GSCORE++++");
 				tentative_gScore = gScore[stringToInt(x)] + costo(x, v1);
@@ -132,13 +141,13 @@ public class AEstrella{
 	public void reconstructPath(Vertice[] cameFrom,Vertice current){
 		total_path = new Stack<Vertice>();
 		this.total_path.push(current);
-		System.out.println(current.getId() + " -> ");
-		System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
+		//System.out.println(current.getId() + " -> ");
+		//System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
     	while(cameFrom[Integer.valueOf(current.getId())] != null)
     	{
         	current = cameFrom[Integer.valueOf(current.getId())];
-        	System.out.println(current.getId() + " -> ");
-        	System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
+        	//System.out.println(current.getId() + " -> ");
+        	//System.out.println("Fscore " + df.format(fScore[stringToInt(current)]));
         	this.total_path.push(current);
 
     	}

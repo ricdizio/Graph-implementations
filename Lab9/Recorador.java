@@ -19,23 +19,39 @@ public class Recorador
 
 		for( Vertice c :gnd.vertices())
 		{
-			if(c.getId().equals("3")) {System.out.println("llegada igual a 3 ");}
-
-			if(!cocina.equals(c.getId()))
+			/*if(!cocina.equals(c.getId()))
 			{
-				System.out.println("Nodo "+ c.getId() + " \n");
+				System.out.println(" \n"+"Llegada al nodo "+ c.getId() + " \n");
 				costo = new AEstrella(gnd,cocina,c.getId());
 				//costo.printPath();
+				System.out.println(costo.cantidadAbiertos);
+				System.out.println(costo.cantidadCerrados);
 				for(Stack<Vertice> u : costo.caminos)
-				{
-					System.out.println("Camino: ");
+				{	
+					//System.out.println("Camino: ");
 					while(!u.isEmpty())
-					{
+					{	
 						System.out.print(u.pop().getId() + " " );
 					}
 					System.out.println();
 				}
+			}*/
+
+			System.out.println(" \n"+"Llegada al nodo "+ c.getId() + " \n");
+			costo = new AEstrella(gnd,cocina,c.getId());
+				//costo.printPath();
+			System.out.println(costo.cantidadAbiertos);
+			System.out.println(costo.cantidadCerrados);
+			for(Stack<Vertice> u : costo.caminos)
+			{	
+				//System.out.println("Camino: ");
+				while(!u.isEmpty())
+				{	
+					System.out.print(u.pop().getId() + " " );
+				}
+				System.out.println();
 			}
+				
 		}
 	}
 }
