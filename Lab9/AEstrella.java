@@ -142,8 +142,6 @@ public class AEstrella{
         	this.total_path.push(current);
 
     	}
-    	System.out.println("se agrego un camino");
     	this.caminos.add(this.total_path);
-
     }
 }

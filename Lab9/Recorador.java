@@ -15,7 +15,7 @@ public class Recorador
 
 		gnd.cargarGrafo(input_txt);
 
-		AEstrella costo = new AEstrella(gnd,cocina,"0");
+		AEstrella costo;
 
 		for( Vertice c :gnd.vertices())
 		{
