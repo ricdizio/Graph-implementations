@@ -1,0 +1,5 @@
+// Laboratorio 9
+// Ricardo Di Zio 11-11274
+// Fabio Suárez   12-10578
+
+Para el laboratorio 8 se implementó el algoritmo de Dijkstra y para el laboratorio 9 se implemento A*, se pudo observar que ambos algoritmos consiguen el camino de costo mínimo y que A* no visita todos los vertices del grafo, solo los que necesita para llegar al nodo final gracias a la heuristica. Por otro lado sabemos por teoria y estos dos últimos laboratorios que Dijkstra siempre visita todos los vertices y expande todos los caminos. Por otro lado podemos ver que A* consume menos espacio en memoria, ya que solo utiliza lo necesario para crear el camino y que la eficiencia de A* depende de una buena elección de heuristica para el problema a resolver. 
