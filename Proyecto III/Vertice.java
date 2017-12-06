@@ -33,12 +33,8 @@ public class Vertice
   public List<Vertice> predecesores;
   public List<Lado> incidencias;
 
-  //Atributos targan
-  public int index;
-  public int lowLink;
-  public boolean onStack;
-  public boolean esquina;
-  public boolean charco;
+  public int material;
+  public String cara;
 
 
   /**  
@@ -47,18 +43,39 @@ public class Vertice
      *
      */
   
-  public Vertice(String id, double peso) 
+  public Vertice(String id, double peso, int pos,int identificador) 
   {
-    this.esquina = false;
-    this.charco = false;
-    this.index = -1;
-    this.onStack = false;
+    this.material = identificador;
     this.id = id;
     this.peso = peso;
     this.adyacencias = new LinkedList<Vertice>();
     this.sucesores = new LinkedList<Vertice>();
     this.predecesores = new LinkedList<Vertice>();
-    this.incidencias = new LinkedList<Lado>();
+    this.incidencias = new LinkedList<Lado>();   
+    if(pos==1)
+    {
+      this.cara = "front";
+    }
+    if(pos==2)
+    {
+      this.cara = "back";
+    }
+    if(pos==3)
+    {
+      this.cara = "left";
+    }
+    if(pos==4)
+    {
+      this.cara = "right";
+    }
+    if(pos==5)
+    {
+      this.cara = "top";
+    }
+    if(pos==6)
+    {
+      this.cara = "bottom";
+    }
 
     List<Vertice> adyacencias = new LinkedList<Vertice>();
     List<Vertice> sucesores = new LinkedList<Vertice>();
@@ -136,11 +153,5 @@ public class Vertice
     return this.sucesores;
   }
 
-  public void reset()
-  {
-    //this.esquina = false;
-    this.charco = false;
-    this.index = -1;
-    this.onStack = false;
-  }
+
 }
