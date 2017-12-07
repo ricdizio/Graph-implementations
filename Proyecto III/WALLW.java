@@ -59,7 +59,7 @@ public class WALLW
 			in = new In(input_txt);
 
 			cubos = in.readInt();
-			int casos = 0;
+			int casos = 1;
 
 			do
 			{
