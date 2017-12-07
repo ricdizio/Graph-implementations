@@ -2,9 +2,10 @@ import java.util.*;
 public class Bellman{
 	private int[] costos;
 	private int[] grado;
+	private int[] lados;
 	private String[] caminos;
 	// habria que aplicarlo para cada vertice del grafo y ver cual es el que tiene el mayor costo
-	public Bellman(Digraph G, Vertice s){
+	public Bellman(Digrafo G, Vertice s){
 		Vertice x;
 		Vertice ver;
 		// t es el conjunto de vertices visitados
@@ -13,6 +14,7 @@ public class Bellman{
 		List<Vertice> listadeVertices = new ArrayList<Vertice>();
 		this.costos = new int[G.numeroDeVertices()];
 		this.caminos = new String[G.numeroDeVertices()];
+		this.lados = new int[G.numeroDeVertices()]; 
 
 		listadeVertices = G.vertices();
 			
@@ -25,8 +27,8 @@ public class Bellman{
 
 			if ( s.equals(v)) {
 				//ver = v;
-				this.costos[doubleToInt(s)] = 0;	
-				this.grado[doubleToInt(s)] = 0;			
+				this.costos[stringToInt(s)] = 0;	
+				this.grado[stringToInt(s)] = 0;			
 			}
 		}
 
@@ -49,7 +51,7 @@ public class Bellman{
 					// this.costo(x, v1)
 					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] - 1;
 					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
-					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + x.material() + " " + x.cara();											
+					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + x.material + " " + x.cara;											
 				}					
 			}
 		}
