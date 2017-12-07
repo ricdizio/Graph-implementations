@@ -55,7 +55,7 @@ public class Bellman{
 					// this.costo(x, v1)
 					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] + 1;
 					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
-					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + " "+ x.material + " " + x.cara;											
+					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + " "+ x.materialParalelo + " " + x.paralelo;											
 				}					
 			}
 		}
