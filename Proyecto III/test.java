@@ -60,7 +60,7 @@ public class test
 				listadeVertices = gd.vertices();
 				for (Vertice v: listadeVertices){
 					Bellman b = new Bellman(gd,v);
-					System.out.println(b.toString(gd));
+					b.toString(gd);
 				}
 
 				cubos = in.readInt();

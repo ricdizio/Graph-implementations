@@ -73,7 +73,7 @@ public class Bellman{
 	{
 		for(int i = 0; i < g.numeroDeVertices(); i++)
 		{	
-			System.out.println("Nodo " + i + ": " + this.caminos[i]+"\n" + lados[i] + " lados");
+			System.out.println("Nodo " + i + ": " + this.caminos[i]+"\n" + this.lados[i] + " lados");
 		}
 	}
 }
