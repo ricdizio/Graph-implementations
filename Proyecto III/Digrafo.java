@@ -74,6 +74,13 @@ public class Digrafo implements Grafo
             String idDelVertice;
             int idcounter = 1;
             Double pesoCounter = 1.0;
+
+            int [] materialesArray = new int[6];
+
+            //for (int j = 0 ; j < 6 ; j++)
+           // {
+            //    materialesArray[j] = objIn.readInt();
+            //} 
     
 
             for (int i = 1 ; i <= iter ; i++)
@@ -120,7 +127,7 @@ public class Digrafo implements Grafo
                         if(w.getPeso()<c.getPeso() && c.material == w.material)
                         {
                             agregarArco(String.valueOf(counterArco), 1.0, c.getId(), w.getId());
-                            System.out.println(this.lados());
+                            //System.out.println(this.lados());
                             counterArco++;
                         }
                     }
