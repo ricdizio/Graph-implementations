@@ -39,9 +39,6 @@ public class Digrafo implements Grafo
     private int numeroDeLados;
     private HashMap<String, Arco> MapaDeArcos;
     private HashMap<String, Vertice> MapaDeVertices;
-    //Matriz
-    private int filas;
-    private int columnas;
 
     /**  
      * @param No posee parametro de entrada
@@ -61,262 +58,77 @@ public class Digrafo implements Grafo
     }
 
     /**  
-     * @param Entrada int x , int y. Integer a vericar si estan dentro de la matriz
-     * @return true si se encuentran dentro del rango. False caso contrario
-     * 
-     * Tiempo: O(1)
-     */
-
-    public boolean checkBounds(int x, int y)
-    {
-        if ((x >= this.filas) || (y >= this.columnas) || (x < 0) || (y < 0)) 
-        {
-            return false;
-        }
-        else 
-        {
-            //Colocamos vertice.esquina = true
-            if( (x == this.filas-1) || (y == this.columnas-1) || (x == 0) || (y == 0) )
-            {
-                Vertice s = MapaDeVertices.get(String.valueOf(x) + "-" + String.valueOf(y));
-                s.esquina = true;
-            }
-           
-            return true;
-        }
-    }
-
-    /**  
      * @param Entra un string el cual es el parametro para construir un objeto de tipo In
      * @return true si se cargo perfectamente el Archivo
      * 
      * Tiempo: O(V+E)
      */
 
-    public boolean cargarGrafo(String dirArchivo){
+    public boolean cargarGrafo(int cubos , In objIn){
         // Continuar despues de implementar las funciones del grafo ya que son necesarias para terminar de cargar el grafo
         //In in = new In(args[0]);
-        try{
-            In in = new In(dirArchivo);
-            this.filas = in.readInt();
-            this.columnas = in.readInt();
-            int cantidadDeNodos = filas * columnas;
-            //int cantidad_de_arcos = in.readInt();
+        try
+        {
 
-            double pesoDelVertice;
+            int iter = cubos;
             String idDelVertice;
+            int idcounter = 1;
+            Double pesoCounter = 1.0;
+    
 
-            //Procedemos a agregar los nodos de la matriz 
-
-
-
-            for (int i=0 ; i<filas ; i++) 
+            for (int i = 1 ; i <= iter ; i++)
             {
-                for (int j=0 ; j<columnas ; j++ ) 
+                for (int j = 1 ; j <= 6 ; j++) 
                 {
-                    // Cada id es de la forma "ij" = M[(int)i,(int)j]
-                    idDelVertice = String.valueOf(i) + "-" + String.valueOf(j);
-                    pesoDelVertice = in.readDouble();
-                    agregarVertice(idDelVertice,pesoDelVertice);
+                    int material = objIn.readInt();
+
+                    idDelVertice = String.valueOf(idcounter);
+
+                    //System.out.println(idcounter+" "+pesoCounter);
+
+                    Vertice c = new Vertice(idDelVertice,pesoCounter,j,material);
+                    this.agregarVertice(c);
+                    idcounter++;
+                    //System.out.println(c);
+                    //System.out.println("cara: "+c.cara +" material " + c.material);
                 }
+                
+                pesoCounter++;
             }
 
+            int counterArco = 1;
 
-            // Nodo lateral
-            int nodoX = 0;
-            int nodoY = 0;
-            int counter = -1;
 
-            for (int i=0 ; i<filas ; i++) 
+            List<Vertice> level = new LinkedList<Vertice>();
+
+            for (int i = iter ; 1 <= i ; i--)
             {
-                for (int j=0 ; j<columnas ; j++ ) 
+                level.clear();
+                for(Vertice c : this.vertices())
                 {
-                    //Verificamos nodo superior
-                    nodoX = i - 1;
-                    nodoY = j;
-                    //Vericamos si nodo a buscar esta dentro de la matriz
-                    if(checkBounds(nodoX,nodoY))
+                    if(c.getPeso() == i*1.0)
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
-                        if(element1.getPeso() < element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2-> element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                            
-                        }
-                        else if(element1.getPeso() == element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2 -> element 1
-                            //agremamos arco sentido element 2 <- element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
-                            {
-                                counter++;
-                                idArco = String.valueOf(counter);
-                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
-                            }
-                            
-                        }
+                        level.add(c);
                     }
+                }
 
-                    //Verificamos nodo inferior
-                    nodoX = i + 1;
-                    nodoY = j;
-                    //Vericamos si nodo a buscar esta dentro de la matriz
-                    if(checkBounds(nodoX,nodoY))
+
+                for(Vertice c : level)
+                {
+                    for(Vertice w : this.vertices())
                     {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
-                        if(element1.getPeso() < element2.getPeso())
+                        if(w.getPeso()<c.getPeso() && c.material == w.material)
                         {
-                            //agremamos arco sentido element 2-> element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                        }
-                        else if(element1.getPeso() == element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2 -> element 1
-                            //agremamos arco sentido element 2 <- element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
-                            {
-                                counter++;
-                                idArco = String.valueOf(counter);
-                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
-                            }
-                        }
-                    }
-
-                    //Verificamos nodo a derecha
-                    nodoX = i;
-                    nodoY = j + 1;
-                    //Vericamos si nodo a buscar esta dentro de la matriz
-                    if(checkBounds(nodoX,nodoY))
-                    {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
-                        if(element1.getPeso() < element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2-> element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                        }
-                        else if(element1.getPeso() == element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2 -> element 1
-                            //agremamos arco sentido element 2 <- element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
-                            {
-                                counter++;
-                                idArco = String.valueOf(counter);
-                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
-                            }
-    
-                        }
-                    }
-
-                    //Verificamos nodo a izquierda
-                    nodoX = i;
-                    nodoY = j - 1;
-                    //Vericamos si nodo a buscar esta dentro de la matriz
-                    if(checkBounds(nodoX,nodoY))
-                    {
-                        Vertice element1 = MapaDeVertices.get(String.valueOf(i) + "-" +  String.valueOf(j));
-                        Vertice element2 = MapaDeVertices.get(String.valueOf(nodoX) + "-" +  String.valueOf(nodoY));
-                        if(element1.getPeso() < element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2-> element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!estaLado(idVerticeSalida,idVerticeLlegada))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-
-                        }
-                        else if(element1.getPeso() == element2.getPeso())
-                        {
-                            //agremamos arco sentido element 2 -> element 1
-                            //agremamos arco sentido element 2 <- element 1
-                            counter++;
-                            String idArco = String.valueOf(counter);
-                            String idVerticeSalida = element2.getId();
-                            String idVerticeLlegada = element1.getId();
-                            double pesoArco = counter;
-                            // se proceden a crear y verificar si ya fueron agregados los arcos
-                            if(!(estaLado(idVerticeSalida,idVerticeLlegada)))
-                            {
-                                agregarArco(idArco,pesoArco,idVerticeSalida,idVerticeLlegada);
-                            }
-                            if(!(estaLado(idVerticeLlegada,idVerticeSalida)))
-                            {
-                                counter++;
-                                idArco = String.valueOf(counter);
-                                agregarArco(idArco,pesoArco,idVerticeLlegada,idVerticeSalida);
-                            }
+                            agregarArco(String.valueOf(counterArco), 1.0, c.getId(), w.getId());
+                            System.out.println(this.lados());
+                            counterArco++;
                         }
                     }
                 }
             }
         }
+
+
         catch(Exception e){
             System.out.println("No se pudo cargar el archivo");
             return false;
@@ -379,9 +191,9 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
 
-    public boolean agregarVertice(String id, double peso) { 
+    public boolean agregarVertice(String id, double peso,int pos,int material) { 
         boolean booleano;
-        Vertice v = new Vertice(id,peso);
+        Vertice v = new Vertice(id,peso,pos,material);
         booleano = agregarVertice(v);
         
         return booleano;
@@ -1054,12 +866,4 @@ public class Digrafo implements Grafo
         }
     }
 
-    public int getNumeroDeFilas() 
-    {
-        return this.filas;
-    }  
-    public int getNumeroDeColumnas() 
-    {
-        return this.columnas;
-    } 
 }

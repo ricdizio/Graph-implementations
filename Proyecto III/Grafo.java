@@ -18,7 +18,7 @@ import java.util.List;
 
 public interface Grafo
 {
-    public boolean cargarGrafo(String dirArchivo);
+    public boolean cargarGrafo(int cubos, In objIn);
     
     public int numeroDeVertices();
 
@@ -26,7 +26,7 @@ public interface Grafo
     
     public boolean agregarVertice(Vertice v);
 
-    public boolean agregarVertice(String id, double peso);
+    public boolean agregarVertice(String id, double peso,int pos,int material);
     
     public Vertice obtenerVertice(String id);
 
