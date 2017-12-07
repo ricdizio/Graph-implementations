@@ -18,6 +18,7 @@ import java.util.Stack;
 import java.util.HashSet;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.io.BufferedInputStream;
@@ -30,9 +31,10 @@ import java.io.InputStream;
 
 public class test
 {
-
+	
 	public static void main(String [] args) 
 	{
+		List<Vertice> listadeVertices = new ArrayList<Vertice>();
 
 		// Carga
 
@@ -55,9 +57,15 @@ public class test
 
 				gd.cargarGrafo(cubos,in);
 
+				listadeVertices = gd.vertices();
+				for (Vertice v: listadeVertices){
+					Bellman b = new Bellman(gd,v);
+					System.out.println(b.toString(gd));
+				}
+
 				cubos = in.readInt();
 
-			}while(cubos != 0);
+			}while(cubos != 0); // cambios entre casos de prueba
 
 		}
 

@@ -13,7 +13,7 @@ public class Bellman{
 		t.add(s);
 		List<Vertice> listadeVertices = new ArrayList<Vertice>();
 		this.costos = new int[G.numeroDeVertices()];
-		this.grados = new int[G.numeroDeVertices()];
+		this.grado = new int[G.numeroDeVertices()];
 		this.caminos = new String[G.numeroDeVertices()];
 		this.lados = new int[G.numeroDeVertices()]; 
 
@@ -64,9 +64,16 @@ public class Bellman{
 		}*/
 	}
 
-	public int stringToInt(Vertice v)
-		{
-			int i = Integer.parseInt(v.getId());
-			return i;
+	public int stringToInt(Vertice v){
+		int i = Integer.parseInt(v.getId());
+		return i;
+	}
+
+	public void toString(Digrafo g)
+	{
+		for(int i = 0; i < g.numeroDeVertices(); i++)
+		{	
+			System.out.println("Nodo " + i + ": " + this.caminos[i]+"\n" + lados[i] + " lados");
 		}
+	}
 }
