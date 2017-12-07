@@ -14,8 +14,8 @@ public class WALLW {
 			//Inicializacion
 			for(int i = 0;i< numCubos;i++){
 				for(int j = 0; j < 6;j++){
-					int color = in.readInt();
-					tabla[i][j] = color;
+					int material = in.readInt();
+					tabla[i][j] = material;
 				}
 			}
 
@@ -106,6 +106,7 @@ public class WALLW {
 		return C;
 	}
 	public static void Impresion(ArrayList<Integer> Array){
+		System.out.println(Array.size());
 		for (int i = 0; i < Array.size() ; i++){
 			StdOut.print(cubo(Array.get(i)) + " " + lado(Array.get(i)) + "\n");
 		}
