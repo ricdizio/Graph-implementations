@@ -74,26 +74,59 @@ public class Digrafo implements Grafo
             String idDelVertice;
             int idcounter = 1;
             Double pesoCounter = 1.0;
+            int material = 0;
+            int materialParalelo = 0;
 
-            int [] materialesArray = new int[6];
-
-            //for (int j = 0 ; j < 6 ; j++)
-           // {
-            //    materialesArray[j] = objIn.readInt();
-            //} 
+          
     
 
             for (int i = 1 ; i <= iter ; i++)
             {
+                int [] materialesArray = new int[6];
+
+                for (int j = 0 ; j < 6 ; j++)
+                {
+                   materialesArray[j] = objIn.readInt();
+                } 
                 for (int j = 1 ; j <= 6 ; j++) 
                 {
-                    int material = objIn.readInt();
+                    if(j==1)
+                    {
+                        material = materialesArray[j-1];
+                        materialParalelo = materialesArray[j];
+                    }
+                    if(j==2)
+                    {
+                        material = materialesArray[j];
+                        materialParalelo = materialesArray[j-1];
+                    }
+                    if(j==3)
+                    {
+                        material = materialesArray[j-1];
+                        materialParalelo = materialesArray[j];
+                    }
+                    if(j==4)
+                    {
+                        material = materialesArray[j];
+                        materialParalelo = materialesArray[j];
+                    }
+                    if(j==5)
+                    {
+                        material = materialesArray[j-1];
+                        materialParalelo = materialesArray[j];
+                    }
+                    if(j==6)
+                    {
+                        material = materialesArray[j-1];
+                        materialParalelo = materialesArray[j-2];
+                    }
+
 
                     idDelVertice = String.valueOf(idcounter);
 
                     //System.out.println(idcounter+" "+pesoCounter);
 
-                    Vertice c = new Vertice(idDelVertice,pesoCounter,j,material);
+                    Vertice c = new Vertice(idDelVertice,pesoCounter,j,material,materialParalelo);
                     this.agregarVertice(c);
                     idcounter++;
                     //System.out.println(c);
@@ -198,9 +231,9 @@ public class Digrafo implements Grafo
      * Tiempo: O(1)
      */
 
-    public boolean agregarVertice(String id, double peso,int pos,int material) { 
+    public boolean agregarVertice(String id, double peso,int pos,int material,int paralelo) { 
         boolean booleano;
-        Vertice v = new Vertice(id,peso,pos,material);
+        Vertice v = new Vertice(id,peso,pos,material,paralelo);
         booleano = agregarVertice(v);
         
         return booleano;

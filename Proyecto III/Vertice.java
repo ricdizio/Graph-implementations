@@ -34,7 +34,9 @@ public class Vertice
   public List<Lado> incidencias;
 
   public int material;
+  public int materialParalelo;
   public String cara;
+  public String paralelo;
 
 
   /**  
@@ -43,38 +45,46 @@ public class Vertice
      *
      */
   
-  public Vertice(String id, double peso, int pos,int identificador) 
+  public Vertice(String id, double peso, int pos,int identificador, int paralelo) 
   {
     this.material = identificador;
+    this.materialParalelo = paralelo;
     this.id = id;
     this.peso = peso;
     this.adyacencias = new LinkedList<Vertice>();
     this.sucesores = new LinkedList<Vertice>();
     this.predecesores = new LinkedList<Vertice>();
-    this.incidencias = new LinkedList<Lado>();   
+    this.incidencias = new LinkedList<Lado>();
+
     if(pos==1)
     {
       this.cara = "front";
+      this.paralelo = "back";
     }
     if(pos==2)
     {
       this.cara = "back";
+      this.paralelo =  "front";
     }
     if(pos==3)
     {
       this.cara = "left";
+      this.paralelo = "right";
     }
     if(pos==4)
     {
       this.cara = "right";
+      this.paralelo = "left";
     }
     if(pos==5)
     {
       this.cara = "top";
+      this.paralelo = "bottom";
     }
     if(pos==6)
     {
       this.cara = "bottom";
+      this.paralelo = "top";
     }
 
     List<Vertice> adyacencias = new LinkedList<Vertice>();
