@@ -90,8 +90,9 @@ public class WALLW {
 					}
 				}
 			}
-			StdOut.println();
+			
 			Impresion(salida);
+			StdOut.println();
 			numCubos = in.readInt();
 		}while(numCubos != 0);
 
