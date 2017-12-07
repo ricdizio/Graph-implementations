@@ -1,6 +1,6 @@
 # Graph Implementation Algorithm 3
 ## Universidad Simon Bolivar
-Auth : Ricardo Di Zio
+Auth : Ricardo Di Zio -
        <a href="https://github.com/Fadasgo/" target="_blank">Fabio Suarez</a>
 
 #### Algorithms Implementations
