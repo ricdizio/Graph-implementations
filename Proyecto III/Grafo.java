@@ -26,7 +26,7 @@ public interface Grafo
     
     public boolean agregarVertice(Vertice v);
 
-    public boolean agregarVertice(String id, double peso,int pos,int material);
+    public boolean agregarVertice(String id, double peso,int pos,int material, int paralelo);
     
     public Vertice obtenerVertice(String id);
 
