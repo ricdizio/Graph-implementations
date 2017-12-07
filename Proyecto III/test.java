@@ -35,6 +35,17 @@ public class test
 	public static void main(String [] args) 
 	{
 		List<Vertice> listadeVertices = new ArrayList<Vertice>();
+		int cantidadVertices = listadeVertices.size();
+		List<String> caminosLargos = new ArrayList<String>();
+		List<Integer> numLados = new ArrayList<Integer>();
+		String[] caminosMax;
+		int[] ladosMax;
+		caminosMax = new String[listadeVertices.size()];
+		ladosMax = new int[listadeVertices.size()];
+		int temporalLados = 0;
+		int temporalPos = 0;
+		String caminoFinal;
+
 
 		// Carga
 
@@ -57,13 +68,39 @@ public class test
 				gd.cargarGrafo(cubos,in);
 
 				listadeVertices = gd.vertices();
+				// Aplicamos bellman por cada vertice
 				for (Vertice v: listadeVertices){
 					Bellman b = new Bellman(gd,v);
 					// se procede a agarrar el camino mas largo
-					b.toString(gd);
+					caminosLargos.add(b.cam);
+					numLados.add(b.ladosMaximoTemp);
+					//b.toString(gd);
 				}
+				caminosMax = caminosLargos.toArray();
+				ladosMax = numLados.toArray();
+				// filtramos el camino mas largo definitivo Forma 1
+				for (int i = 0;i < cantidadVertices ; i++ ) {
+					 if (ladosMax[i] > temporalLados) {
+					 	temporalLados = ladosMax[i];
+					 	temporalPos = i;
+					 }			
+				}
+				System.out.println("Camino mas largo " +caminosMax[temporalPos]+ " Numero de lados " + temporalLados);
+				
 
+				// forma 2
+				/*int contador = 0;
+				for (int i: numLados) {
+					if (numLados > temporalLados) {
+					 	temporalLados = numLados;
+					 	temporalPos = contador;
+					 	caminoFinal = caminosLargos.get(i);
+					 }	
+					 contador = contador + 1;
 
+				}
+				System.out.println("Camino mas largo " +caminoFinal+ " Numero de lados " + temporalLados);
+				*/
 				cubos = in.readInt();
 				System.out.println(cubos);
 

@@ -4,13 +4,14 @@ public class Bellman{
 	private int[] grado;
 	private int[] lados;
 	private String[] caminos;
-	private int ladosMaximoTemp;
-	private int ladosMaximoPos;
+	public int ladosMaximoTemp;
+	public int ladosMaximoPos;
+	public String cam;
 
 	// habria que aplicarlo para cada vertice del grafo y ver cual es el que tiene el mayor costo
 	public Bellman(Digrafo G, Vertice s){
-		ladosMaximoPos = 0;
-		ladosMaximoTemp = 0;
+		this.ladosMaximoPos = 0;
+		this.ladosMaximoTemp = 0;
 		Vertice x;
 		Vertice ver;
 		int inf = Integer.MAX_VALUE;
@@ -59,12 +60,14 @@ public class Bellman{
 				{
 					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] + 1;
 					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
-					/*if (lados[stringToInt(v1)] > ladosMaximoTemp ) {
-						ladosMaximoTemp = lados[stringToInt(v1)];
-						ladosMaximoPos = stringToInt(v1);						
-					}*/
 					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + " "+ x.materialParalelo + " " + v1.cara;											
+					if (lados[stringToInt(v1)] > ladosMaximoTemp ) {
+						this.ladosMaximoTemp = lados[stringToInt(v1)];
+						this.ladosMaximoPos = stringToInt(v1);
+						this.cam = this.caminos[stringToInt(v1)];						
+					}
 				}					
+
 			}
 		}
 	}
