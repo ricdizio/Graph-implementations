@@ -77,7 +77,7 @@ public class WALLW
 					// se procede a agarrar el camino mas largo
 					caminosLargos.add(b.cam);
 					numLados.add(b.ladosMaximoTemp);
-					//b.toString(gd);
+					b.toString(gd);
 				}
 
 				/*
