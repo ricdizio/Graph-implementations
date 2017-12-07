@@ -14,8 +14,8 @@ public class WALLW {
 			//Inicializacion
 			for(int i = 0;i< numCubos;i++){
 				for(int j = 0; j < 6;j++){
-					int color = in.readInt();
-					tabla[i][j] = color;
+					int material = in.readInt();
+					tabla[i][j] = material;
 				}
 			}
 
