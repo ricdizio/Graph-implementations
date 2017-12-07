@@ -43,7 +43,7 @@ CLASSES = \
 	Stack.java \
 	Digraph.java \
 	NegBellman.java \
-	TorreDeCubos.java
+	WALLW.java
 #
 # the default make target entry
 #

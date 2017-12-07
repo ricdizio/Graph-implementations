@@ -1,3 +1,20 @@
+/**********************************************************************************************************
+ *    Compilacion:  javac WALLW.java
+ *    Ejecucion:    java  WALLW <casos>
+ *    Dependencias In.java, Out.java,Lado.java, Arco.java, Grafo.java, Digrafo.java, NgBellman.java, BG.java
+ *    
+ *    El makefile compila todo el proyecto siguiendo el orden de dependencias
+ *    
+ *    ProyectoIII
+ *
+ *    @author  Ricardo Di Zio 11-11274
+ *    @author  Fabio Suarez   12-10578
+ *    @version 1.0
+ *    @since   2017-6-12
+ *
+ * 
+ *************************************************************************************************************/
+
 import java.util.*;
 public class WALLW {
 	public static void main(String[] args){
@@ -73,7 +90,7 @@ public class WALLW {
 					}
 				}
 			}
-
+			StdOut.println();
 			Impresion(salida);
 			numCubos = in.readInt();
 		}while(numCubos != 0);

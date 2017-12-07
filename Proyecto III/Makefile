@@ -43,7 +43,7 @@ CLASSES = \
 	Arco.java \
 	Grafo.java \
 	Digrafo.java\
-	Bellman.java\
+	NegBellman.java\
 	WALLW.java
 	
 
