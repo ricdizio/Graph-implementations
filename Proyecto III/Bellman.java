@@ -8,22 +8,24 @@ public class Bellman{
 	public Bellman(Digrafo G, Vertice s){
 		Vertice x;
 		Vertice ver;
+		int inf = Integer.MAX_VALUE;
 		// t es el conjunto de vertices visitados
 		List<Vertice> t = new ArrayList<Vertice>();
 		t.add(s);
 		List<Vertice> listadeVertices = new ArrayList<Vertice>();
-		this.costos = new int[G.numeroDeVertices()];
-		this.grado = new int[G.numeroDeVertices()];
-		this.caminos = new String[G.numeroDeVertices()];
-		this.lados = new int[G.numeroDeVertices()]; 
+		this.costos = new int[G.numeroDeVertices()+1];
+		this.grado = new int[G.numeroDeVertices()+1];
+		this.caminos = new String[G.numeroDeVertices()+1];
+		this.lados = new int[G.numeroDeVertices()+1]; 
 
 		listadeVertices = G.vertices();
 			
 		for (Vertice v: listadeVertices)
 		{
-			this.costos[stringToInt(v)] = -1;
+			this.costos[stringToInt(v)] = inf;
 			this.grado[stringToInt(v)] = G.gradoInterior(v.getId());
-			this.caminos[stringToInt(v)] = "";
+			//this.caminos[stringToInt(v)] = "";
+			this.caminos[stringToInt(v)] = v.material + " " + v.cara+" ";
 			this.lados[stringToInt(v)] = 0;
 
 			if ( s.equals(v)) {
@@ -51,9 +53,9 @@ public class Bellman{
 				if (this.costos[stringToInt(v1)] > (this.costos[stringToInt(x)] - 1)) 
 				{
 					// this.costo(x, v1)
-					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] - 1;
+					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] + 1;
 					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
-					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + x.material + " " + x.cara;											
+					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + " "+ x.material + " " + x.cara;											
 				}					
 			}
 		}
