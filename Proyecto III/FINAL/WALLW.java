@@ -1,11 +1,11 @@
 /**********************************************************************************************************
  *    Compilacion:  javac WALLW.java
  *    Ejecucion:    java  WALLW <casos>
- *    Dependencias In.java, Out.java,Lado.java, Arco.java, Grafo.java, Digrafo.java, NgBellman.java, BG.java
+ *    Dependencias In.java,StdIn.java,StdOut.java, Bag.java, Stack.java, Digraph.java, NegBellman.java, WALLW.java
  *    
  *    El makefile compila todo el proyecto siguiendo el orden de dependencias
  *    
- *    ProyectoIII
+ *    ProyectoIII - Solucionador
  *
  *    @author  Ricardo Di Zio 11-11274
  *    @author  Fabio Suarez   12-10578
@@ -92,7 +92,9 @@ public class WALLW {
 			}
 			
 			Impresion(salida);
-			StdOut.println();
+
+			StdOut.print("\n");
+
 			numCubos = in.readInt();
 		}while(numCubos != 0);
 

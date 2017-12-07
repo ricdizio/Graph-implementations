@@ -1,4 +1,19 @@
-
+/**********************************************************************************************************
+ *    Compilacion:  javac NegBellman.java
+ *    Ejecucion:    java  NegBellman
+ *    Dependencias In.java,StdIn.java,StdOut.java, Bag.java, Stack.java, Digraph.java, NegBellman.java
+ *    
+ *    Bellman caminos maximo
+ *    
+ *    ProyectoIII 
+ *
+ *    @author  Ricardo Di Zio 11-11274
+ *    @author  Fabio Suarez   12-10578
+ *    @version 1.0
+ *    @since   2017-6-12
+ *
+ * 
+ *************************************************************************************************************/
 import java.util.*;
 public class NegBellman{
 	private int[] C;
