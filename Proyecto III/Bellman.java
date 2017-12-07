@@ -59,11 +59,6 @@ public class Bellman{
 				}					
 			}
 		}
-		/*for(int i = 0; i < G.numeroDeVertices(); i++)
-		{
-			this.caminos[i] = this.caminos[i] + "->" + i;
-			this.caminos[i] = this.caminos[i].substring(2, this.caminos[i].length());
-		}*/
 	}
 
 	public int stringToInt(Vertice v){
