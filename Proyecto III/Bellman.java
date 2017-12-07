@@ -13,6 +13,7 @@ public class Bellman{
 		t.add(s);
 		List<Vertice> listadeVertices = new ArrayList<Vertice>();
 		this.costos = new int[G.numeroDeVertices()];
+		this.grados = new int[G.numeroDeVertices()];
 		this.caminos = new String[G.numeroDeVertices()];
 		this.lados = new int[G.numeroDeVertices()]; 
 
@@ -28,7 +29,8 @@ public class Bellman{
 			if ( s.equals(v)) {
 				//ver = v;
 				this.costos[stringToInt(s)] = 0;	
-				this.grado[stringToInt(s)] = 0;			
+				this.grado[stringToInt(s)] = 0;
+				this.lados[stringToInt(v)] = 0;			
 			}
 		}
 
