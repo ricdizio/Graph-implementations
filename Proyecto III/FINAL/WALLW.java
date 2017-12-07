@@ -106,6 +106,7 @@ public class WALLW {
 		return C;
 	}
 	public static void Impresion(ArrayList<Integer> Array){
+		System.out.println(Array.size());
 		for (int i = 0; i < Array.size() ; i++){
 			StdOut.print(cubo(Array.get(i)) + " " + lado(Array.get(i)) + "\n");
 		}
