@@ -43,8 +43,7 @@ public class test
 		int cubos;
 		String input_txt = args[0];
 
-		try
-		{
+
 
 			in = new In(input_txt);
 
@@ -60,18 +59,15 @@ public class test
 				listadeVertices = gd.vertices();
 				for (Vertice v: listadeVertices){
 					Bellman b = new Bellman(gd,v);
-					System.out.println(b.toString(gd));
+					b.toString(gd);
 				}
 
+
 				cubos = in.readInt();
+				System.out.println(cubos);
 
 			}while(cubos != 0); // cambios entre casos de prueba
 
-		}
 
-		catch(Exception e)
-		{
-            System.out.println("No se pudo cargar el archivo");
-        }
 	}
 }
