@@ -43,8 +43,9 @@ CLASSES = \
 	Arco.java \
 	Grafo.java \
 	Digrafo.java\
-	Desagues.java\
-	Charcos.java
+	Bellman.java\
+	WALLW.java
+	
 
 #
 # the default make target entry
