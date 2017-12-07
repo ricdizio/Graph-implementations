@@ -59,9 +59,12 @@ public class test
 			in = new In(input_txt);
 
 			cubos = in.readInt();
+			int casos = 0;
 
 			do
 			{
+				System.out.println("caso: #"+casos);
+				casos++;
 				// Cada iteracion se crea un grafo diferente para cada caso
 				gd = new Digrafo();
 
@@ -76,8 +79,10 @@ public class test
 					numLados.add(b.ladosMaximoTemp);
 					//b.toString(gd);
 				}
-				caminosMax = caminosLargos.toArray();
-				ladosMax = numLados.toArray();
+
+				/*
+				caminosMax = caminosLargos.toArray(caminosMax);
+				ladosMax = numLados.toArray(ladosMax);
 				// filtramos el camino mas largo definitivo Forma 1
 				for (int i = 0;i < cantidadVertices ; i++ ) {
 					 if (ladosMax[i] > temporalLados) {
@@ -87,22 +92,36 @@ public class test
 				}
 				System.out.println("Camino mas largo " +caminosMax[temporalPos]+ " Numero de lados " + temporalLados);
 				
+				*/
 
 				// forma 2
-				/*int contador = 0;
-				for (int i: numLados) {
-					if (numLados > temporalLados) {
-					 	temporalLados = numLados;
-					 	temporalPos = contador;
-					 	caminoFinal = caminosLargos.get(i);
-					 }	
-					 contador = contador + 1;
 
+				int contador = 0;
+				caminoFinal = "";
+				for (int i: numLados) 
+				{
+					
+					if (i > temporalLados) 
+					{
+					 	temporalLados = i;
+					 	temporalPos = contador;
+					 	caminoFinal = caminosLargos.get(contador);
+					}	
+					contador = contador + 1;
 				}
+
 				System.out.println("Camino mas largo " +caminoFinal+ " Numero de lados " + temporalLados);
-				*/
+						
+				//System.out.println(cubos);
+
+				String[] output = caminoFinal.split("->");
+
+				for( int i = output.length; i != 0 ; i-- )
+				{
+					System.out.println(output[i-1]);
+				}
+
 				cubos = in.readInt();
-				System.out.println(cubos);
 
 			}while(cubos != 0); // cambios entre casos de prueba
 

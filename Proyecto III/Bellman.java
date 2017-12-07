@@ -60,7 +60,7 @@ public class Bellman{
 				{
 					this.costos[stringToInt(v1)] = this.costos[stringToInt(x)] + 1;
 					this.lados[stringToInt(v1)] = this.lados[stringToInt(x)] + 1;
-					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + " "+ x.materialParalelo + " " + v1.cara;											
+					this.caminos[stringToInt(v1)] = this.caminos[stringToInt(x)] + "->" + x.materialParalelo + " " + v1.cara;											
 					if (lados[stringToInt(v1)] > ladosMaximoTemp ) {
 						this.ladosMaximoTemp = lados[stringToInt(v1)];
 						this.ladosMaximoPos = stringToInt(v1);
