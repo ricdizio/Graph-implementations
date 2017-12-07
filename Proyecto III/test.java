@@ -59,6 +59,7 @@ public class test
 				listadeVertices = gd.vertices();
 				for (Vertice v: listadeVertices){
 					Bellman b = new Bellman(gd,v);
+					// se procede a agarrar el camino mas largo
 					b.toString(gd);
 				}
 
