@@ -15,7 +15,8 @@ public class Kruskal{
 			EdgeWeightedGraph g = new EdgeWeightedGraph(inputFile);
 			KruskalAlgorithm k = new KruskalAlgorithm(g);
 			System.out.println("Caso " + contador++ + ":" );
-			System.out.println(k.weight());
+			// Colocamos parse int ya que en la salida del PDF se muestra de tipo entero
+			System.out.println( (int) k.weight());
 			System.out.println();
 		}
 
