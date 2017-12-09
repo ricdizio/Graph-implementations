@@ -14,7 +14,7 @@ public class Kruskal{
 		{
 			EdgeWeightedGraph g = new EdgeWeightedGraph(inputFile);
 			KruskalAlgorithm k = new KruskalAlgorithm(g);
-			System.out.println("Caso: " + contador++);
+			System.out.println("Caso " + contador++ + ":" );
 			System.out.println(k.weight());
 			System.out.println();
 		}
