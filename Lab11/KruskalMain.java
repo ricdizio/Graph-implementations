@@ -13,7 +13,7 @@ public class Kruskal{
 		for (int i = 0; i<casos ; i++)
 		{
 			EdgeWeightedGraph g = new EdgeWeightedGraph(inputFile);
-			KruskalAlgorithm k = new KruskalAlgorithm(g);
+			Kruskal k = new Kruskal(g);
 			System.out.println("Caso: " + contador++);
 			System.out.println(k.weight());
 			System.out.println();
