@@ -42,7 +42,12 @@ public class Kruskal
 
 	public Kruskal(EdgeWeightedGraph G)
 	{
-		edges = new ArrayList<Edge>(G.getEdges());
+		edges = new ArrayList<Edge>();
+		for(Edge e : G.edges())
+		{
+			edges.add(e);
+		}
+		edges = new ArrayList<Edge>();
 		MST = new ArrayList<Edge>();
 		Collections.sort(edges);
 		rep = new int[G.V()];
